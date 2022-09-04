@@ -1,8 +1,0 @@
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\obj\Debug\ShokunHomework1.csproj.AssemblyReference.cache
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\obj\Debug\ShokunHomework1.csproj.SuggestedBindingRedirects.cache
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\obj\Debug\ShokunHomework1.csproj.CoreCompileInputs.cache
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\bin\Debug\ShokunHomework1.exe.config
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\bin\Debug\ShokunHomework1.exe
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\bin\Debug\ShokunHomework1.pdb
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\obj\Debug\ShokunHomework1.exe
-D:\Programming\SoftServe\Homework\lesson_1\ShokunHomework1\obj\Debug\ShokunHomework1.pdb
