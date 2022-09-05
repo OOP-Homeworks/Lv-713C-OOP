@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lesson2
+{
+    internal class Program
+    {
+
+        enum TestCaseStatus { Pass, Fail, Blocked, WP, Unexecuted };
+
+        struct RGB
+        {
+            public string name;
+            public byte r;
+            public byte g;
+            public byte b;
+
+            public void colorInfo()
+            {
+                Console.WriteLine($"{name} color in RGB: {r} {g} {b}");
+            }
+        }
+
+        static void Main(string[] args)
+        {
+
+            //Task 1
+
+            Console.WriteLine("Write number of the day");
+            int day = Convert.ToInt32(Console.ReadLine());
+            if (day > 0 && day < 32)
+            {
+                Console.WriteLine("It's a day");
+            } 
+            else
+            {
+                Console.WriteLine("It's not a day!");
+            }
+            Console.WriteLine("Write number of the month");
+            int month = Convert.ToInt32(Console.ReadLine());
+            if (month > 0 && month < 13)
+            {
+                Console.WriteLine("It's a month");
+            }
+            else
+            {
+                Console.WriteLine("It's not a month!");
+            }
+
+            //Task 2
+
+            Console.WriteLine("Write a number");
+            double number = Convert.ToDouble(Console.ReadLine());
+            int firsNum = (int) (number * 10) % 10;
+            int secondNum = (int) (number * 100) % 10;
+            int result = firsNum + secondNum;
+            Console.WriteLine($"Result: {result}");
+
+            //Task 3
+
+            Console.WriteLine("Write the hour");
+            int h = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(h >= 0 && h <= 5 ? "Good night!" :
+                              h >= 6 && h <= 11 ? "Good morning!" :
+                              h >= 12 && h <= 16 ? "Good afternoon!" :
+                              h >= 17 && h <= 22 ? "Good evening!" :
+                              h > 22 && h < 25 ? "Good night!" : "This is not a time of day");
+
+            //Task 4
+
+            TestCaseStatus test1Status = TestCaseStatus.Pass;
+            Console.WriteLine($"Test case status: {test1Status}");
+
+            //Task 5
+
+            RGB white;
+            white.name = "White";
+            white.r = 255;
+            white.g = 255;
+            white.b = 255;
+
+            white.colorInfo();
+
+            RGB black;
+            black.name = "Black";
+            black.r = 255;
+            black.g = 255;
+            black.b = 255;
+
+            black.colorInfo();
+
+            Console.ReadKey();
+        }
+    }
+}
