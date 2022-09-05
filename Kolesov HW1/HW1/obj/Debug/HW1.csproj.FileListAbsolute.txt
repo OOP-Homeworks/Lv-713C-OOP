@@ -1,0 +1,8 @@
+D:\SoftServe\HW1\HW1\bin\Debug\HW1.exe.config
+D:\SoftServe\HW1\HW1\bin\Debug\HW1.exe
+D:\SoftServe\HW1\HW1\bin\Debug\HW1.pdb
+D:\SoftServe\HW1\HW1\obj\Debug\HW1.csproj.AssemblyReference.cache
+D:\SoftServe\HW1\HW1\obj\Debug\HW1.csproj.SuggestedBindingRedirects.cache
+D:\SoftServe\HW1\HW1\obj\Debug\HW1.csproj.CoreCompileInputs.cache
+D:\SoftServe\HW1\HW1\obj\Debug\HW1.exe
+D:\SoftServe\HW1\HW1\obj\Debug\HW1.pdb
