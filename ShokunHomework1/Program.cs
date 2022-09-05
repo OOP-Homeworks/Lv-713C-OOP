@@ -61,6 +61,8 @@ namespace ShokunHomework1
                     break;
             }
 
+            Console.ReadKey();
+
         }
     }
 }
