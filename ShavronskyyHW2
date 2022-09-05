@@ -1,0 +1,67 @@
+using System.Globalization;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+
+namespace program
+{
+    public static class Problem
+    {
+        public static void Main()
+        {
+            Console.WriteLine(InRange(1.33f, 2.4f, -4.34f));
+        }
+        public static bool InRange(float numberOne, float numberTwo, float numberThree) 
+        {
+            int minRange = -5;
+            int maxRange = 5;
+            bool one = numberOne > minRange && numberOne < maxRange;
+            bool two = numberTwo > minRange && numberTwo < maxRange;
+            bool three = numberThree > minRange && numberThree < maxRange;
+
+            return one == two == three;
+        }
+        public static int MaxNumber(int numberOne, int numberTwo, int numberThree)
+        {
+            var numbers = new List<int>() { numberOne, numberTwo, numberThree };
+            return numbers.Max();
+        }
+
+        public static string ErrorsDecode(int errorNum)
+        {
+            switch (errorNum)
+            {
+                case 400:
+                    return "Bad Request";
+                    break;
+                case 401:
+                    return "Unauthorized";
+                    break;
+                case 402:
+                    return "Payment Required";
+                    break;
+            }
+            return "undefined code";
+        }
+        struct Dog
+        {
+            public string Name;
+            public string Mark;
+            public int Age;
+
+            public override string ToString()
+            {
+                return string.Format("Name: {0}\nMark: {1}\nAge: {2} months", Name, Mark, Age);
+            }
+        }
+        public static void AboutDogInfo()
+        {
+            Dog dog = new Dog();
+            dog.Name = "Akitovna";
+            dog.Mark = "Akita";
+            dog.Age = 15;
+            Console.WriteLine(dog);
+        }
+    }
+}
+
