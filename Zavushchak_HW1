@@ -1,0 +1,39 @@
+using System;
+
+
+namespace HW1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Ener side of the square:");
+            double a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("perimeter of a square");
+            double P = a * 4;
+            Console.WriteLine(P);
+            Console.WriteLine("area of a square");
+            double S = Math.Pow(a, 2);
+            Console.WriteLine(S);
+            /////////////////////////////////////////////////////////
+        
+            int age;
+            string name;
+            Console.WriteLine("What is your name?");
+            name = Console.ReadLine();
+            Console.WriteLine("How old are you " + "," + " " + name);
+            age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(name + " " + age);
+            ///////////////////////////////////////////////////////////////////////
+
+            Console.WriteLine("Enter radius :");
+            double r = Convert.ToInt32(Console.ReadLine());
+            double l = 2 * Math.PI * r;
+            Console.WriteLine("l=" + l);
+            double s = Math.PI * Math.Pow(r, 2);
+            Console.WriteLine("s=" + s);
+            double v = (4 / 3) * Math.PI * Math.Pow(r, 3);
+            Console.WriteLine("v=" + v);
+        }
+    }
+}
