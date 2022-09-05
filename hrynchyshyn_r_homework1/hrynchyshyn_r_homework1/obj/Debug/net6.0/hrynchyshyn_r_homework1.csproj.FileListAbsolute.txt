@@ -1,0 +1,15 @@
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.csproj.AssemblyReference.cache
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.AssemblyInfoInputs.cache
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.AssemblyInfo.cs
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.csproj.CoreCompileInputs.cache
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\bin\Debug\net6.0\hrynchyshyn_r_homework1.exe
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\bin\Debug\net6.0\hrynchyshyn_r_homework1.deps.json
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\bin\Debug\net6.0\hrynchyshyn_r_homework1.runtimeconfig.json
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\bin\Debug\net6.0\hrynchyshyn_r_homework1.dll
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\bin\Debug\net6.0\hrynchyshyn_r_homework1.pdb
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.dll
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\refint\hrynchyshyn_r_homework1.dll
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.pdb
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\hrynchyshyn_r_homework1.genruntimeconfig.cache
+C:\Users\Roman\source\repos\hrynchyshyn_r_homework1\hrynchyshyn_r_homework1\obj\Debug\net6.0\ref\hrynchyshyn_r_homework1.dll
