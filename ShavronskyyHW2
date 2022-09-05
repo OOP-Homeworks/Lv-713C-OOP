@@ -9,7 +9,7 @@ namespace program
     {
         public static void Main()
         {
-            Console.WriteLine(InRange(1.33f, 2.4f, -4.34f));
+            MaxMinNumber(5, 3, 1);
         }
         public static bool InRange(float numberOne, float numberTwo, float numberThree) 
         {
@@ -21,10 +21,10 @@ namespace program
 
             return one == two == three;
         }
-        public static int MaxNumber(int numberOne, int numberTwo, int numberThree)
+        public static void MaxMinNumber(int numberOne, int numberTwo, int numberThree)
         {
             var numbers = new List<int>() { numberOne, numberTwo, numberThree };
-            return numbers.Max();
+            Console.WriteLine("Max.Value: {0}\nMin.Value: {1}",numbers.Max(),numbers.Min());
         }
 
         public static string ErrorsDecode(int errorNum)
