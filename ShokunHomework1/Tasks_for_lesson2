@@ -86,9 +86,9 @@ namespace Lesson2
 
             RGB black;
             black.name = "Black";
-            black.r = 255;
-            black.g = 255;
-            black.b = 255;
+            black.r = 0;
+            black.g = 0;
+            black.b = 0;
 
             black.colorInfo();
 
