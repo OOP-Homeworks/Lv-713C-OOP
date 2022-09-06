@@ -4,64 +4,127 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShokunHomework1
+namespace ShokunHW2
 {
     internal class Program
     {
+
+        enum HTTPError
+        {
+            BadRequest = 400,
+            Unauthorized,
+            PaymentRequired,
+            Forbidden,
+            NotFound,
+            MethodNotAllowed,
+            NotAcceptable,
+            ProxyAuthenticationRequired,
+            RequestTimeout,
+            Conflict,
+            Gone
+        }
+
+        struct Dog
+        {
+            public string name;
+            public string mark;
+            public int age;
+            public override string ToString()
+            {
+                return string.Format($"Dog's name: {name}, mark: {mark}, age: {age}.");
+            }
+        }
+
         static void Main(string[] args)
         {
+
             //Task 1
 
-            Console.Write("Please write side length of a square: ");
-            int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("To calculate the area of a square, press 1");
-            Console.WriteLine("To calculate the perimeter of a square, press 2");
-            int pick = Convert.ToInt32(Console.ReadLine());
-            if (pick == 1)
+            Console.WriteLine("Enter three numbers");
+            float firstNum = (float) Convert.ToDouble(Console.ReadLine());
+            float secondNum = (float) Convert.ToDouble(Console.ReadLine());
+            float thirdNum = (float) Convert.ToDouble(Console.ReadLine());
+
+            if (firstNum >= -5 && firstNum <= 5)
             {
-                Console.WriteLine($"Area of a squre equals: {a * a}.");
-            } 
-            else if (pick == 2)
-            {
-                Console.WriteLine($"Perimeter of a square equals: {4 * a}.");
-            } 
+                Console.WriteLine($"{firstNum} is in the range [-5.5]");
+            }
             else
             {
-                Console.WriteLine($"Area of a squre equals: {a * a}.\nPerimeter of a square equals: {4 * a}.");
+                Console.WriteLine($"{firstNum} out of the range [-5.5]");
+            }
+
+            if (secondNum >= -5 && secondNum <= 5)
+            {
+                Console.WriteLine($"{secondNum} is in the range [-5.5]");
+            }
+            else
+            {
+                Console.WriteLine($"{secondNum} out of the range [-5.5]");
+            }
+
+            if (thirdNum >= -5 && thirdNum <= 5)
+            {
+                Console.WriteLine($"{thirdNum} is in the range [-5.5]");
+            }
+            else
+            {
+                Console.WriteLine($"{thirdNum} out of the range [-5.5]");
             }
 
             //Task 2
 
-            Console.WriteLine("What is your name?");
-            string name = Console.ReadLine();
-            Console.WriteLine($"How old are you, {name}?");
-            int age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine($"Hello {name}, your age is {age}.");
+            Console.WriteLine("Enter three numbers");
+            int num1 = Convert.ToInt32(Console.ReadLine());
+            int num2 = Convert.ToInt32(Console.ReadLine());
+            int num3 = Convert.ToInt32(Console.ReadLine());
+            
+
+            if (num1 < num2 && num1 < num3)
+            {
+                Console.WriteLine($"Min = {num1}");
+            }
+            else if (num2 < num1 && num2 < num3)
+            {
+                Console.WriteLine($"Min = {num2}");
+            }
+            else
+            {
+                Console.WriteLine($"Min = {num3}");
+            }
+
+            if (num1 > num2 && num1 > num3)
+            {
+                Console.WriteLine($"Max = {num1}");
+            }
+            else if (num2 > num1 && num2 > num3)
+            {
+                Console.WriteLine($"Max = {num2}");
+            }
+            else
+            {
+                Console.WriteLine($"Max = {num3}");
+            }
 
             //Task 3
 
+            Console.WriteLine("Enter error code");
+            int numOfError = Convert.ToInt32(Console.ReadLine());
+            HTTPError error = (HTTPError)numOfError;
+            Console.WriteLine($"{numOfError} - {error}");
 
-            Console.Write("Please, write radius of a circle ");
-            double r = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("To calculate the length - press 1, area - press 2 and volume - press 3");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch (choice)
-            {
-                case 1:
-                    Console.WriteLine($"The length of the circle equals: {2 * Math.PI * r}");
-                    break;
-                case 2:
-                    Console.WriteLine($"The area of the circle equals: {Math.PI * r * r}");
-                    break;
-                case 3:
-                    Console.WriteLine($"The volume of the circle equals: {4 / 3 * Math.PI * r * r * r}");
-                    break;
-                default:
-                    Console.WriteLine($"The length of the circle equals: {2 * Math.PI * r}\nThe area of the circle equals: {Math.PI * r * r}\nThe volume of the circle equals: {4 / 3 * Math.PI * r * r * r}");
-                    break;
-            }
+            //Task 4
 
-            Console.ReadKey();
+            Dog myDog;
+            Console.WriteLine("Please enter the Dog's name");
+            myDog.name = Console.ReadLine();
+            Console.WriteLine("Enter the Dog's mark");
+            myDog.mark = Console.ReadLine();
+            Console.WriteLine("How old is the dog?");
+            myDog.age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(myDog);
+
+
 
         }
     }
