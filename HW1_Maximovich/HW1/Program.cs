@@ -8,7 +8,7 @@
 
             Console.WriteLine("Write leght square side: ");
             int a = Convert.ToInt32(Console.ReadLine()); //Тут було б краще використовувати double бо дані також можуть бути і десятковими
-            Console.WriteLine("Area square: {0}", a * a);
+            Console.WriteLine("Area square: {0}", Math.Pow(a, 2);
             Console.WriteLine("Perimeter square: {0}", a * 4);
 
             //task2
@@ -24,8 +24,8 @@
             Console.Write("Write radius of circle: ");
             double r = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Leght circle: {0:F1}", 2 * Math.PI * r);
-            Console.WriteLine("Area circle: {0:F1}", Math.PI * r * r);
-            Console.WriteLine("Volume circle: {0:F1}", 4 / 3 * Math.PI * r * r * r);
+            Console.WriteLine("Area circle: {0:F1}", Math.PI * Math.Pow(r, 2));
+            Console.WriteLine("Volume circle: {0:F1}", 4 / 3 * Math.PI * Math.Pow(r, 3));
         }
     }
 }
