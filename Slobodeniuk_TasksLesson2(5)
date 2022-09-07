@@ -1,0 +1,70 @@
+using System;
+
+namespace Lesson2Task5 // Note: actual namespace depends on the project name.
+{
+    struct RGB
+    {
+        private byte red, green, blue; // private - згідно з інкапсуляцією в ООП, усі поля повинні бути захищенними
+
+        public void setValues(byte red, byte green, byte blue)
+        {
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
+        }
+
+        public void printWhiteColor()
+        {
+            Console.WriteLine("White color is: r = " + this.red + ", g = " + this.green + ", b = " + this.blue + ".");
+        }
+
+        public void printBlackColor()
+        {
+            Console.WriteLine("Black color is: r = " + this.red + ", g = " + this.green + ", b = " + this.blue + ".");
+        }
+
+        public void printRedColor()
+        {
+            Console.WriteLine("Red color is: r = " + this.red + ", g = " + this.green + ", b = " + this.blue + ".");
+        }
+
+        public void printGreenColor()
+        {
+            Console.WriteLine("Green color is: r = " + this.red + ", g = " + this.green + ", b = " + this.blue + ".");
+        }
+
+        public void printBlueColor()
+        {
+            Console.WriteLine("Blue color is: r = " + this.red + ", g = " + this.green + ", b = " + this.blue + ".");
+        }
+
+        static void Main()
+        {
+            RGB white = new RGB();
+            white.setValues(255, 255, 255);
+            white.printWhiteColor();
+
+
+            RGB black = new RGB();
+            black.setValues(0, 0, 0);
+            black.printBlackColor();
+            
+
+            RGB red = new RGB();
+            red.setValues(255, 0, 0);
+            red.printRedColor();
+            
+
+            RGB green = new RGB();
+            green.setValues(0, 255, 0);
+            green.printGreenColor();
+            
+
+            RGB blue = new RGB();
+            blue.setValues(0, 0, 255);
+            blue.printBlueColor();
+          
+        }
+
+    }
+}
