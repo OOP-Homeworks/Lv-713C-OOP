@@ -1,0 +1,38 @@
+    int square = a * a;
+
+            Console.WriteLine($"Perimeter = {perimeter}, Square = {square}");
+            Console.ReadKey():
+        }
+
+// Task 2
+static void Main(string[] args)
+        {
+            Console.WriteLine("What is your name? ");
+            string name = Console.ReadLine();
+
+            Console.WriteLine($"How old are you,{name}?");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"Name : {name}, Age : {age}");
+            Console.ReadKey();
+        }
+
+ // Task 3
+ static void Main(string[] args)
+        {
+            Console.WriteLine("Enter radius of a circle :");
+
+            double r = Convert.ToDouble(Console.ReadLine());
+            const double PI = 3.1415926535897931;
+            double lenght = 2 * PI * r;
+            double area = PI * r * r;
+            double volume = 4 / 3 * PI * r * r * r;
+
+            Console.WriteLine($"Lenght : {lenght}");
+            Console.WriteLine($"Area : {area}");
+            Console.WriteLine($"Volume : {volume}");
+
+
+        }
+
+
