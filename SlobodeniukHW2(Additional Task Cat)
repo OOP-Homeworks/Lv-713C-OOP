@@ -1,0 +1,73 @@
+using System;
+
+namespace Lesson_1
+{
+    enum Foods { fish = 1, meat, cheese, mouse, chiken, pork, sausage };
+    class Program
+    {
+        public class Cat
+        {
+            public int hunger;
+
+            public void eat (Foods food)
+            {
+                hunger += (int) food;
+                if (hunger >= 100)
+                {
+                    Console.WriteLine("This cat is full. Start again");
+                    Environment.Exit(0);               
+                }
+            }
+            public Cat(int hunger)
+            {
+                this.hunger = hunger;
+            }
+
+        }
+        static void Main()
+        {
+            Cat cat = new Cat(0);
+            int b = 10;
+            while (b > 7)
+            {
+                Console.WriteLine($"Cat fillness level is {cat.hunger}. Choose some number of food(1-7).");
+                int a = Convert.ToInt32(Console.ReadLine());
+                switch (a)
+                {
+                    case (int) Foods.fish:
+                        cat.eat(Foods.fish);
+                        Console.WriteLine("The cat ate some fish");
+                        break;
+                    case (int) Foods.meat:
+                        cat.eat(Foods.meat);
+                        Console.WriteLine("The cat ate some meat");
+                        break;
+                    case (int) Foods.cheese:
+                        cat.eat(Foods.cheese);
+                        Console.WriteLine("The cat ate some cheese.");
+                        break;
+                    case (int) Foods.mouse:
+                        cat.eat(Foods.mouse);
+                        Console.WriteLine("The cat ate the mouse");
+                        break;
+                    case (int) Foods.chiken:
+                        cat.eat(Foods.chiken);
+                        Console.WriteLine("The cat ate the chiken.");
+                        break;
+                    case (int) Foods.pork:
+                        cat.eat(Foods.pork);
+                        Console.WriteLine("The cat ate some pork.");
+                        break;
+                    case (int) Foods.sausage:
+                        cat.eat(Foods.sausage);
+                        Console.WriteLine("The cat ate a big sausage.");
+                        break;
+                    case 0:
+                        b = 1;
+                        break;
+                }
+
+            }
+        }
+    }
+}
