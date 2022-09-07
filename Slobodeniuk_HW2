@@ -1,0 +1,119 @@
+using System;
+
+namespace Slobodeniuk_HW2
+{
+
+    internal class Program
+    {
+        enum MessageErros
+        {
+            BadRequest = 400,
+            Unauthorized = 401,
+            PaymentRequired = 402,
+            Forbidden = 403,
+            NotFound = 404,
+            MethodNotAllowed = 405
+        }
+
+        static void Main(string[] args)
+        {
+            // Homework 1
+
+            float a;
+            float b;
+            float c;
+
+            Console.WriteLine("Enter a: ");
+            a = (float)Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter b: ");
+            b = (float)Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter c: ");
+            c = (float)Convert.ToDouble(Console.ReadLine());
+
+     
+
+            Console.WriteLine(a > -5 && a < 5 &&
+                           b > -5 && b < 5 &&
+                           c > -5 && c < 5 ? "Correct range" : "Uncorrect range");
+            
+            Console.ReadKey();
+
+            // Homework 2
+
+            int a;
+            int b;
+            int c;
+
+            Console.WriteLine("Enter a: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter b: ");
+            b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter c: ");
+            c = Convert.ToInt32(Console.ReadLine());
+
+            int[] nums = { a, b, c };
+
+            int result = nums.Max();
+
+            Console.WriteLine("Max number is: {0}", result);
+            Console.ReadKey();
+
+            // Homework 3
+
+            Console.Write("Enter your Error message here: ");
+
+            int error = Convert.ToInt32(Console.ReadLine());
+
+            switch(error)
+            {
+                case 400:
+                    Console.WriteLine("Error message {0}: Bad Request", error);
+                    break;
+                case 401:
+                    Console.WriteLine("Error message {0}: Unauthorized", error);
+                    break;
+                case 402:
+                    Console.WriteLine("Error message {0}: Payment Required", error);
+                    break;
+                case 403:
+                    Console.WriteLine("Error message {0}: Forbidden", error);
+                    break;
+                case 404:
+                    Console.WriteLine("Error message {0}: NotFound", error);
+                    break;
+                case 405:
+                    Console.WriteLine("Error message {0}: MethodNotAllowed", error);
+                    break;
+            }
+
+        }
+    }
+
+    // Homework 6
+
+    struct Dog
+    {
+        private string name;
+        private string mark;
+        private int age;
+
+        //override ToString
+        public override string ToString()
+        {
+            return ($"The dog's name: {name}, mark: {mark}, and age: {age}");
+        }
+
+        static void Info(string[] args)
+        {
+            Dog myDog;
+            Console.WriteLine("Enter name of dog");
+            myDog.name = Console.ReadLine();
+            Console.WriteLine("Enter mark of dog");
+            myDog.mark = Console.ReadLine();
+            Console.WriteLine("Enter age of dog");
+            myDog.age = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(myDog.ToString());
+        }
+    }
+}
