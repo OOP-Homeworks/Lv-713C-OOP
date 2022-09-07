@@ -1,0 +1,83 @@
+using System;
+
+namespace MyApp
+{
+
+    internal class Program
+    {
+        enum TestCaseStatus
+        {
+            Pass,
+            Fail,
+            Blocked,
+            WP,
+            Unexecuted
+        }
+
+            
+        static void Main(string[] args)
+        {
+            // Task 1
+
+            int a;
+            int b;
+            Console.WriteLine("Enter a day: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter a mounth: ");
+            b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(a <= 31 && a > 0 ? "Correct day" : "Uncorrect day");
+            Console.WriteLine(b <= 12 && b > 0 ? "Correct mounth" : "Uncorrect mounth");
+            Console.ReadLine();
+
+            // Task 2
+
+            double a;
+            Console.WriteLine("Enter a number: ");
+            a = Convert.ToDouble(Console.ReadLine());
+            double b = (a * 10) % 10;
+            double c = (a * 100) % 10;
+            Console.WriteLine((int) b + (int) c);
+            Console.ReadLine();
+
+            // Task 3
+
+            int h;
+            Console.WriteLine("What time is it?(Enter number from 1 to 24): ");
+            h = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(h >= 1 && h <= 4 ? "Why are you not sleeping? it's a night!" : 
+                                (h >= 5 && h <= 6 ? "It's so early... Maybe get some more sleep?" :
+                                (h >= 7 && h <= 9 ? "GOOD MORNING" :
+                                (h >= 10 && h <= 18 ? "GOOD AFTERNOON" :
+                                (h >= 19 && h <= 22 ? "GOOD EVENING" :
+                                (h >= 22 && h <= 24 ? "GOOD NIGHT" : "Uncorrect time"))))));
+
+            Console.ReadLine();
+
+            // Task 4
+
+            TestCaseStatus test1Status = TestCaseStatus.Pass;
+            Console.WriteLine("Status of test case is " + test1Status);
+
+            // Task 5 (with ternary operator)
+
+            byte r;
+            byte g;
+            byte b;
+            Console.WriteLine("Please enter number for color (0 or 255)");
+            Console.WriteLine("Red: ");
+            r = Convert.ToByte(Console.ReadLine());
+            Console.WriteLine("Green: ");
+            g = Convert.ToByte(Console.ReadLine());
+            Console.WriteLine("Blue: ");
+            b = Convert.ToByte(Console.ReadLine());
+            Console.WriteLine(r == 255 && g == 255 && b == 255 ? "White Color" : 
+                              (r == 255 && g == 0 && b == 0 ? "Red color" :
+                              (r == 0 && g == 255 && b == 0 ? "Green color" :
+                              (r == 0 && g == 0 && b == 255 ? "Blue color" :
+                              (r == 0 && g == 0 && b == 0 ? "Black color" : "Error. Please, try again")))));
+
+            Console.ReadLine();
+
+        }
+    }
+} 
