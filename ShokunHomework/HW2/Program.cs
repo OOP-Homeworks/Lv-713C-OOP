@@ -125,7 +125,7 @@ namespace ShokunHW2
             Console.WriteLine(myDog);
 
 
-
+            Console.ReadKey();
         }
     }
 }
