@@ -1,0 +1,7 @@
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\bin\Debug\Homework_2_Courses.exe.config
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\bin\Debug\Homework_2_Courses.exe
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\bin\Debug\Homework_2_Courses.pdb
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\obj\Debug\Homework_2_Courses.csproj.AssemblyReference.cache
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\obj\Debug\Homework_2_Courses.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\obj\Debug\Homework_2_Courses.exe
+C:\Users\Xiaomi\source\repos\Homework_2_Courses\Homework_2_Courses\obj\Debug\Homework_2_Courses.pdb
