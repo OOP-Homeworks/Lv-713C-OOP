@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1 a) read 3 float numbers and check: are they all belong to the range [-5,5].
+            Console.WriteLine("Enter three float numbers: ");
+            float a = Convert.ToSingle(Console.ReadLine());
+            float b = Convert.ToSingle(Console.ReadLine());
+            float c = Convert.ToSingle(Console.ReadLine());
+
+            string res = (a >= -5 & a <= 5) && (b >= -5 & b <= 5) && (c >= -5 & c <= 5) ?
+                         "The numbers you enter are within the range: -5,5." :
+                         "At least one number is out of range";
+            Console.WriteLine(res);
+            Console.WriteLine("---------------------------");
+
