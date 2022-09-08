@@ -1,0 +1,89 @@
+ internal class Program
+    {
+        enum HTTPError
+        {
+        BadRequest = 400,
+        Unauthorized = 401,
+        PaymentRequired = 402,
+        Forbidden = 403
+    }
+    struct Dog
+        {
+            public string name;
+            public string mark;
+            public int age;
+            public override string ToString()
+            {
+                return string.Format("Name of dog : {0}, Mark: {1}, Age {2}", name, mark, age);
+            }
+        }
+    static void Main(string[] args)
+    {
+        // Task 3
+
+        Console.WriteLine("Enter the number of HTTP Error : ");
+        int ErrorNumber = Convert.ToInt32(Console.ReadLine());
+
+        HTTPError error = (HTTPError)ErrorNumber;
+        Console.WriteLine($" {error} = {ErrorNumber} ");
+
+
+        //Task 1
+        Console.WriteLine("Enter 3 float numbers : ");
+
+        float Number1 = (float) Convert.ToDouble(Console.ReadLine());
+        float Number2 = (float) Convert.ToDouble(Console.ReadLine());
+        float Number3 = (float) Convert.ToDouble(Console.ReadLine());
+
+
+        string answer1 = (-5 <= Number1 && Number1 <= 5) ? "True" : "False";
+        Console.WriteLine(answer1);
+        string answer2 = (-5 <= Number2 && Number2 <= 5) ? "True" : "False";
+        Console.WriteLine(answer2);
+        string answer3 = (-5 <= Number3 && Number3 <= 5) ? "True" : "False";
+        Console.WriteLine(answer3);
+
+        //Task 2
+
+        Console.WriteLine("Enter 3 numbers : ");
+
+        int Number1 = Convert.ToInt32(Console.ReadLine());
+        int Number2 = Convert.ToInt32(Console.ReadLine());
+        int Number3 = Convert.ToInt32(Console.ReadLine());
+
+        if (Number1 > Number2 & Number1 > Number3)
+        {
+        Console.WriteLine($"Max number : {Number1}");
+        }
+        else if (Number2 > Number3 & Number2 > Number3)
+        {
+        Console.WriteLine($"Max number : {Number2}");
+        }
+        else 
+        {
+        Console.WriteLine($"Max number : {Number3}");
+        }
+
+        if (Number1 < Number2 & Number1 < Number3)
+        {
+        Console.WriteLine($"Min number : {Number1}");
+        }
+        else if (Number2 < Number3 & Number2 < Number3)
+        {
+        Console.WriteLine($"Min number : {Number2}");
+        }
+        else
+        {
+        Console.WriteLine($"Min number : {Number3}");
+        }
+
+        // Task 4
+        Dog myDog;
+            Console.Write("Enter the name of dog : ");
+            myDog.name = Console.ReadLine();
+            Console.Write("Enter the mark of dog : ");
+            myDog.mark = Console.ReadLine();
+            Console.Write("Enter the age of dog : ");
+            myDog.age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(myDog);
+        
