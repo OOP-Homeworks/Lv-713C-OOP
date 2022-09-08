@@ -1,0 +1,147 @@
+/////Task1
+
+using System;
+
+public class Program
+
+{
+    static void Main(string[] args)
+    {
+        float firstF;
+        float secondF;
+        float thirdF;
+
+        Console.WriteLine("Enter the first float number");
+        firstF = (float)Convert.ToDecimal(Console.ReadLine());
+        RangeCheck(firstF);
+        Console.WriteLine("Enter the second float number");
+        secondF = (float)Convert.ToDecimal(Console.ReadLine());
+        RangeCheck(secondF);
+        Console.WriteLine("Enter the third float number");
+        thirdF = (float)Convert.ToDecimal(Console.ReadLine());
+        RangeCheck(thirdF);
+
+        static void RangeCheck(float F)
+        {
+            if (F >= -5 && F <= 5)
+            {
+                Console.WriteLine($"The number {F} is within the range [-5; 5]");
+            }
+            else
+            {
+                Console.WriteLine($"The number {F} is out of the range [-5; 5]");
+            }
+        }
+    }
+    
+}
+
+
+////////////Task2
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int number1;
+        int number2;
+        int number3;
+
+        Console.WriteLine("Enter integer number1");
+        number1 = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter integer number2");
+        number2 = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter integer number3");
+        number3 = Convert.ToInt32(Console.ReadLine());
+
+        int max;
+        int min;
+
+        if (number1 > number2)
+        {
+            max = number1;
+            min = number2;
+        }
+        else
+        {
+            max = number2;
+            min = number1;
+        }
+        if (number3 > max)
+        {
+            max = number3;
+        }
+        if (number3 < min)
+        {
+            min = number3;
+        }
+        Console.WriteLine($"The maximum number is {max}");
+        Console.WriteLine($"The minimum number is {min}");
+        Console.ReadLine();
+    }
+}
+
+
+//////////Task3
+using System;
+
+class Program
+{
+    enum HTTPError
+    { 
+      BadRequest = 400,
+      Unauthorized,
+      PaymentRequired,
+      Forbidden,
+      NotFound
+    }
+    static void Main(string[] args)
+    {   
+        
+        int errorCode;
+        Console.WriteLine("Enter the code of the error");
+        errorCode = Convert.ToInt32(Console.ReadLine());
+        if (errorCode >= 400 && errorCode <= 404)
+        {
+            HTTPError error = (HTTPError)errorCode;
+            Console.WriteLine($"Your error {errorCode} means {error}");
+            Console.ReadLine();
+        }
+        else
+        {
+            Console.WriteLine("The code of error has to be within range [400, 404]");
+        }
+     }
+}
+
+
+//////////Task4
+using System;
+
+class Program
+{
+    
+    static void Main(string[] args)
+    {
+        Dog MyDog;
+        Console.WriteLine("Enter the dog's name");
+        MyDog.name = Console.ReadLine();
+        Console.WriteLine("Enter the dog's mark");
+        MyDog.mark = Console.ReadLine();
+        Console.WriteLine("Enter the dog's age");
+        MyDog.age = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine(MyDog);
+        Console.ReadLine();
+     }
+    struct Dog
+    {
+        public string name;
+        public string mark;
+        public int age;
+        public override string ToString()
+        {
+            return string.Format($"Dog's details. Name: {name}, mark: {mark}, age: {age} years");
+        }
+    }
+}
