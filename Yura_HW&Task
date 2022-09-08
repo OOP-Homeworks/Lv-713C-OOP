@@ -1,0 +1,204 @@
+_______________________________________
+________________HomeWork_______________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+// HWtask 1
+namespace Nexus
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            Console.Write("Enter the size of the side of the square:");
+            int Side = Convert.ToInt32(Console.ReadLine());
+            int perimter = 4 * Side;
+            Console.Write("Perimeter of square is:" + perimter);
+            int Area = Side * Side;
+            Console.WriteLine($"Area of Square with side {Side} is {Area}");
+            Console.ReadKey();
+        }
+        
+    }
+}
+
+//HWtask 2
+namespace Nexus2
+{
+    class Program
+    {
+        static void Main(string[] args) 
+        {
+            Console.Write("What is your name?");
+            string Name = Console.ReadLine();
+            Console.Write("How old are you?");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Your name is " + Name + "." + "Your age is " + age + ".");
+            Console.ReadKey();
+
+
+
+        }
+
+     }
+}
+
+// HWtask 3
+namespace Nexus
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            Console.Write("Enter the radius of circle: ");
+
+            double radius = Convert.ToDouble(Console.ReadLine());
+            double PI = Math.PI;
+
+            double lenght = 2 * PI * radius;
+            Console.WriteLine("The lenght of circle is: " + lenght + ".");
+
+            double area = PI * radius * radius;
+            Console.WriteLine("The area of circle is: " + area + ".");
+            
+            double volume = 4 / 3 * PI * radius * radius * radius;
+            Console.WriteLine("The area of volume is: " + volume + ".");
+
+            Console.ReadKey();
+        }
+        
+    }
+}
+______________________________________________
+______________________TASK1___________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nexus
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            double a;
+            double b;
+            double total;
+            char oper;
+            Console.WriteLine("Enter first number:");
+            a = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Enter operator:");
+            oper = Convert.ToChar(Console.ReadLine());
+
+            Console.WriteLine("Enter second number:");
+            b = Convert.ToDouble(Console.ReadLine());
+            if (oper == '+')
+            {
+                total = a + b;
+                Console.WriteLine("Summ " + a + " and " + b + " equals " + total + ".");
+            }
+
+            else if (oper == '-')
+            {
+                total = a - b;
+                Console.WriteLine("Difference " + a + " and " + b + " equals " + total + ".");
+            }
+
+            else if (oper == '*')
+            {
+                total = a * b;
+                Console.WriteLine("Multiplication " + a + " and " + b + " equals " + total + ".");
+            }
+
+            else if (oper == '/')
+            {
+                total = a / b;
+                Console.WriteLine("Division " + a + " and " + b + " equals " + total + ".");
+            }
+            else
+            {
+                Console.WriteLine("Unknown operator");
+            }
+        }
+        
+    }
+}
+________________________________________________
+____________________Task2_______________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Formats;
+
+namespace Task2
+
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter day ");
+            int d = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter month ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            if (d <= 0 || d > 31)
+            {
+                Console.WriteLine("Day is incorrect");
+            }
+            else
+            {
+                Console.WriteLine("Day is: " + d);
+            }
+            if (m <= 0 || m > 12)
+            {
+                Console.WriteLine("Month is incorrect");
+            }
+            else 
+            { 
+                Console.WriteLine("Month is: " + m); 
+            }
+
+            Console.WriteLine("Enter day");
+            int day = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter month");
+            int month = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine((day > 0) && (day < 32) ? "True for days " + day : "False for days " +day);
+            Console.WriteLine((month > 0) && (month < 13) ? "True for month " + month : "False for month " + month);
+            Console.ReadKey();
+            _________________________________________________
+            Task2.2
+
+                Console.WriteLine("Enter number ");
+                double enteredNumber = Convert.ToDouble(Console.ReadLine());
+                int number1 = (int)(enteredNumber * 10) % 10;
+                int number2 = (int)(enteredNumber * 100) % 10;
+                Console.WriteLine("The summ of {0} and {1} is {2}.", number1, number2, number1 + number2);
+                Console.ReadKey();
+            _________________________________________________
+            Task2.3
+
+            Console.WriteLine("Write the time of day");
+
+            int time = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine((time >= 5) && (time <= 12) ? "Good morning " + time :
+                              (time >= 13) && (time <= 17) ? "Good afternoon " + time :
+                              (time >= 18) && (time <= 22) ? "Good evening " + time :
+                              (time == 23) || (time == 4) ? "Good night " + time :
+                              (time >= 0) && (time <= 3) ? "Good night " + time : "The number is incorrect ");
+
+
+            Console.ReadKey();
+        }
+        
+    }
+}
