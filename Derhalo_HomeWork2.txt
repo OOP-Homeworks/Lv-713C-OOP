@@ -1,0 +1,129 @@
+HomeWork 2 
+task1
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace homeWork2_Task1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {  Link1: Console.WriteLine("Please enter a namber ");
+            double a = Convert.ToDouble(Console.ReadLine());
+            int b = Convert.ToInt32(a);
+            Console.WriteLine((b>= -5) && (b <= 5) ? "Numbers within a range" : "Numbers out of range");
+            goto Link1;
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+
+task2
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace homeWork2_Task2
+{
+    class Program
+{  static void Main(string[]args)
+    {
+            Link1:
+            Console.WriteLine("Enter namber a ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter namber b ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter namber c ");
+            int c = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine((a > b) && (a > c) && (b < c) ? "Max namber is a , Min number is b" :
+                              (a > b) && (a > c) && (b > c) ? "Max namber is a , Min number is c" :
+            (b > a) && (b > c) && (a > c) ? "Max namber is b Min number is c" :
+            (b > a) && (b > c) && (a < c) ? "Max namber is b Min number is a" :
+            (c > a) && (c > b) && (a > b)? "Max nsmber is c Min number is b":
+            (c > a) && (c > b) && (a < b) ? "Max nsmber is c Min number is a" :
+            "some numbers are Levels");
+            goto Link1;
+        }        
+    }
+}
+
+task3 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace homeWork2_03
+{
+    public class Program
+    {
+        enum ErrorText { Not_Found, Bad_Request, Forbidden};
+        // Not_Found-404 , Bad_Request-400 , Forbidden-403
+        static void Main(string[] args)
+        {
+            Link1:
+            Console.WriteLine("Enter namber of Error  ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int b = 404;
+            int d = 400;
+            int e = 401;
+            Console.WriteLine(( a == b ) ? "Test Result - " + ErrorText.Not_Found :
+               (a == d) ? "Test Result - " + ErrorText.Bad_Request :
+               (a == 401) ? "Test Result - " + ErrorText.Forbidden : "Unknown error");
+            goto Link1;
+            Console.ReadKey();
+        }
+    }
+}
+
+
+task 4
+namespace homeWork2_04
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter dog name ");
+            string name = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter dog mark ");
+            string mark = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter dog age ");
+            string age = Convert.ToString(Console.ReadLine());
+            Console.ReadKey();
+
+            Dog dog = new Dog();
+            dog.name = name;
+            dog.mark = mark;
+            dog.age = age;
+
+            dog.DogInfo(dog);
+            Console.ReadKey();
+        }
+        public struct Dog
+        {
+            public string name;
+            public string mark;
+            public string age;
+
+
+            public void DogInfo(Dog dog)
+            {
+                Console.WriteLine($"My dog's name is {dog.name} He is {dog.mark}. He is {dog.age} old.");
+                Console.ReadLine();
+            }
+        }
+
+    }
+}
