@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+// task 1
+namespace Nexus
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            Console.Write("Enter the size of the side of the square:");
+            int Side = Convert.ToInt32(Console.ReadLine());
+            int perimter = 4 * Side;
+            Console.Write("Perimeter of square is:" + perimter);
+            int Area = Side * Side;
+            Console.WriteLine($"Area of Square with side {Side} is {Area}");
+            Console.ReadKey();
+        }
+        
+    }
+}
+
+//task 2
+namespace Nexus2
+{
+    class Program
+    {
+        static void Main(string[] args) 
+        {
+            Console.Write("What is your name?");
+            string Name = Console.ReadLine();
+            Console.Write("How old are you?");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Your name is " + Name + "." + "Your age is " + age + ".");
+            Console.ReadKey();
+
+
+
+        }
+
+     }
+}
+
+// task 3
+namespace Nexus
+{
+    class Program
+    {
+        static void Main(string[]args)
+        {
+            Console.Write("Enter the radius of circle: ");
+
+            double radius = Convert.ToDouble(Console.ReadLine());
+            double PI = Math.PI;
+
+            double lenght = 2 * PI * radius;
+            Console.WriteLine("The lenght of circle is: " + lenght + ".");
+
+            double area = PI * radius * radius;
+            Console.WriteLine("The area of circle is: " + area + ".");
+            
+            double volume = 4 / 3 * PI * radius * radius * radius;
+            Console.WriteLine("The area of volume is: " + volume + ".");
+
+            Console.ReadKey();
+        }
+        
+    }
+}
