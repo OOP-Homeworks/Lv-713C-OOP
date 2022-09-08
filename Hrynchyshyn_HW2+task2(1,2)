@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
+
+
+
+
+namespace lecture2
+{
+    class Program
+    {
+        enum HTTPError { BadRequest = 400, Unauthorized = 401, Payment = 402, Forbidden = 403, PageNotFound = 404 }
+        struct Dog
+        {
+            public string name;
+            public string mark;
+            public int age;
+            public override string ToString()
+            {
+                return string.Format($"Dog's name: {name}, dog's mark: {mark}, dog's age: {age}");
+            }
+
+        }
+           
+        static void Main(string[] args )
+        {
+
+
+
+
+            Task 2 - 1
+
+            Console.WriteLine("Enter day: ");
+            int d = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter month: ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine((d > 0) && (d < 32) ? "True for days" : "False for days");
+            Console.WriteLine((m > 0) && (m < 13) ? "True for month" : "False for month");
+            Console.ReadKey();
+
+            Task 2 - 2
+
+            Console.WriteLine("Write double number: ");
+            double a = Convert.ToDouble(Console.ReadLine());
+            double b = (a * 100) % 10;
+            double c = (a * 10) % 10;
+            Console.WriteLine("Sum numbers: ");
+            Console.WriteLine((int)b + (int)c);
+            Console.ReadKey();
+
+
+            HW - 2, task - 1
+
+
+
+            Console.WriteLine("Write first float number: ");
+            float a = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Write second float number: ");
+            float b = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Write third float number: ");
+            float c = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine((a >= -5) && (a <= 5) ? "Loyatly is right" : "Loyatly is not right");
+            Console.WriteLine((b >= -5) && (b <= 5) ? "Loyatly is right" : "Loyatly is not right");
+            Console.WriteLine((c >= -5) && (c <= 5) ? "Loyatly is right" : "Loyatly is not right");
+            Console.ReadKey();
+
+
+            HW - 2, task - 2
+
+
+
+            Console.WriteLine("Write first integer number: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Write second integer number: ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Write third integer number: ");
+            int c = Convert.ToInt32(Console.ReadLine());
+            int max = Math.Max(a, Math.Max(b, c));
+            int min = Math.Min(a, Math.Min(b, c));
+            Console.WriteLine("Max number: " + max);
+            Console.WriteLine("Min number: " + min);
+            Console.ReadKey();
+
+
+            HW - 2, task - 3
+
+
+            Console.WriteLine("Write error code from 400 to 404: ");
+            int errorCode = Convert.ToInt32(Console.ReadLine());
+            if (Enum.IsDefined(typeof(HTTPError), errorCode))
+            {
+                Console.WriteLine((HTTPError)errorCode);
+            }
+            else
+            {
+                Console.WriteLine("There is no error");
+            }
+            Console.ReadKey();
+
+            HW - 2, task - 4(1)
+
+
+            Dog myDog;
+            Console.WriteLine("Dog's name");
+            myDog.name = Console.ReadLine();
+            Console.WriteLine("Dog's mark");
+            myDog.mark = Console.ReadLine();
+            Console.WriteLine("Dog's age");
+            myDog.age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(myDog);
+            Console.ReadLine();
+
+            HW - 2, task - 4(2)
+
+            Dog myDog;
+            myDog.name = "Caesar";
+            myDog.mark = "German Shepherd";
+            myDog.age = 3;
+            Console.WriteLine(myDog);
+
+
+        }
+    }
+}
