@@ -15,8 +15,7 @@ namespace Homework3
             // hw 1
             Console.WriteLine("Enter some string: ");
             string words = Console.ReadLine().ToLower();
-            int sumVowelsLetter = CountVowelsLetter(words);
-            Console.WriteLine("String {0} contains {1} vowels letter", words, sumVowelsLetter);
+            CountVowelsLetter(words);
 
             // hw 2
             Console.WriteLine("Enter the months of numbers: ");
@@ -37,25 +36,30 @@ namespace Homework3
 
             Console.ReadKey();
         }
-        static int CountVowelsLetter(string message)
+
+       static void CountVowelsLetter(string message)
         {
-            int count = 0;
+ 
+            int countA = 0;
+            int countO = 0;
+            int countE = 0;
+            int countI = 0;
 
             foreach (char letter in message)
             {
-
-                if (letter == Convert.ToChar("a") ||
-                   letter == Convert.ToChar("e") ||
-                   letter == Convert.ToChar("i") ||
-                   letter == Convert.ToChar("o"))
+                switch(letter)
                 {
-                    count++;
+                    case 'a': countA++; break;
+                    case 'e': countE++; break;
+                    case 'o': countO++; break;
+                    case 'i': countI++; break;      
                 }
-
+                
             }
+         Console.WriteLine("String {0} contains 'e' {1}, 'o' {2}, 'i' {3}, 'a' {4} ", message, countE, countO, countI, countA); 
 
-            return count;
         }
+
         static void DisplaySumPositiveNumbers(int[] numbers, int maxIndex)
         {   int sum = 0;
 
