@@ -70,7 +70,7 @@ namespace hw3
             Console.WriteLine("{0} have {1} days", fullMonthName, DaysCount);
             Console.ReadKey();
         }
-        public static void NumberSum()
+        public static int NumberSum()
         {
             bool isPositive = true;
             int firstHalfSum = 0;
@@ -93,13 +93,8 @@ namespace hw3
             {
                 secondHalfSum += numbers[i];
             }
-            if (isPositive)
-            {
-                Console.WriteLine(firstHalfSum);
-                Console.ReadKey();
-            }
-            else Console.WriteLine(secondHalfSum);
-            Console.ReadKey();
+
+            return isPositive ? firstHalfSum : secondHalfSum;
         }
         //надіюсь я правильно зрозумів суть задачі
     }
