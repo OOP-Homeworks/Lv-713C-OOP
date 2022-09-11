@@ -1,0 +1,132 @@
+//Task 2.1 if else
+           Console.WriteLine("Please, enter data!");
+           double date = double.Parse(Console.ReadLine());
+           Console.WriteLine("Please, enter month!");
+           double month = double.Parse(Console.ReadLine());
+
+           if (date < 31)
+           {
+               Console.WriteLine("You enter " + date);
+           }
+           if(month < 12)
+           {
+               Console.WriteLine("You enter " + month);
+           }
+           else
+           {
+               Console.WriteLine("FATAL ERROR !!! ");
+           }
+           Console.ReadLine();
+
+
+// task 2.1 тернарний
+           Console.WriteLine("Please, enter data!");
+                 double date = double.Parse(Console.ReadLine());
+                 Console.WriteLine("Please, enter month!");
+                 double month = double.Parse(Console.ReadLine());
+                 Console.WriteLine();
+
+                 bool true_day = date < 31 ? true : false;
+                 bool true_month = month < 12 ? true : false;
+             Console.WriteLine("You enter " + true_day);
+             Console.WriteLine("You enter " + true_month);
+
+             Console.ReadLine();
+
+// task 2.2
+
+            Console.WriteLine("Enter please fractional number !");
+            double frac_number = double.Parse(Console.ReadLine());
+            int a = (int)(frac_number * 10) % 10;
+            int b = (int)(frac_number * 100) % 10;
+            Console.WriteLine($"sum = {a+b}") ;
+            Console.ReadLine();
+
+// task 2.3 if else
+
+          Console.WriteLine("Please, enter oclock!");
+           double h = double.Parse(Console.ReadLine());
+
+
+           if ((h >= 0) && (h <= 5))
+           {
+               Console.WriteLine("good night ");
+           }
+           if ((h >= 6) && (h <= 10))
+           {
+               Console.WriteLine("good mornig ");
+           }
+           if ((h >= 11) && (h <= 16))
+           {
+               Console.WriteLine("good afternoon ");
+           }
+           if ((h >= 17) && (h <= 24))
+           {
+               Console.WriteLine("good evening ");
+           }
+           else
+           {
+               Console.WriteLine("FATAL ERROR");
+           }
+           Console.ReadLine();
+
+// task 2.3 тернарний
+
+Console.WriteLine("Please, enter data!");
+            double h = double.Parse(Console.ReadLine());
+
+            Console.WriteLine((h >= 0) && (h <= 5) ? "good night " :
+                             (h >= 6) && (h <= 10) ? "good mornig " :
+                             (h >= 11) && (h <= 16) ? "good afternoon " :
+                             (h >= 17) && (h <= 23) ? "good evening " : "FATAL ERROR");
+            Console.ReadLine();
+
+
+// Task 2.4  enam
+
+enum TestCaseStatus
+        {
+            Pass,
+            Fail,
+            Blocked,
+            WP,
+            Unexecuted
+        }
+        static void Main(string[] args)
+        {
+            TestCaseStatus test1Status = TestCaseStatus.Pass;
+            Console.WriteLine(test1Status);
+            Console.ReadLine();
+        }
+
+// Task 2.5
+class Program
+    {
+
+        static void Main(string[] args)
+        {
+            RGB white = new RGB(255, 255, 255);
+            Console.WriteLine("White " + white);
+            RGB black = new RGB(0, 0, 0);
+            Console.WriteLine("Black " + black);
+            Console.ReadKey();
+        }
+    }
+    struct RGB
+    {
+        public byte red;
+        public byte green;
+        public byte blue;
+
+        public RGB(byte red, byte green, byte blue)
+        {
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
+        }
+        public override string ToString()
+        {
+            return string.Format($" (R,G,B) : {red},{green},{blue}");
+        }
+
+    }
