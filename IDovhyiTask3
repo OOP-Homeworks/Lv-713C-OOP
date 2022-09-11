@@ -1,0 +1,147 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace Task3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Task 1
+            // Enter two integers numbers a and b.
+            //Calculate how many integers in the range[a..b] are divided by 3 without remainder.
+
+            Console.WriteLine("Task 1");
+            Console.Write("Enter integers number a: ");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write("Enter integers number b: ");
+            int b = int.Parse(Console.ReadLine());
+            int sum = 0;
+            while (a <= b)
+            {
+                if (a % 3 == 0) sum += a;
+                a++;
+            }
+            Console.WriteLine("Sum integers in the range[a..b] are divided by 3 without remainder: " + sum);
+            Console.ReadKey();
+
+            // Task 2
+            // Enter some string text from the console.Print each second character.
+            Console.WriteLine("Task 2");
+            Console.Write("Enter string text from the console: ");
+            string currentString = Console.ReadLine();
+            Console.Write("Rusult: ");
+            for (int i = 0; i < currentString.Length; i++) if (i % 2 == 1) Console.Write(currentString[i]);
+            Console.WriteLine();
+            Console.ReadKey();
+
+
+            // Task 3
+            // Enter the name of the drink(coffee, tea, juice, water). 
+            // Print the name and price of the drink.
+            Console.WriteLine("Task 3");
+            double priceCoffeeEUR = 3.10,
+                   priceTeaEUR = 1.05,
+                   priceJuiceEUR = 2.10,
+                   priceWaterEUR = 0.65;
+            Console.Write("Enter the drink: ");
+            string drink = Console.ReadLine();
+            switch (drink.ToLower())
+            {
+                case "coffee":
+                    Console.WriteLine("The price of {0} is {1} euro(s)", drink.ToLower(), priceCoffeeEUR);
+                    break;
+                case "tea":
+                    Console.WriteLine("The price of {0} is {1} euro(s)", drink.ToLower(), priceTeaEUR);
+                    break;
+                case "juice":
+                    Console.WriteLine("The price of {0} is {1} euro(s)", drink.ToLower(), priceJuiceEUR);
+                    break;
+                case "water":
+                    Console.WriteLine("The price of {0} is {1} euro(s)", drink.ToLower(), priceWaterEUR);
+                    break;
+                default:
+                    Console.WriteLine("There is no such drink in stock");
+                    break;
+            }
+            Console.ReadKey();
+
+            // Task 4
+            // Enter a sequence of positive integers(to the first negative). 
+            //Calculate the arithmetic average of the entered positive numbers.
+            Console.WriteLine("Task 4");
+            int currentNumber,
+                countSequence = 0,
+                sumNumber = 0;
+            do
+            {
+                countSequence++;
+                Console.Write("Enter the {0} number of the sequence of natural numbers (up to the first negative): ", countSequence);
+                currentNumber = int.Parse(Console.ReadLine());
+                if (currentNumber > 0) sumNumber += currentNumber;
+            } while (currentNumber > 0);
+            if (countSequence == 1)
+            {
+                Console.WriteLine("Sequence of natural numbers has no positive numbers");
+            }
+            else
+            { 
+            Console.WriteLine("Arithmetic average of entered positive numbers: " + sumNumber/(countSequence-1));
+            }
+            Console.ReadKey();
+
+
+            // Task 5
+            // Check if the entered year is a leap.
+            Console.WriteLine("Task 5");
+            Console.Write("Enter year: ");
+            int year = int.Parse(Console.ReadLine());
+            if (DateTime.IsLeapYear(year))
+            {
+                Console.WriteLine("Year {0} is a leap", year);
+            }
+            else
+            {
+                Console.WriteLine("Year {0} is not a leap", year);
+            }
+            Console.ReadKey();
+
+            // Task 6
+            // Find the sum of digits of the entered integer number(365-> 3 + 6 + 5)
+            Console.WriteLine("Task 6");
+            Console.Write("Enter  integer number: ");
+            int currentInteger = int.Parse(Console.ReadLine());
+            int sumDigit = 0;
+            while (currentInteger >= 1)
+            {
+                sumDigit += currentInteger % 10;
+                currentInteger /= 10;
+            }
+            Console.WriteLine("Sum of digits of the entered integer number: "+sumDigit);
+            Console.ReadKey();
+
+            // Task 7
+            // Check if the entered integer number contains only odd digits.
+            Console.WriteLine("Task 7");
+            Console.Write("Enter  integer number: ");
+            int currentIntegerTask7 = int.Parse(Console.ReadLine());
+            bool result = true;
+            while (currentIntegerTask7 >= 1)
+            {
+                if ((currentIntegerTask7 % 10) % 2 == 0) result = false;
+                currentIntegerTask7 /= 10;
+            }
+            if (result == true) Console.WriteLine("Sentered integer number contains only odd digits");
+            else Console.WriteLine("Entered integer number does not contains only odd digits");
+            Console.ReadKey();
+
+        }
+    }
+}
+ 
