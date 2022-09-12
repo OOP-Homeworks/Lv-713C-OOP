@@ -1,0 +1,116 @@
+using System;
+
+namespace MyApp // Note: actual namespace depends on the project name.
+{
+    internal class Program
+    {
+        enum Mounth
+        {
+            January = 1,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December 
+        }
+
+        static void Main(string[] args)
+        {
+            // Homework 1
+
+            string str = Console.ReadLine();
+            int sum1 = 0;
+            int sum2 = 0;
+            int sum3 = 0;
+            int sum4 = 0;
+            foreach (char a in str)
+            {
+                if (a == 'a') 
+                    sum1++;
+            }
+            foreach (char o in str)
+            {
+                if (o == 'o')
+                    sum2++;
+            }
+            foreach (char i in str)
+            {
+                if (i == 'i')
+                    sum3++;
+            }
+            foreach (char e in str)
+            {
+                if (e == 'e')
+                    sum4++;
+            }
+            Console.WriteLine("In this string we have: {0} of 'a', {1} of 'o', {2} of 'i' and {3} of 'e'.", sum1, sum2, sum3, sum4);
+
+            // Homework 2 (WAY1)
+
+            Console.WriteLine("Enter month number: ");
+            int month = int.Parse(Console.ReadLine());
+            Console.WriteLine("Your month has {0} days", DateTime.DaysInMonth(2022, month));
+            Console.ReadKey();
+
+            // Homework 2 (WAY2)
+
+            Console.WriteLine("Enter number of Mounth: ");
+
+            int input = Convert.ToInt32(Console.ReadLine());
+
+            switch (input)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    Console.WriteLine("The name of the mounth is {0} and it have 31 days.", Enum.GetName(typeof(Mounth), input));
+                    break;
+                case 2:
+                    Console.WriteLine("The name of the mounth is {0} and it have 28 days. In leap year The {0} mounth have 29 days.",
+                        Enum.GetName(typeof(Mounth), input));
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    Console.WriteLine("The name of the mounth is {0} and it have 30 days.", Enum.GetName(typeof(Mounth), input));
+                    break;
+                }
+
+            // Homework 3
+
+            Console.WriteLine("Enter 10 integers separated by spaces: ");
+            int[] nums = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            if (nums.Length != 10)
+            {
+                Console.WriteLine("Sorry, You must enter 10 integers separated by spaces. Try again");
+                Environment.Exit(0);
+            }
+            else
+            {
+                int[] nums2 = nums.Take(5).ToArray();
+                int[] nums3 = nums.TakeLast(5).ToArray();
+
+
+                if (nums2[0] > 0 && nums2[1] > 0 && nums2[2] > 0 && nums2[3] > 0 && nums2[4] > 0)
+                {
+                    Console.WriteLine("The sum of the first 5 elements is: " + nums2.Sum());
+                }
+                else
+                {
+                    Console.WriteLine("The product of the last 5 elements is: " + nums3.Aggregate(1, (acc, val) => acc * val)); // acc - the current accumulated value, val - the value in the array 
+                }
+            }
+        }
+    }
+}
