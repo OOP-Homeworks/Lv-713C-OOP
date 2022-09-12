@@ -1,0 +1,52 @@
+static void Main(string[] args)
+        {
+            //Task 1
+            Console.WriteLine("Enter your text :");
+            string text = Console.ReadLine().ToLower();
+
+            int count = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+            switch (text[i].ToString())
+            {
+            case "a":
+            case "o":
+            case "i":
+            case "e":
+            count++;
+            break;
+            }
+            }
+            Console.WriteLine($"Count of characters ‘a’, ’o’, ’i’, ’e’  in this text: {count}");
+
+            //Task 2
+            Console.WriteLine("Enter the number of month : ");
+            int month = Convert.ToInt32(Console.ReadLine());
+
+            switch (month)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    Console.WriteLine("There are 31 days in this month!");
+                    break;
+                case 2:
+                    Console.WriteLine("There are 28 or 29 days int this month!");
+                    break ;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    Console.WriteLine("There are 30 days in this month!");
+                    break; 
+                default:
+                    Console.WriteLine("There are no monthes with this number!");
+                    break;
+
+            }
+
+            // Task 3
