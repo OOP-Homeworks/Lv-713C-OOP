@@ -1,0 +1,128 @@
+//==========homework 2.1====================
+
+int bottom = -5;
+    int top = 5;
+    Console.WriteLine("Please enter 3 number (-5:5)");
+    int number1 = int.Parse(Console.ReadLine());
+    int number2 = int.Parse(Console.ReadLine());
+    int number3 = int.Parse(Console.ReadLine());
+
+    if (number1 >= bottom && number1 <= top)
+    {
+        Console.WriteLine($"Number is true, number is = " + number1) ;
+    }
+    if (number2 >= bottom && number2 <= top)
+    {
+        Console.WriteLine($"Number is true, number is = " + number2);
+    }
+    if (number3 >= bottom && number3 <= top)
+    {
+        Console.WriteLine($"Number is true, number is = " + number3);
+    }
+    else
+        Console.WriteLine("This number isn't in range");
+
+
+    Console.ReadLine();
+
+//==========homework 2.2====================
+
+        Console.WriteLine("Please enter 3 number (-5:5)");
+             byte  number1 = byte.Parse(Console.ReadLine());
+             byte number2 = byte.Parse(Console.ReadLine());
+
+             byte numberMax = Math.Max(number1, number2);
+             byte numbermin = Math.Min(number1, number2);
+             Console.WriteLine("Max number is = " + numberMax);
+             Console.WriteLine("Min number is = " + numbermin);
+             Console.ReadLine();
+
+
+
+
+//==========homework 2.3====================
+
+enum HTTPError
+        {
+            Error400,
+            Error401,
+            Error402
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your HttpError!");
+            int entererror = int.Parse(Console.ReadLine());
+            int a = 400;
+            int b = 401;
+            int c = 402;
+            Console.WriteLine((entererror == a) ? HTTPError.Error400 :
+                (entererror == b) ? HTTPError.Error401 :
+                (entererror == c) ? HTTPError.Error402 : "Unknown error");
+
+            Console.ReadKey();
+
+
+
+
+=====================
+enum HTTPError
+{
+    Error400_Bad_Request,
+    Error401_Unauthorized,
+    Error402_Payment_Required
+}
+static void Main(string[] args)
+{
+    Console.WriteLine("Enter your HttpError!");
+    int q = int.Parse(Console.ReadLine());
+    int a = 400;
+    int b = 401;
+    int c = 402;
+    if (q == a)
+    {
+        Console.WriteLine(HTTPError.Error400_Bad_Request) ;
+    }
+    if (q == b)
+    {
+        Console.WriteLine(HTTPError.Error401_Unauthorized);
+    }
+    if (q == c)
+    {
+        Console.WriteLine(HTTPError.Error402_Payment_Required);
+    }
+    else
+    {
+        Console.WriteLine("NOT FOUND ERROR!");
+    }
+    Console.ReadKey();
+
+
+
+//==========homework 2.4====================
+            struct Dog
+    {
+        public string name;
+        public string mark;
+        public int age;
+
+        public void Info()
+        {
+            Console.WriteLine($"Name dog is {name} and mark is  {mark}  ,age of dog is {age} year");
+        }
+    };
+
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Dog myDog;
+            myDog.name = "Bobik";
+            myDog.mark = "chihuahua";
+            myDog.age = 4;
+
+            myDog.Info();
+
+            Console.ReadLine();
+
+        }
