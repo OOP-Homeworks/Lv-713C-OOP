@@ -1,0 +1,35 @@
+//Home_1
+//Exercise_1
+
+Console.Write("Enter the side of the square: ");
+byte Side = byte.Parse(Console.ReadLine());
+int p = 4 * Side;
+int s = Side * Side;
+Console.WriteLine("Perimeter of a square = " + p);
+Console.WriteLine("Area of a square = " + s);
+Console.ReadLine();
+
+////Exercise_2
+
+int age, phone;
+string name, mail;
+Console.WriteLine("What is you name: ?");
+name = Console.ReadLine();
+Console.WriteLine("How old are you" + "," + " " + name);
+age = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine(name + " " + age);
+Console.WriteLine("Enter your mail: ?");
+mail = Console.ReadLine();
+Console.WriteLine("Enter your phone: ");
+phone = Convert.ToInt32(Console.ReadLine());
+
+//Exercise_3
+
+Console.WriteLine("Enter radius:");
+double r = Convert.ToDouble(Console.ReadLine());
+double l = 2 * Math.PI * r;
+Console.WriteLine("l = " + 1 + ".");
+double s = Math.PI * Math.Pow(r, 2);
+Console.WriteLine("s = " + s + ".");
+double v = (4 / 3) * Math.PI * Math.Pow(r, 3);
+Console.WriteLine("v = " + v + ".");
