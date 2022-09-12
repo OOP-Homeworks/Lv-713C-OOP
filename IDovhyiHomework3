@@ -1,0 +1,67 @@
+using System;
+
+namespace IDovhyiHomework3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Task1 
+            // Read some string str.
+            // Calculate the counts of characters ‘a’, ’o’, ’i’, ’e’  in this text.
+            Console.WriteLine("Task 1");
+            Console.Write("Enter some string: ");
+            string str = Console.ReadLine();
+            int countA=0, countO=0, countI=0, countE=0;
+            foreach (char charStr in str)
+            {
+                switch (charStr)
+                {
+                    case 'a': countA += 1; break;
+                    case 'o': countO += 1; break;
+                    case 'i': countI += 1; break;
+                    case 'e': countE += 1; break;
+                }
+            }
+            Console.WriteLine("Count of character ‘a’: {0}, count of character ‘o’: {1}, count of character ‘i’: {2}, count of character ‘e’: {3}", countA, countO, countI, countE);
+            Console.ReadKey();
+
+            // Task 2
+            // Ask user to enter the number of month. 
+            // Read value and output the count of days in this month.
+            Console.WriteLine("Task 2");
+            Console.Write("Enter month (integer): ");
+            int month = int.Parse(Console.ReadLine());
+            Console.Write("Enter year (integer): ");
+            int year = int.Parse(Console.ReadLine());
+            int daysInMonth = DateTime.DaysInMonth(year, month);
+            Console.WriteLine("Count of days in this month: " + daysInMonth);
+            Console.ReadKey();
+
+            // Task 3
+            // Enter 10 integer numbers. 
+            // Calculate the sum of first 5 elements if they are positive
+            // or product of last 5 element in  the other case.
+            Console.WriteLine("Task 3");
+            int currentIntegerValue;
+            int sumFirst5elements = 0,
+                 productLast5element = 1;
+            bool resultIfPositive = true;
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write("Enter {0} integer number: ", i+1);
+                currentIntegerValue = int.Parse(Console.ReadLine());
+                if (i < 5)
+                {
+                    if ((currentIntegerValue >= 0) && (resultIfPositive)) sumFirst5elements += currentIntegerValue; else resultIfPositive = false;
+                }
+                else
+                {
+                    if (!resultIfPositive) productLast5element *= currentIntegerValue;
+                }
+            }
+            if (resultIfPositive) Console.WriteLine("The sum of first 5 elements: " + sumFirst5elements); else Console.WriteLine("The product of last 5 element: " + productLast5element);
+            Console.ReadKey();
+        }
+    }
+}
