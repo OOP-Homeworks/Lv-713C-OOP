@@ -1,0 +1,80 @@
+//========= task 3.1 ============
+            int numberCount = 0; // сума ділення на 3
+            //int notnumberCount = 0; // сума ділення на 3
+            Console.WriteLine("Ведіть початковий діапазон");
+            int startrange = int.Parse(Console.ReadLine());
+            Console.WriteLine("Ведіть кінцевий діапазон");
+            int endrange = int.Parse(Console.ReadLine());
+            // Range r = a..b;
+
+            while (startrange <= endrange)
+            {
+                if (startrange % 3 == 0)
+                {
+                    numberCount++;
+                }
+                else
+                {
+
+                }
+                startrange++;
+            }
+            Console.WriteLine(numberCount);
+
+            Console.ReadLine();
+
+
+
+            Enter some string text from the console.
+            Print each second character.
+
+
+
+
+
+
+
+
+                Console.ReadLine();
+                //========= task 3.4 ============
+
+                Console.WriteLine("Ведіть 5 позитів чисел");
+                int number1 = int.Parse(Console.ReadLine());
+                int number2 = int.Parse(Console.ReadLine());
+                int number3 = int.Parse(Console.ReadLine());
+                int number4 = int.Parse(Console.ReadLine());
+                int number5 = int.Parse(Console.ReadLine());
+
+
+                while ((number1 > 0) && (number2 > 0) && (number3 > 0) && (number4 > 0) && (number5 > 0))
+                {
+                    Console.WriteLine($"Середнє арефметичне = :{(number1 + number2 + number3 + number4 + number5) / 5}");
+                    break;
+                    Console.ReadKey();
+                }
+                Console.WriteLine("Ви enter відємне число");
+                Console.ReadLine();
+                //========= task 3.5 ============
+
+                Console.WriteLine("Ведіть рік ! ");
+                int year = int.Parse(Console.ReadLine());
+                Console.WriteLine("Ведіть номер місяця ! ");
+                int month = int.Parse(Console.ReadLine());
+
+                int days = DateTime.DaysInMonth(year, month);
+                if ((month == 02) && (days == 29))
+                {
+                    Console.WriteLine("Цей рік ще високосний !!!");
+
+                }
+                else
+                {
+
+                }
+
+                Console.WriteLine(" Днів :  " + days +
+                  " міяціь  : " + month +
+                  " рік  : " + year);
+
+                Console.ReadKey();
+                Console.ReadLine();
