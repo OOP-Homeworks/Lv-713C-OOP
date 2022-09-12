@@ -1,0 +1,120 @@
+using System;
+
+namespace MyApp // Note: actual namespace depends on the project name.
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Task 1
+
+            Console.WriteLine("Enter range start: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter range finish: ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            int counter = 0;
+
+            for (int i = a; i < b; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    counter++;
+                }
+            }
+            Console.WriteLine("Count of numbers that are divisible by 3 without a remainder: " + counter + ".");
+            Console.ReadKey();
+
+            // Task 2
+
+            string input = Console.ReadLine();
+            string result = "";
+            for (int i = 1; i < input.Length; i += 2)
+            {
+                result += input[i];
+            }
+            Console.WriteLine(result);
+            Console.ReadLine();
+
+            // Task 3
+
+            Console.WriteLine("Select drink (tea, coffee, juice, water):");
+            string drink = Console.ReadLine().ToLower();
+
+            switch(drink)
+            {
+                case "coffee" : Console.WriteLine("Name of the drink is {0}, price is 2$.", drink); break;
+                case "tea": Console.WriteLine("Name of the drink is {0}, price is 1$.", drink); break;
+                case "juice": Console.WriteLine("Name of the drink is {0}, price is 2,50$.", drink); break;
+                case "water": Console.WriteLine("Name of the drink is {0}, price is 0,50$.", drink); break;
+            }
+
+            // Task 4
+
+            Console.WriteLine("Enter posistive numbers to the first negative: ");
+            int a = 0; 
+            double sum = 0, n;
+            do
+            {
+                n = Convert.ToInt32(Console.ReadLine()); 
+                sum += n; 
+                a++;
+            } 
+            while (n > 0);
+
+            sum -= n; 
+            a--;
+            double result = sum / a;
+            Console.WriteLine("Average of positive numbers {0:f2}", result);
+            Console.ReadKey();
+
+            // Task 5
+
+            Console.WriteLine("Enter the year: ");
+            int year = Convert.ToInt32(Console.ReadLine());
+
+            if ((year % 400) == 0)
+                Console.WriteLine("{0} is a leap year.", year);
+            else if ((year % 100) == 0)
+                Console.WriteLine("{0} is not a leap year.", year);
+            else if ((year % 4) == 0)
+                Console.WriteLine("{0} is a leap year.", year);
+            else
+                Console.WriteLine("{0} is not a leap year.", year);
+
+            // Task 6
+
+            Console.WriteLine("Enter some integer number: ");
+            int digit = Convert.ToInt32(Console.ReadLine());
+            int sum = 0;
+
+            while (digit != 0)
+            {
+                sum += digit % 10;
+                digit /= 10;
+            }
+            Console.WriteLine("The sum of all digits in a number: " + sum + ".");
+            Console.ReadKey();
+
+            // Task 7
+
+            int countOdd = 0;
+            Console.WriteLine("Enter a number: ");
+            string inputString = Console.ReadLine();
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                if ((int.Parse(inputString[i].ToString()) % 2) != 0)
+                    countOdd++;
+            }
+
+            if (countOdd == inputString.Length)
+            {
+                Console.WriteLine("All numbers is odd");
+            }
+            else
+            {
+                Console.WriteLine("Some number(s) is even. Check it");
+            }
+            Console.ReadLine();
+        } 
+    }
+}
