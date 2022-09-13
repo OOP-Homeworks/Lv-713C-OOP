@@ -1,0 +1,152 @@
+using project;
+using System;
+using System.Runtime.ConstrainedExecution;
+
+namespace MyApp
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            var persons = new Person[6];
+            for (int i = 0; i < persons.Length; i++)
+            {
+              persons[i] = Person.Input(i);
+             
+            }
+            Console.ReadKey();
+
+            Console.WriteLine("Calculate and output on the console name and age of each person ==>");
+            int age;
+            for (int i = 0; i < persons.Length; i++)
+            {
+                persons[i].Age();
+                age = persons[i].Age();
+                Console.WriteLine("Info about user: name is {0}, age is {1}.", persons[i].Name, age);
+
+            }
+            Console.ReadKey();
+
+            Console.WriteLine("Change the name of persons, which age is less then 16, to 'Very Young' ==>");
+            for (int i = 0; i < persons.Length; i++)
+            {
+                if (persons[i].Age() < 16)
+                
+                {
+                    persons[i].Name = persons[i].ChangeName("Very Young");
+
+                }
+                else
+                { 
+                    Console.WriteLine($"User {persons[i].Name} ({persons[i].BirthYear.Year}) passed the age test.");
+                }
+            }
+            Console.ReadKey();
+
+
+            Console.WriteLine("Output information about all persons on the console ==>");
+            Person.Output(persons);
+            Console.ReadKey();
+
+            Console.WriteLine("Find and output information about Persons with the same names ==>");
+
+            for (int i = 0; i < persons.Length; i++)
+            {
+                for (int j = i + 1; j < persons.Length; j++)
+                {
+                    if (persons[i].Name == persons[j].Name)
+                    
+                    {
+                        Console.WriteLine($"{persons[i].Name} ({persons[i].BirthYear.Year}) and {persons[j].Name} ({persons[j].BirthYear.Year}) have a some names.");
+                    }
+                    
+                }
+
+            }
+            Console.ReadKey();
+        }
+
+    }
+    
+}
+class Person
+{
+    private string name;
+    private DateTime birthYear;
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+
+    }
+
+    public DateTime BirthYear
+    {
+        get { return birthYear; 
+    }
+
+    public Person()
+    {
+
+    }
+
+    public Person(string name, DateTime birthYear)
+    {
+        this.name = name;
+        this.birthYear = birthYear;
+    }
+
+    public int Age()
+    {
+        DateTime year = DateTime.Now;
+        return year.Year - birthYear.Year;
+    }
+
+    public static Person Input(int i)
+    {
+        Console.WriteLine($"Please enter a username for {i + 1} person: ");
+        string name = Console.ReadLine();
+        Console.WriteLine($"Please, enter user's year of birth for {i + 1} person: ");
+        DateTime birthYear = new DateTime();
+
+        try
+        {
+            birthYear = DateTime.Parse(Console.ReadLine());
+        }
+        catch (Exception error)
+        {
+            Console.WriteLine(error.Message);
+            Console.WriteLine("You need to use the correct date format (2022.01.01 or 2022,01,01)");
+        }
+        return new Person(name, birthYear);
+    }
+
+    public string ChangeName(string newName)
+    {
+        return name = newName;
+    }
+
+    public override string ToString()
+    {
+        return string.Format("Person name " + name + " person birth year " + birthYear.Year);
+    }
+
+    public static void Output(Person[] person)
+    {
+        for (int i = 0; i < person.Length; i++)
+        {
+            Console.WriteLine(person[i].ToString());
+        }
+    }
+    public static bool operator ==(Person person1, Person person2)
+    {
+        return person1.name == person2.name;
+    }
+
+    public static bool operator !=(Person person1, Person person2)
+    {
+        return person1.name != person2.name;
+    }
+}
