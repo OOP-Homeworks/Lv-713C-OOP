@@ -1,0 +1,118 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using HW4;
+
+namespace HW4
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var rnd = new Random(); 
+            var persons = new List<Person>();
+            for(int i = 0; i < 6; i++)
+            {
+                persons.Add(new Person(rnd.Next(1990, 2010), "person" + i));
+            }
+            foreach(Person person in persons)
+            {
+                if(Person.Age(person.BirthYear) < 16)
+                {
+                    person.ChangeName("Very young");
+                }
+                person.Output();
+            }
+            for(int i = 0; i < persons.Count; i++)
+            {
+                for(int j = i + 1; j < persons.Count; j++)
+                {
+                    if(persons[i] == persons[j])
+                    {
+                        Console.WriteLine("{0} with {1} birth date and {2} with {3} birth date have same names", persons[i].Name, persons[i].BirthYear, persons[j].Name, persons[j].BirthYear);
+                    }
+                }
+            }
+   
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HW4
+{
+    internal class Person
+    {
+        private string name;
+        private DateTime birthYear;
+
+        public string Name
+        {
+            get { return name; }
+        }
+        public int BirthYear
+        {
+            get { return birthYear.Year; }
+        }
+
+        public Person(int personBirthYear, string personName)
+        {
+            this.birthYear = new DateTime(personBirthYear, 1, 1);
+            this.name = personName;
+        }
+        public Person()
+        {
+
+        }
+
+        public static int Age(int birthYear)
+        {
+            return DateTime.Now.Year - birthYear;
+        }
+
+       public void Input()
+        {
+            Console.WriteLine("Enter person name");
+            name = Console.ReadLine();
+            Console.WriteLine("Enter person birth year");
+            int typedYear = Convert.ToInt32(Console.ReadLine());
+            if (typedYear > 1900 && typedYear < 2022)
+            {
+                birthYear = new DateTime(typedYear, 1, 1);
+            }
+            else Console.WriteLine("who are you?");
+        }
+        public void ChangeName(string newName)
+        {
+            name = newName;
+            Console.WriteLine("your name has been changed successfully");
+        }
+        public override string ToString()
+        {
+            return "this person name is " + name + " and his birth year are " + birthYear.Year + " his age " + Age(BirthYear);
+        }
+        public void Output()
+        {
+            Console.WriteLine(ToString());
+        }
+
+        public static bool operator == (Person firstPerson, Person secondPerson)
+        {
+            return firstPerson.name == secondPerson.name;
+        }
+
+        public static bool operator != (Person firstPerson, Person secondPerson)
+        {
+            return !(firstPerson == secondPerson);
+        }
+    }
+}
