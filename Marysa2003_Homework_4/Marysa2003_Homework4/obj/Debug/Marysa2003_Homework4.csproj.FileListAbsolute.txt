@@ -1,0 +1,7 @@
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\bin\Debug\Marysa2003_Homework4.exe.config
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\bin\Debug\Marysa2003_Homework4.exe
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\bin\Debug\Marysa2003_Homework4.pdb
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\obj\Debug\Marysa2003_Homework4.csproj.AssemblyReference.cache
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\obj\Debug\Marysa2003_Homework4.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\obj\Debug\Marysa2003_Homework4.exe
+C:\Users\Xiaomi\source\repos\Marysa2003_Homework4\Marysa2003_Homework4\obj\Debug\Marysa2003_Homework4.pdb
