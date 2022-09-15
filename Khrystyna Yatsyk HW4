@@ -1,0 +1,120 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Person[] people = new Person[6];
+
+        for (int i = 0; i < 6; i++)
+        {
+            people[i] = Person.Input(i);
+        }
+        int age;
+        foreach (Person person in people)
+        {
+            
+            age = Person.Age(person);
+            Console.WriteLine($"{person.Name} is {age} years old");
+        }
+
+        foreach (Person person in people)
+        {
+            if (Person.Age(person) < 16)
+            {
+                Console.Write($"{person.Name} is less than 16 years old, so his name has to be changed to ");
+                person.Name = Person.ChangeName("Very Young");
+                Console.WriteLine(person.Name);
+            }
+
+        }
+
+        foreach (Person person in people)
+        {
+            person.OutPut();
+        }
+
+        for (int i = 0; i < 6; i++)
+            for (int j = i+1; j < 6; j++)
+            {
+                if (people[i] == people[j])
+
+                    Console.WriteLine($"Person #{i+1} {people[i].Name} has the same name as person #{j+1} {people[j].Name}");
+            }
+    }
+}
+
+class Person
+{
+    private string name;
+    private DateTime birthDate;
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+    public DateTime BirthDate
+    {
+        get { return birthDate; }
+        set { birthDate = value; }
+    }
+
+    public Person()
+    { }
+    public Person(string name, DateTime birthDate)
+    {
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    public static int Age(Person person)
+    {
+        int age;
+        if ((person.birthDate.Month < DateTime.Now.Month) || 
+                ((person.birthDate.Month == DateTime.Now.Month) && (person.birthDate.Date <= DateTime.Now.Date)))
+        {
+            age = DateTime.Now.Year - person.BirthDate.Year;
+        }
+        else
+        {
+            age = DateTime.Now.Year - person.BirthDate.Year - 1;
+        }
+        return age;
+    }
+
+    public static Person Input(int i)
+    {
+        Console.WriteLine($"Enter the name of {i+1} person");
+        string name = Console.ReadLine();
+        Console.WriteLine($"Enter the date of birth of {i + 1} person");
+        DateTime birthDate = Convert.ToDateTime(Console.ReadLine());
+        Person person = new Person(name, birthDate);
+        return person;
+    }
+
+    public static string ChangeName(string newName)
+    {
+        string name = newName;
+        return name;
+    }
+
+    public override string ToString()
+    {
+        return string.Format($"\nPerson details.\nName: {name}, date of birth: {birthDate:dd-MMM-yyyy}");
+    }
+
+    public void OutPut()
+    {
+        Console.WriteLine(ToString());
+    }
+
+    public static bool operator == (Person first, Person second)
+    {
+        return first.name == second.name;
+    }
+
+    public static bool operator != (Person first, Person second)
+    {
+        return first.name != second.name;
+    }
+}
