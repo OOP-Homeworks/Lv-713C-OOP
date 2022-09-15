@@ -15,7 +15,7 @@ namespace HW4_shevchuk
        
            Person tom = new Person();
            
-            Person[] persons = new Person[4];
+            Person[] persons = new Person[6];
             persons[0] = tom;
 
             for(int i = 1; i < persons.Length; i++)
