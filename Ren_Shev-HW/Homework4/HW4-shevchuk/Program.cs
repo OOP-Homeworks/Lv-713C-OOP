@@ -42,7 +42,8 @@ namespace HW4_shevchuk
                 }
                 persons[i].Output();
             }
-
+            
+            // var 1 compare all item
             Console.WriteLine("List of persons with the same names: ");
 
             for (int i = 0; i < persons.Length; i++)
@@ -62,6 +63,20 @@ namespace HW4_shevchuk
                 }
               
             }
+             // var 2 uses filter
+            Console.WriteLine("List2 of persons with the same names: ");
+ 
+
+            
+            for (int i = 0; i < persons.Length; i++)
+            {
+                
+                var compareArr = persons.Where(c => c.Name == persons[i].Name);
+                foreach (Person person in compareArr)
+                    Console.WriteLine($"person {person}");
+
+            }
+
             Console.ReadKey();
         }
     }
