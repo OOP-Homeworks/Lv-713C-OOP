@@ -1,0 +1,101 @@
+using System;
+using System.Linq;
+
+namespace IDovhyiHomework4
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1.In the method Main() create 6 objects of Person type and enter information about them.
+            Person[] people = new Person[5];
+            for (int i = 0; i < people.Length; i++) people[i] = Person.Input(i);
+            Console.WriteLine();
+
+            // 2.Then calculate and output on the console name and Age of each person;
+            Console.WriteLine("Name and Age of each person");
+
+            for (int i = 0; i < people.Length; i++) Console.WriteLine("Persone " + (i + 1) + " - name: " + people[i].Name + ",  Age: " + people[i].Age());
+            Console.WriteLine();
+
+            // 3.Change the name of persons, which Age is less then 16, to "Very Young".
+            for (int i = 0; i < people.Length; i++) if (people[i].Age() < 16) people[i].ChangeName("Very Young");
+
+            // 4.Output information about all persons on the console.
+            Console.WriteLine("Information about all personse");
+            for (int i = 0; i < people.Length; i++) people[i].Output(i);
+            Console.WriteLine();
+
+            // 5.Find and output information about Persons with the same names(use ==).
+            Console.WriteLine("Persons with the same name");
+            Person[] people2 = people.Where(x => people.Count(y => x == y) > 1).ToArray();
+            foreach (Person person in people2) Console.WriteLine(person);
+        }
+    }
+}
+// ------------------------------------------------------------------------
+using System;
+using System.Linq;
+
+namespace IDovhyiHomework4
+{
+    internal class Person
+    {
+        private string name;
+        private DateTime birthYear;
+        public string Name
+        {
+            get { return name; }
+        }
+        public DateTime BirthYear
+        { 
+            get { return birthYear; }
+        }
+
+        public Person()
+        {
+            name = "Unnamed";
+            birthYear = DateTime.Now;
+        }
+        public Person(string name, DateTime year)
+        {
+            this.name = name;
+            this.birthYear = year;
+        }
+        public int Age()
+        {
+            return (DateTime.Now.Year - this.birthYear.Year);
+        }
+        public static Person Input(int i)
+        {
+            Console.Write($"Enter {i + 1} person name: ");
+            string name = Console.ReadLine();
+            Console.Write($"Enter {i + 1} person birth year: ");
+            int year = int.Parse(Console.ReadLine());
+            DateTime birthYear = new DateTime(year, 1, 1 );
+            Person person = new Person(name, birthYear);
+            return person;
+        }
+        public void ChangeName(string newName)
+        {
+            name = newName;
+        }
+        public override string ToString()
+        {
+            return "Persone name " + name + " birth year " + birthYear.Year;
+        }
+        public void Output(int i)
+        {
+            Console.WriteLine("Persone "+(i+1)+"- name : " + name + ",  birth year : " + birthYear.Year);
+        }
+        public static bool operator == (Person first, Person second)
+        {
+            return (first.name == second.name);
+        }
+        public static bool operator != (Person first, Person second)
+        {
+            return  !(first.name == second.name);
+        }
+    }
+}
+
