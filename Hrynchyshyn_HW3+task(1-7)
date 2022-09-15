@@ -1,0 +1,234 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lecture3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //task 3 - 1
+
+            Console.WriteLine("Write first integer number:");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Write second integer number(second number > first number):");
+            int b = Convert.ToInt32(Console.ReadLine());
+            int quantity = 0;
+            for (int i = a; i <= b; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    quantity += 1;
+                }
+            }
+            Console.WriteLine("Quantity ineger number(number % 3 == 0):\t" + quantity);
+            Console.ReadLine();
+
+            //task 3 - 2
+
+            Console.WriteLine("Enter string:");
+            string str = Console.ReadLine();
+            string result = "";
+            for (int i = 0; i < str.Length; i += 2)
+            {
+                result += str[i];
+            }
+            Console.WriteLine(result);
+
+            //tasl 3 - 3
+
+            Console.WriteLine("Select a drink: coffe, tea, juice, water.");
+            string drink = Console.ReadLine();
+            switch (drink)
+            {
+                case "coffe":
+                    Console.WriteLine("Name: coffe\nPrice: 2$ ");
+                    break;
+                case "tea":
+                    Console.WriteLine("Name: tea\nPrice: 1.3$ ");
+                    break;
+                case "juice":
+                    Console.WriteLine("Name: juice\nPrice: 2.5$ ");
+                    break;
+                case "water":
+                    Console.WriteLine("Name: water\nPrice: 0.8$ ");
+                    break;
+                default:
+                    Console.WriteLine("You typed incorrectly");
+                    break;
+            }
+            Console.ReadLine();
+
+            //task 3 - 4
+
+            Console.WriteLine("Enter positive numbers to the sirst negetive number:");
+            int x = 0;
+            double sum = 0, n;
+            do
+            {
+                n = Convert.ToInt32(Console.ReadLine());
+                x++;
+                sum += n;
+
+            } while (n >= 0);
+            x--;
+            sum -= n;
+            double avarage = sum / x;
+            Console.WriteLine("Avarge positive numbers = \t" + avarage);
+            Console.ReadKey();
+
+            //task 3 - 5
+
+            Console.WriteLine("Enter year:");
+            int year = Convert.ToInt32(Console.ReadLine());
+            if (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0))
+            {
+                Console.WriteLine("This yaer is a leap");
+            }
+            else
+            {
+                Console.WriteLine("This year is not a leap");
+            }
+            Console.ReadKey();
+
+            //task 3 - 6
+
+            Console.WriteLine("Enter integer number:");
+            int number = Convert.ToInt32(Console.ReadLine());
+            int sum = 0;
+            while (number >= 1)
+            {
+                sum += number % 10;
+                number /= 10;
+            }
+            Console.WriteLine(sum);
+            Console.ReadKey();
+
+            //task 3 - 7 
+
+            Console.WriteLine("Enter integer number:");
+            int number = Convert.ToInt32(Console.ReadLine());
+            bool result = true;
+            while (number >= 1)
+            {
+                if ((number % 10) % 2 == 0) result = false;
+                {
+                    number /= 10;
+                }
+
+            }
+            if (result)
+            {
+                Console.WriteLine("Odd numbers only");
+            }
+            else
+            {
+                Console.WriteLine("False");
+            }
+            Console.ReadKey();
+
+            //HW task - 1
+
+            Console.WriteLine("Enter string:");
+            string str = Console.ReadLine();
+            int sumA = 0;
+            int sumO = 0;
+            int sumI = 0;
+            int sumE = 0;
+            foreach (char symbol in str)
+            {
+                if (symbol == 'a')
+                {
+                    sumA++;
+                }
+                if (symbol == 'o')
+                {
+                    sumO++;
+                }
+                if (symbol == 'i')
+                {
+                    sumI++;
+                }
+                if (symbol == 'e')
+                {
+                    sumE++;
+                }
+            }
+            Console.WriteLine($"\n'a' = \t {sumA} \n'0' = \t {sumO} \n'i' = \t {sumI} \n'e' = \t {sumE}");
+
+            //HW task - 2
+
+
+            Console.WriteLine("Enter month number:");
+            int month = Convert.ToInt32(Console.ReadLine());
+            switch (month)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    Console.WriteLine($"This month have 31 days");
+                    break;
+
+                case 2:
+                    Console.WriteLine("This month have 28 or 29 days");
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    Console.WriteLine("This month have 30 days");
+                    break;
+                default:
+                    Console.WriteLine("The number month is entered incorrectly");
+                    break;
+            }
+            Console.ReadKey();
+
+            //HW task - 3 
+
+
+            int elementCount = 10;
+            int[] myArray = new int[elementCount];
+            int sum = 0;
+            int product = 1;
+            for (int i = 0; i < myArray.Length; i++)
+            {
+                Console.Write($"\nВведіть елеvент масива під індексом{i}:\t");
+                myArray[i] = int.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                if ((myArray[0] > 0 && myArray[1] > 0 && myArray[2] > 0 && myArray[3] > 0 && myArray[4] > 0))
+                {
+                    sum += myArray[i];
+                }
+             
+            }
+            for (int i = 5; i < myArray.Length; i++)
+            {
+                if ((myArray[0] > 0 && myArray[1] > 0 && myArray[2] > 0 && myArray[3] > 0 && myArray[4] > 0))
+                {
+                    product = 0;
+                }
+                else
+                {
+                    product *= myArray[i];
+                }               
+            }
+            Console.WriteLine($"\nСума перших 5-ти чисел = \t{sum}");
+            Console.WriteLine($"Добуток останніх 5-ти чисел = \t{product}");
+            Console.ReadKey();
+
+        }
+    }
+}
