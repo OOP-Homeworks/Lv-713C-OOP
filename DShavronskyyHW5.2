@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<uint, string> names = new Dictionary<uint, string>();
+            for(uint i = 0; i < 7; i++)
+            {
+                Console.WriteLine("Enter name");
+                names.Add(i, Console.ReadLine());
+            }
+            PersonSearch(names);
+        }
+        static void PersonSearch(Dictionary<uint,string> names)
+        {
+            Console.WriteLine("Enter Person's id");
+            uint id = Convert.ToUInt32(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("Person's name is ", names[id]);
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("This id not exist");
+            }
+        }
+    }
+}
