@@ -1,0 +1,192 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<IDeveloper> pb = new List<IDeveloper>(); //pb - Programmers and Builders
+            for(int i = 0; i < 1; i++)
+            {
+                pb.Add(new Programmer());
+                pb.Add(new Builder());
+            }
+            foreach(IDeveloper developer in pb)
+            {
+                developer.Create();
+            }
+            foreach(var developer in pb)
+            {
+                if(developer.Tool == "c#")
+                {
+                    developer.Destroy();
+                }
+            }
+            foreach(var developer in pb)
+            {
+                developer.CompareTo(developer);
+            }
+            pb.Sort();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw5
+{
+    internal class Programmer : IDeveloper, IComparable<IDeveloper>
+    {
+        private string name;
+        private string language;
+        private string tool;
+
+        public string Tool // так і не зрозумів що робити з цим
+        {
+            get
+            {
+                return tool;
+            }
+            set
+            {
+                tool = value;
+            }
+        }
+        public string Name
+        {
+            get 
+            { 
+                return name; 
+            }
+            set 
+            { 
+                name = value; 
+            }
+        }
+        public string Language { 
+            get 
+            { 
+                return language; 
+            }
+            set 
+            { 
+                language = value; 
+            }
+        }
+        public Programmer(string language, string name, string tool)
+        {
+            this.language = language;
+            this.name = name;
+            this.tool = tool;
+        }
+        public Programmer()
+        {
+
+        }
+        public void Create()
+        {
+            Console.WriteLine("Enter programmer's tool");
+            this.tool = Console.ReadLine();
+            Console.WriteLine("Enter programmer's language");
+            this.language = Console.ReadLine();
+            Console.WriteLine("Enter programmer's name");
+            this.name = Console.ReadLine();
+            
+        }
+
+        public void Destroy()
+        {
+            name = String.Empty;
+            language = string.Empty;
+            tool = String.Empty;
+        }
+
+        int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+        {
+            return String.Compare(tool, other.Tool);
+        }
+       
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw5
+{
+    internal class Builder : IDeveloper, IComparable<IDeveloper>
+    {
+        private string name;
+        private string tool;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public string Tool
+        {
+            get { return tool; }
+            set { tool = value; }
+        }
+        public Builder(string tool,string name)
+        {
+            this.tool = tool;
+            this.name = name;
+        }
+        public Builder()
+        {
+
+        }
+        public void Create()
+        {
+            Console.WriteLine("Enter builder's tool");
+            this.tool = Console.ReadLine();
+            Console.WriteLine("Enter builder's name");
+            this.name = Console.ReadLine();
+        }
+
+        public void Destroy()
+        {
+            name = String.Empty;
+            tool = String.Empty;
+        }
+        int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+        {
+            return String.Compare(Tool, other.Tool);
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw5
+{
+    internal interface IDeveloper : IComparable<IDeveloper>
+    {
+        string Tool
+        {
+            get;
+            set;
+        }
+
+        void Create();
+        void Destroy();
+    }
+}
