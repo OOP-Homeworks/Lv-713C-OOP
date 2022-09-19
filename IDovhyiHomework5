@@ -1,0 +1,116 @@
+interface IDeveloper
+    {
+        string Tools { get; set; }
+        void Create();
+        void Destroy();
+    }
+
+internal class Builder : IDeveloper, IComparable
+    {
+        private string name;
+        private string tools;
+
+        public string Tools
+        {
+            set { tools = value; }
+            get { return tools; }
+        }
+        public void Create()
+        {
+            Console.WriteLine("A new builder named {0} has been created, that has the tools {1}", name, tools);
+        }
+        public void Destroy()
+        {
+            Console.WriteLine("Builder {0} destroyed", name);
+        }
+        public Builder(string name, string language)
+        {
+            this.name = name;
+            this.tools = language;
+        }
+        public int CompareTo(object o)
+        {
+            Programmer p = o as Programmer;
+            Builder b = o as Builder;
+            if (p != null)
+                return this.Tools.CompareTo(p.Tools);
+            else if (b != null)
+                return this.Tools.CompareTo(b.Tools);
+            else
+                throw new ArgumentException("Object is not developer");
+        }
+    }
+class Programmer : IDeveloper, IComparable
+    {
+        private string name;
+        private string language;
+
+        public string Tools {
+            set { language = value; }
+            get { return language; }
+        }
+        public void Create()
+        {
+            Console.WriteLine("A new programmer named {0} has been created, who knows the {1} programming language", name, language);
+        }
+        public void Destroy()
+        {
+            Console.WriteLine("Programmer {0} destroyed", name);
+        }
+        public Programmer(string name, string language)
+        {
+            this.name = name;
+            this.language = language;
+        }
+        public int CompareTo(object o)
+        {
+            Programmer p = o as Programmer;
+            Builder b = o as Builder;
+            if (p != null)
+                return this.Tools.CompareTo(p.Tools);
+            else if (b != null)
+                return this.Tools.CompareTo(b.Tools);
+            else
+                throw new ArgumentException("Object is not developer");
+        }
+
+    }
+internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<IDeveloper> developers = new List<IDeveloper>();
+            developers.Add(new Programmer("John","C++"));
+            developers.Add(new Programmer("Andrew", "C++"));
+            developers.Add(new Programmer("David", "C++"));
+            developers.Add(new Builder("Anton", "Critical date management system"));
+            developers.Add(new Builder("Piter", "Document Management"));
+            foreach (IDeveloper developer in developers) developer.Create();
+            developers.Sort();
+            foreach (IDeveloper developer in developers) developer.Destroy();
+        }
+    }
+    
+ internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<uint, string> person = new Dictionary<uint, string>();
+            for (int i = 0; i < 7; i++)
+            {
+                Console.Write("Enter ID: ");
+                uint id = uint.Parse(Console.ReadLine());
+                Console.Write("Enter name: ");
+                string name = Console.ReadLine();
+                person.Add(id, name);
+            }
+            Console.Write("Enter ID to search: ");
+            uint serchId = uint.Parse(Console.ReadLine());
+            if (person.ContainsKey(serchId))
+                Console.WriteLine("Name: " + person[serchId]);
+            else Console.WriteLine("There is no value");
+
+        }
+    }
+   
+ 
