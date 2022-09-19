@@ -1,0 +1,7 @@
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\bin\Debug\Marichka2003_Homework_5.exe.config
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\bin\Debug\Marichka2003_Homework_5.exe
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\bin\Debug\Marichka2003_Homework_5.pdb
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\obj\Debug\Marichka2003_Homework_5.csproj.AssemblyReference.cache
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\obj\Debug\Marichka2003_Homework_5.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\obj\Debug\Marichka2003_Homework_5.exe
+C:\Users\Xiaomi\source\repos\Marichka2003_Homework_5\Marichka2003_Homework_5\obj\Debug\Marichka2003_Homework_5.pdb
