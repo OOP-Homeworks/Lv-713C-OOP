@@ -1,0 +1,160 @@
+////////Task1
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        List <IDeveloper> developers = new List<IDeveloper>();
+        Builder sasha = new Builder("hammer","Sasha");
+        developers.Add(sasha);
+        Builder roman = new Builder("level", "Roman");
+        developers.Add(roman);
+        Builder ivan = new Builder("electric saw", "Ivan");
+        developers.Add(ivan);
+        Programmer vasyl = new Programmer("Python", "Vasyl");
+        developers.Add(vasyl);
+        Programmer roberto = new Programmer("C#", "Roberto");
+        developers.Add(roberto);
+        Programmer igor = new Programmer("C#", "Igor");
+        developers.Add(igor);
+
+        foreach (IDeveloper developer in developers)
+        {
+            developer.Create();
+        }
+        foreach (IDeveloper developer in developers)
+        {
+            developer.Destroy();
+        }
+        developers.Sort();
+        Console.WriteLine("\nThe list after sorting");
+        foreach (IDeveloper developer in developers)
+        {
+            Console.WriteLine($"{developer.GetType()} {developer.Name} using {developer.Tool}");
+        }
+    }
+}
+
+public interface IDeveloper : IComparable<IDeveloper>
+    {
+    string Tool { get; set; }
+    string Name { get; set; }
+    void Create();
+    void Destroy();
+    }
+
+public class Builder : IDeveloper, IComparable<IDeveloper>
+{
+    string tool;
+    public string Tool
+    {
+        get { return tool; }
+        set { tool = value; }
+    }
+
+    string name;
+    public string Name
+    { 
+        get { return name; }
+        set { name = value; }
+    }
+
+    public Builder(string tool, string name)
+    {
+        this.tool= tool;
+        this.name = name;
+    }
+
+    public void Create()
+    {
+        Console.WriteLine($"|\nThe Builder {name} can build a lot of things using his {tool}.");
+    }
+
+    public void Destroy()
+    {
+        Console.WriteLine($"\nWhen the Builder {name} is angry he can destroy a lot of things using his {tool}.");
+    }
+
+    int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+    {
+        return String.Compare(this.Tool, other.Tool);
+    }
+}
+
+public class Programmer : IDeveloper, IComparable<IDeveloper>
+{
+    string language;
+    public string Tool
+    {
+        get { return language; }
+        set { language = value; }
+    }
+
+    string name;
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public Programmer(string language, string name)
+    {
+        this.language = language;
+        this.name = name;
+    }
+
+    public void Create()
+    {
+        Console.WriteLine($"\nThe Programmer {name} can develop a lot of software using programming language {language}.");
+    }
+
+    public void Destroy()
+    {
+        Console.WriteLine($"\nWhen the Programmer {name} is sad he doesn't want to develop anything in {language}.");
+    }
+
+    int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+    {
+        return String.Compare(this.Tool, other.Tool);
+    }
+}
+
+///////Task2
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dictionary<uint, string> people = new Dictionary<uint, string>();
+        uint id;
+        string name;
+        for (int i = 0; i < 7; i++)
+        {
+            Console.WriteLine($"Enter ID for the person # {i + 1}");
+            id = Convert.ToUInt32(Console.ReadLine());
+            Console.WriteLine($"Enter the name of the person # {i + 1}");
+            name = Console.ReadLine();
+            people.Add(id, name);
+        }
+
+        Console.WriteLine("\nPlease enter the ID of person you are looking for:");
+
+        uint search;
+        search = Convert.ToUInt32(Console.ReadLine());
+        if (people.ContainsKey(search))
+        {
+            Console.WriteLine($"\nPersonal details for your request. Name: {people[search]}, ID: {search}.");
+        }
+        else
+            Console.WriteLine($"\nThe person with ID {search} is not found");
+        }
+    }
