@@ -1,0 +1,7 @@
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\bin\Debug\Marichka2003_Task_6.exe.config
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\bin\Debug\Marichka2003_Task_6.exe
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\bin\Debug\Marichka2003_Task_6.pdb
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\obj\Debug\Marichka2003_Task_6.csproj.AssemblyReference.cache
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\obj\Debug\Marichka2003_Task_6.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\obj\Debug\Marichka2003_Task_6.exe
+C:\Users\Xiaomi\source\repos\Marichka2003_Task_6\Marichka2003_Task_6\obj\Debug\Marichka2003_Task_6.pdb
