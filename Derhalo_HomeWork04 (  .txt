@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork04
+{
+    public class Person
+    {
+        static void Main()
+        {
+            Person person = new Person();
+        }
+        private string name;
+        private int BirthYear;
+        public string Name
+        {
+            get { return name; }
+        }
+        public int BirthYear1
+        {
+            get;
+        }
+        public Person()
+        {
+            Console.WriteLine("Please , enter name (Nick)...");
+            name =Convert.ToString(Console.ReadLine());
+            name = "Nick";
+            Console.WriteLine("Please , enter year of birth ...");
+            BirthYear1 = Convert.ToInt32(Console.ReadLine());
+            BirthYear1 = 1990;
+        }
+        public Person(string name, int BirtYear)
+        {
+            this.name = name;
+            this.BirthYear = BirthYear;
+        }
+        public int Age()
+        {
+            int Age = (DateTime.Now.Year - BirthYear);
+            return Age;
+        }
+        public Person Input()
+        {
+            Console.WriteLine("Enter a name... ");
+            string name = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter a year of birth ... ");
+            int BirthYear = Convert.ToInt32(Console.ReadLine());
+            Person person = new Person(name, BirthYear);
+            return person;
+        }
+        public void ChangeName(string name)
+        {
+            this.name = name;
+        }
+        public override string ToString()
+        {
+            return ($"Name of first person is : {name}\nBirth year of first person is : {BirthYear}");
+        }
+        public void Output()
+        {
+            Console.WriteLine(ToString());
+        }
+        public static bool operator ==(Person first, Person second)
+        {
+            return first.name == second.name;
+        }
+        public static bool operator !=(Person first, Person second)
+        {
+            return !(first.name == second.name);
+        }
+    }
+}
