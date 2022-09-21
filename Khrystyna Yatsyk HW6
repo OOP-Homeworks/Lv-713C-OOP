@@ -1,0 +1,58 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
+using System.Security;
+using System.Security.Cryptography;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Enter the integer START number");
+        int start = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter the integer END number");
+        int end = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine($"You are operating with the range [{start} ... {end}].");
+
+        for (int i = 1; i < 11; i++)
+        {
+            int member = ReadNumbers(start, end);
+            if (member > start)
+            {
+                start = member;
+            }
+        }
+        Console.WriteLine("***Success!***");
+        Console.ReadLine();
+
+        static int ReadNumbers(int start, int end)
+        {
+        a1:
+            try
+            {
+                Console.WriteLine($"\nPlease enter the integer number");
+                int number = Convert.ToInt32(Console.ReadLine());
+
+                if (number <= start)
+                { throw new ApplicationException($"The number has to be bigger than {start}."); }
+                if (number >= end)
+                { throw new ApplicationException($"The number has to be less than {end}."); }
+                return number;
+            }
+
+            catch (ApplicationException ae)
+            {
+                Console.WriteLine(ae.Message);
+                goto a1;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("This has to be only integer");
+                goto a1;
+
+            }
+        }
+    }
+}
