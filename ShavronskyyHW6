@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter start point ");
+            int start = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter end point ");
+            int end = Convert.ToInt32(Console.ReadLine());
+            ReadNumber(start, end);
+        }
+        static void ReadNumber(int start, int end)
+        {
+            int prevNumber = start;
+            for (int i = 0; i < 10; i++)
+            {
+            checkpoint1:
+                try
+                {
+                    Console.WriteLine("enter number > {0} and < {1} ", prevNumber, end);
+                    int inputNumber = Convert.ToInt32(Console.ReadLine());
+                    if (inputNumber >= end)
+                    {
+                        throw new Exception("number must be < " + end);
+                    }
+                    else if(inputNumber < prevNumber)
+                    {
+                        throw new Exception("number must be > " + prevNumber);
+                    }
+                    prevNumber = inputNumber;
+                }
+                catch(Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    goto checkpoint1;
+                }
+            }
+        }
+    }
+}
