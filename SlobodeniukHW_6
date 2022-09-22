@@ -1,0 +1,71 @@
+using System;
+
+namespace SlobodeniukHW6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int start;
+            int end;
+
+            Console.WriteLine("Enter Start: ");
+            start = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter End: ");
+            end = Convert.ToInt32(Console.ReadLine());
+
+            ReadNumber(start, end);
+            Console.WriteLine("---------------");
+            
+
+
+        }
+        static void ReadNumber(int start, int end)
+        {
+
+            int input;
+            int count = 1;
+
+            do
+            {
+            a1:
+                try
+                {
+                    Console.WriteLine("Number {0}: ", count);
+                    input = Convert.ToInt32(Console.ReadLine());
+                    
+
+                    if (input >= end || input <= start)
+                    {
+                        { throw new ApplicationException($"Check the number and enter again. It must be in the range from {start} to {end}"); }
+                    }
+                    else
+                    {
+                        start = input;
+                        
+                    }
+                    count++;
+                }
+
+
+                catch (ApplicationException exeption)
+                {
+                    Console.WriteLine(exeption.Message);
+                    goto a1;
+                }
+
+                catch (FormatException exeption)
+                {
+                    Console.WriteLine("Enter an integer, please!" + exeption.Message);
+                    goto a1;
+                }
+            }
+
+            while (count < 11);
+
+            Console.WriteLine();
+            
+        }
+    }
+}
