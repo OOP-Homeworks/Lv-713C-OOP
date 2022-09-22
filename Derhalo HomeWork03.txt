@@ -1,0 +1,122 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork3_01
+{
+    class Program
+    {
+        static void Main(string[] args)
+    {
+        Console.WriteLine("Enter some centanse .... ");
+        string str = Convert.ToString(Console.ReadLine());
+            int b = 0;
+            foreach (char a in str)
+
+                if (char.IsLetter('a') || char.IsLetter('e') || char.IsLetter('e') || char.IsLetter('i'))
+                {
+                    b++;
+                }
+            Console.WriteLine(b);
+        }
+    }
+}
+ 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork3_02
+{
+    public class Program
+    {
+        static void Main(string[]arg)// enter mounth number . then see cost p\of days in this mounth
+        {
+            double jan = 31, feb = 28, apr = 31, march = 31, may = 31, june = 31, july = 30, aug = 31, sep = 31, oct = 31, nov = 31, dec = 31;
+            Console.WriteLine("Enter namber of mounth...(jan/feb/apr/march/may/june/july/aug/sep/oct/nov/dec)");
+            String numb = Convert.ToString(Console.ReadLine());
+            switch (numb)
+            {
+                case "jan":
+                    Console.WriteLine($"There are {numb} {jan:C}");
+                    break;
+                case "feb":
+                    Console.WriteLine($"There are {numb} {feb:C}");
+                    break;
+                case "apr":
+                    Console.WriteLine($"There are {numb} {apr:C}");
+                    break;
+                case "march":
+                    Console.WriteLine($"There are {numb} {march:C}");
+                    break;
+                case "may":
+                    Console.WriteLine($"There are {numb} {may:C}");
+                    break;
+                case "june":
+                    Console.WriteLine($"There are {numb} {june:C}");
+                    break;
+                case "july":
+                    Console.WriteLine($"There are {numb} {july:C}");
+                    break;
+                case "aug":
+                    Console.WriteLine($"There are {numb} {aug:C}");
+                    break;
+                case "sep":
+                    Console.WriteLine($"There are {numb} {sep:C}");
+                    break;
+                case "oct":
+                    Console.WriteLine($"There are {numb} {oct:C}");
+                    break;
+                case "nov":
+                    Console.WriteLine($"There are {numb} {nov:C}");
+                    break;
+                case "dec":
+                    Console.WriteLine($"There are {numb} {dec:C}");
+                    break;
+            }
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork3_02
+{
+    public class Program
+    {
+        static void Main(string[]arg)// enter 10 integers nsmbers
+        {
+            Console.WriteLine(($"Please enter 10 nambers , maybe - or +"));
+            int n = Convert.ToInt32(Console.ReadLine());
+            int sum1 = 0;
+            int sum2 = 0;
+            //if (n >= 0)
+            //{
+                do while (n >= 0)
+                    {
+                        sum1 = sum1 + n;
+                        Console.WriteLine(sum1);
+                    }
+                while (n < 0);
+                {
+                    sum2 = sum2 - n;
+                    Console.WriteLine(sum2);
+                }
+            //}
+            //else
+            //{ 
+            //    sum2 = sum2 - (n);
+            //}
+        }
+        
+    }
+}
