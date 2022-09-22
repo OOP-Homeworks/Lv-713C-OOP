@@ -1,0 +1,113 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork04
+{
+    public class Person
+  using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork_Try4
+{
+    internal class Person
+    {
+        private string name;
+        private int yearofBirth;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int YearofBirth
+        {
+            get { return yearofBirth; }
+            set { yearofBirth = value; }
+        }
+        public void Read()
+        {
+                Console.WriteLine("Please enter name of first person...");
+                Name = Convert.ToString(Console.ReadLine());
+                Console.WriteLine("Please enter year of birth for first person...");
+                YearofBirth = Convert.ToInt32(Console.ReadLine());
+        }
+        public void Print()
+        {
+            Console.WriteLine($"name of 1  person is {name}, birth year of person 1 is {yearofBirth} ");
+        }
+        public int Age()
+        {
+            int Age = (DateTime.Now.Year - YearofBirth);
+            return Age;
+        }
+        public void ChangeName()
+        {
+            if ( YearofBirth > 2006 )
+            {
+                Name = "Very Young.";
+            }
+        }
+    }
+}
+///Program 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HomeWork_Try4
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Person person = new Person();
+            person.Read();
+            person.Print();
+            Console.ReadKey();
+            Person person1 = new Person();
+            person1.Read();
+            person1.Print();
+            Console.ReadKey();
+            Person person2 = new Person();
+            person2.Read();
+            person2.Print();
+            Console.ReadKey();
+            Person person3 = new Person();
+            person3.Read();
+            person3.Print();
+            Console.ReadKey();
+        Link1:
+            Console.WriteLine("Enter name of person...");
+            string a = Convert.ToString(Console.ReadLine());
+            if (a == person1.Name)
+            { Console.WriteLine(person1.Age()); }
+            if (a == person2.Name)
+            { Console.WriteLine(person2.Age()); }
+            if (a == person3.Name)
+            { Console.WriteLine(person3.Age()); }
+            if (a != person.Name || a != person1.Name || a != person2.Name || a != person3.Name)
+            {
+                Console.WriteLine("no any name of person");
+                goto Link1;
+            }
+            Console.WriteLine("Please tup age, what is to young...");
+            int b = Convert.ToInt32(Console.ReadLine());
+            if (person.Age() < b)  
+               // (b >= person1.Age() || (b <= person2.Age() || (b >= person3.Age() || (b <= person.Age());
+            {person.Name="To Young";}
+            if (person1.Age() > b)
+            { person1.Name = "To Young"; }
+            if (person2.Age() > b)
+            { person2.Name = "To Young"; }
+            if (person3.Age() > b)
+            { person3.Name = "To Young"; }
+        }
+    }
+}
