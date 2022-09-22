@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShokunHW6", "ShokunHW6.csproj", "{AEFB8AD8-E6BB-47A7-990A-849880D3D07F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEFB8AD8-E6BB-47A7-990A-849880D3D07F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEFB8AD8-E6BB-47A7-990A-849880D3D07F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEFB8AD8-E6BB-47A7-990A-849880D3D07F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEFB8AD8-E6BB-47A7-990A-849880D3D07F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59416448-51D1-4E6C-B30C-D8830C1BDB42}
+	EndGlobalSection
+EndGlobal
