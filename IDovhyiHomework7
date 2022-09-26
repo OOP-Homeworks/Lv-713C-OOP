@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace IDovhyiHomework7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>(); // key - PhoneNumber, value PersonName
+            string readPath = @"C:\Phones.txt";
+            using (StreamReader sr = new StreamReader(readPath, System.Text.Encoding.Default))
+            {
+                string line;
+                string linePhoneNumber = "";
+                bool saveNumer = false;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (!saveNumer)
+                    {
+                        saveNumer = true;
+                        linePhoneNumber = line;
+                    }
+                    else
+                    {
+                        phoneBook.Add(linePhoneNumber, line);
+                        saveNumer = false;
+                    }
+                }
+            }
+            Console.Write("Input name: ");
+            string name = Console.ReadLine();
+            foreach (string phone in phoneBook.Keys)
+            {
+                if (phoneBook[phone] == name) Console.WriteLine("Name: " + name + " Phone: " + phone);
+            }
+            var newPhoneBook = new Dictionary<string, string>();
+            foreach (string phone in phoneBook.Keys)
+            {
+                if (phone.IndexOf("80") == 0)
+                {
+                   string newPhone = "+380" + phone.Remove(0, 2);
+                   newPhoneBook.Add(newPhone, phoneBook[phone]);
+                } else newPhoneBook.Add(phone, phoneBook[phone]);
+            }
+            string writePath = @"C:\New.txt";
+            using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+            {
+                foreach (string phone in newPhoneBook.Keys)
+                {
+                    sw.WriteLine(phone);
+                    sw.WriteLine(newPhoneBook[phone]);
+                }
+            }
+        }
+    }
+}
