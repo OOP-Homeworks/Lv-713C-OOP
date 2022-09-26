@@ -1,0 +1,122 @@
+using System;
+using System.IO;
+using System.Security.Cryptography;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dictionary<string, string> PhoneBook = new Dictionary<string, string>();
+        string filepath = "C:\\Users\\diese\\Downloads\\C# OOP\\phones.txt";
+        string createPath = "C:\\Users\\diese\\Downloads\\C# OOP\\onlyPhones.txt";
+        string newPath = "C:\\Users\\diese\\Downloads\\C# OOP\\newTest.txt";
+        string read = "";
+        try
+        {
+            using (StreamReader sr = new StreamReader(filepath, System.Text.Encoding.Default))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    char separator = ' ';
+                    int offset = line.IndexOf(separator);
+                    string name = line.Substring(0, offset);
+                    string key = line.Substring(offset + 1);
+                    PhoneBook.Add(key, name);
+                }
+            }
+            Console.WriteLine("\nThe Phone Book is created");
+
+
+            using (StreamWriter sw = new StreamWriter(createPath, false, System.Text.Encoding.Default))
+            {
+                foreach (KeyValuePair<string, string> pair in PhoneBook)
+                    sw.WriteLine(pair.Key);
+            }
+            Console.WriteLine("\nThe pnone numbers are copied to the new file");
+            using (StreamWriter sw = new StreamWriter(newPath, false, System.Text.Encoding.Default))
+            {
+                foreach (KeyValuePair<string, string> pair in PhoneBook)
+
+                {
+                    try
+                    {
+                        if (pair.Key.StartsWith("+380") && (pair.Key.Length == 13))
+                        {
+                            sw.WriteLine(pair.Key);
+                        }
+                        if (pair.Key.StartsWith("380") && (pair.Key.Length == 12))
+                        {
+                            string formated = pair.Key.Insert(0, "+");
+                            sw.WriteLine(formated);
+                        }
+
+                        if (pair.Key.StartsWith("80") && (pair.Key.Length == 11))
+                        {
+                            string formated = pair.Key.Insert(0, "+3");
+                            sw.WriteLine(formated);
+                        }
+
+                        if (pair.Key.StartsWith("0") && (pair.Key.Length == 10))
+                        {
+                            string formated = pair.Key.Insert(0, "+38");
+                            sw.WriteLine(formated);
+                        }
+
+                        if (pair.Key.Length < 10 || ((pair.Key.Length > 10) && pair.Key.StartsWith("0"))
+                            || ((pair.Key.Length > 11) && pair.Key.StartsWith("8")) 
+                            || ((pair.Key.Length > 12) && pair.Key.StartsWith("3"))
+                            || pair.Key.Length > 13)
+                        {
+                            throw new Exception($"\nThe number {pair.Key} is not correct, and it will not be rewrited");
+                        }
+                    }
+                    catch (ApplicationException ae)
+                    {
+                        Console.WriteLine(ae.Message);
+                    }
+                    catch (FormatException fe)
+                    {
+                        Console.WriteLine(fe.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+            }
+            Console.WriteLine("\nThe correct phone numbers are formated");
+        }
+
+        catch (FileNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        Console.WriteLine("\nPlease enter the name");
+        string nameSearch = Console.ReadLine();
+        try
+        { 
+        foreach (KeyValuePair<string, string> pair in PhoneBook)
+
+            if (pair.Value.Equals(nameSearch))
+            {
+                string keySearch = pair.Key;
+                Console.WriteLine($"The name: {nameSearch}, the phone number: {keySearch}");
+            }
+            if (!PhoneBook.ContainsValue(nameSearch))
+        {
+            throw new ApplicationException("The phone number is not found");
+        }
+            }
+        catch (ApplicationException ae)
+        {
+            Console.WriteLine(ae.Message);
+        }
+    }
+}
