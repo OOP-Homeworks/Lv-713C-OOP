@@ -8,10 +8,7 @@ namespace SuberliakHw2._4
     {
         //Declare struct Dog with fields name, mark, age.
         //Declare object myDog of Dog type and read values for it.
-        //Output information on the console. (Override method ToString in struct)
-
-
-        
+        //Output information on the console. (Override method ToString in struct)       
         
         struct Dog
         {

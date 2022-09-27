@@ -6,11 +6,8 @@ namespace SuberliakHw2._1
     internal class Program
     {
         //Task:1 Read 3 float numbers and check if they are all in the range[-5.5].
-
-
         static void Main(string[] args)
         {
-
             float minRage = -5;
             float maxRage = 5;
 
