@@ -1,0 +1,141 @@
+HomeWork 05 
+program
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork05
+{
+    public class Program
+    {
+        private static void Main(string[] args)
+        {
+            Builder builder1 = new Builder();
+            builder1.Create();
+            builder1.Destroy();
+            Console.ReadKey();
+            Builder builder2 = new Builder();
+            builder2.Create();
+            builder2.Destroy();
+            Console.ReadKey();
+            Programmer programer1 = new Programmer();
+            programer1.Create();
+            programer1.Destroy();
+            Console.ReadKey();
+            Programmer programer2 = new Programmer();
+            programer2.Create();
+            programer2.Destroy();
+            Console.ReadKey();
+            List<IDeveloper> list = new List<IDeveloper>(4);
+            { }
+             //  {builder1.language},{builder2.language},{builder1.Tool},{builder2.Tool}
+             //  { builder1.Destroy()},{ programer1.Destroy())
+            Console.WriteLine(list);
+            foreach (IDeveloper developer in list)
+            {
+                Console.WriteLine(list);
+            }
+
+        }
+
+    }
+}
+______________________________________
+interface IDeveloper
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork05
+{
+    internal interface IDeveloper
+    {
+       string Tool
+        { get; set; }
+        void Create();
+        void Destroy();
+    }
+}
+_________________________________________
+class Builder
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork05
+{
+    public class Builder:IDeveloper, IComparable<IDeveloper>
+    {
+        public string language;
+        public string Tool
+        {
+            get { return language; }
+            set { language = value; }
+        }
+        //public Builder(string language)
+        //{
+        //    this.language = language;
+        //}
+        public void Create()
+        {
+            Console.WriteLine("Enter Builder language ....");
+            language = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter a tool for builders work...");
+            Tool = Convert.ToString(Console.ReadLine());
+        }
+        public void Destroy()
+        {
+            Console.WriteLine($"Builder Destroy home whith {Tool}. ");
+        }
+
+        int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+        {
+            return String.Compare(this.Tool, other.Tool);
+        }
+    }
+}
+___________________________________
+class Programmer
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork05
+{
+    internal class Programmer : IDeveloper, IComparable<IDeveloper>
+    {
+        public string language;
+        public string Tool
+        {
+            get { return language; }
+            set { language = value; }
+        }
+            //public Programmer(string language)
+       // {
+        //this.language=language;
+        //}
+        public void Create()
+        {
+            Console.WriteLine("Enter programmer language ....");
+            language = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter a tool for programmer work needs...");
+            Tool = Convert.ToString(Console.ReadLine());
+        }
+        public void Destroy()
+        {
+            Console.WriteLine($"Programmer Destroy bank system whith {Tool}. ");
+        }
+        int IComparable <IDeveloper>.CompareTo(IDeveloper other)
+        {
+            return String.Compare(this.Tool, other.Tool);
+        }
+    }
+}
