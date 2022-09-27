@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Dynamic;
-using System.Xml.Linq;
 
 namespace SuberliakHw2._4
 
