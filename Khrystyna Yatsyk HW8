@@ -1,0 +1,183 @@
+using System;
+using System.Linq.Expressions;
+using System.Security.Cryptography;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        List<Shape> shapes = new List<Shape>();
+        for (int i = 0; i < 3; i++)
+        {
+        a1:
+            try
+            {
+
+                Console.WriteLine($"Please enter the name of the shape #{i + 1}: Circle or Square:");
+                string name = Console.ReadLine().ToLower();
+                if (name == "circle")
+                {
+                    Console.WriteLine("Please enter the radius:");
+                    double radius = Convert.ToDouble(Console.ReadLine());
+                    shapes.Add(new Circle(name, radius));
+                }
+                if (name == "square")
+                {
+                    Console.WriteLine("Please enter the side:");
+                    double side = Convert.ToDouble(Console.ReadLine());
+                    shapes.Add(new Square(name, side));
+                }
+                if ((name != "circle") && (name != "square"))
+                {
+                    throw new ApplicationException("This name of shape is not correct. Please enter Circle or Square:");
+
+                }
+            }
+            catch (ApplicationException ex)
+            {
+                Console.WriteLine(ex.Message);
+                goto a1;
+            }
+            catch (FormatException fe)
+            {
+                Console.WriteLine("This should be a number.");
+                goto a1;
+            }
+        }
+        foreach (Shape shape in shapes)
+        {
+            Console.WriteLine($"\nThe name of shape: {shape.Name}");
+            Console.WriteLine($"The area of {shape.Name} is {shape.Area():N2}");
+
+            if (shape.GetType() == typeof(Circle))
+            {
+                Console.WriteLine($"The length of circle is {shape.Perimetr():N2}");
+            }
+            if (shape.GetType() == typeof(Square))
+            {
+                Console.WriteLine($"The perimetr of square is {shape.Perimetr():N2}");
+            }
+        }
+
+        Console.WriteLine("\nLet's sort the shapes for the area");
+        shapes.Sort();
+        foreach (Shape shape in shapes)
+        {
+            Console.WriteLine($"The shape {shape.Name} with the area: {shape.Area():N2}");
+        }
+        Console.WriteLine("\nLet's find the shape with the biggest perimetr or lenght");
+        double max = 0;
+        for (int i = 0; i < shapes.Count - 1; i++)
+        {
+            max = Math.Max(shapes[i].Perimetr(), shapes[i + 1].Perimetr());
+        }
+        foreach (Shape shape in shapes)
+        {
+            if (shape.Perimetr() == max && shape.GetType() == typeof(Circle))
+                {
+                    Console.WriteLine($"This {shape.Name} has the biggest lenght {shape.Perimetr():N2}.");
+                }
+
+            if (shape.Perimetr() == max && shape.GetType() == typeof(Square))
+                    {
+                        Console.WriteLine($"This {shape.Name} has the biggest perimetr {shape.Perimetr():N2}.");
+                    }
+                }
+
+            }
+        }
+    
+public abstract class Shape : IComparable<Shape>
+{
+    string name;
+    public string Name
+    {
+        get { return name; }
+    }
+
+    public Shape(string name)
+
+    {
+        this.name = name;
+    }
+
+    public abstract double Area();
+
+    public abstract double Perimetr();
+    public virtual int CompareTo(Shape shape1)
+    {
+        Shape c = shape1 as Circle;
+        Shape s = shape1 as Square;
+
+        if (c != null)
+        {
+             return this.Area().CompareTo(c.Area());
+        }
+        if (s != null)
+        {
+            return this.Area().CompareTo(s.Area());
+        }
+        else
+        {
+        throw new Exception("This object is not a shape");
+   
+        }
+
+    }
+}
+
+public class Circle : Shape
+{
+    private double radius;
+    public double Radius
+    {
+        get { return radius; }
+    }
+
+    public Circle(string name, double radius) : base(name)
+    {
+        this.radius = radius;
+    }
+
+    public override double Perimetr()
+    {
+        double circleLength;
+        circleLength = 2 * Math.PI * radius;
+        return circleLength;
+
+    }
+    public override double Area()
+    {
+        double circleArea;
+        circleArea = radius * radius * Math.PI;
+        return circleArea;
+    }
+}
+
+public class Square : Shape
+    {
+        private double side;
+        public double Side
+        {
+            get { return side; }
+
+        }
+        
+        public Square(string name, double side) : base(name)
+        {
+            this.side = side; 
+        }
+        public override double Perimetr()
+        {
+            double squarePerimetr;
+            squarePerimetr = side * 4;
+            return squarePerimetr;
+        }
+        public override double Area()
+        {
+            double squareArea;
+            squareArea = side * side;
+            return squareArea;
+        }
+   
+    }
