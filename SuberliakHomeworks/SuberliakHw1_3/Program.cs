@@ -6,14 +6,12 @@ namespace SuberliakHw1_3
     {
 
         //TASK3: Calculate circle Length,Area and Volume
-
         public const double PI = Math.PI;
         static void ShowErrorMessage()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("You added wrong value,add only positive number and > 0");
         }
-
         static void Main(string[] args)
         {
             try
