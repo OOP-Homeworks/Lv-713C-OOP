@@ -1,0 +1,313 @@
+using System;
+using System.IO;
+using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
+
+namespace Slobodeniuk_TaskAndHW7
+{
+    internal class Program
+    {
+
+        // Task1
+
+        public void CopyDataFirstWay()
+        {
+            try
+            {
+                string readPath = @"D:\JustDir\task7\data.txt";
+                StreamReader sr = new StreamReader(readPath);
+                string text = sr.ReadToEnd();
+                sr.Close();
+
+                string writePath = @"D:\JustDir\task7\rez.txt";
+                StreamWriter sw = new StreamWriter(writePath);
+                sw.WriteLine(text);
+                sw.Close();
+
+                Console.WriteLine("Data from file {0} copied to file {1}", readPath, writePath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+
+        public void CopyDataSecondWay()
+        {
+            try
+            {
+                string readPath = @"D:\JustDir\task7\data.txt";
+                string writePath = @"D:\JustDir\task7\rez.txt";
+                string createText = File.ReadAllText(readPath);
+                File.WriteAllText(writePath, createText);
+                Console.WriteLine("Data from file {0} copied to file {1}", readPath, writePath);
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        // Task2
+
+        private void InfoAboutAllDirsAndFiles()
+        {
+            try
+            {
+                string dirName = @"D:\";
+                string infoFile = @"D:\\DirectoryD.txt";
+                DirectoryInfo dirInfo = new DirectoryInfo(dirName);
+                FileInfo[] info = dirInfo.GetFiles();
+                foreach (FileInfo inf in info)
+                {
+                    using (StreamWriter sw = new StreamWriter(infoFile, true, System.Text.Encoding.Default))
+                    {
+                        sw.WriteLine("Name: " + inf.Name);
+                        sw.WriteLine("Creation time: " + inf.CreationTime);
+                        sw.WriteLine("Full name: " + inf.FullName);
+                        sw.WriteLine("Length: " + inf.Length);
+                        sw.WriteLine("Last write time" + inf.LastWriteTime);
+                        sw.WriteLine();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        // Task3
+
+        private void OnlyTxtFile()
+        {
+            try
+            {
+                string dirName = @"D:\";
+                DirectoryInfo dir = new DirectoryInfo(dirName);
+                FileInfo[] files = dir.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    if (file.Extension == ".txt")
+                    {
+                        using (StreamReader sr = new StreamReader(file.FullName, System.Text.Encoding.Default))
+                        {
+                            Console.WriteLine("Full name: " + file.FullName);
+                            Console.WriteLine("Content: " + sr.ReadToEnd());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        // HomeWork7
+
+        private void DictionaryToFile(Dictionary<string, string> dict, string path)
+        {
+            try
+            {
+                string line = String.Empty;
+                using (StreamReader reader = new StreamReader(path, System.Text.Encoding.Default))
+                {
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] str = line.Split(" ");
+                        dict.Add(str[0], str[1]);
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void PrintDictionaryInfo(Dictionary<string, string> dict)
+        {
+            foreach (var article in dict)
+            {
+                Console.WriteLine(article.Key + " " + article.Value);
+            }
+        }
+
+        private void PrintPhoneFile(Dictionary<string, string> dict, string path)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+                {
+                    foreach (var article in dict)
+                    {
+                        sw.WriteLine(article.Value);
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        private string FindPhoneByName(Dictionary<string, string> dict, string key)
+        {
+            string line = String.Empty;
+            foreach (var article in dict)
+            {
+                if (article.Key.ToLower() == key.ToLower())
+                {
+                    line = article.Value;
+                }
+            }
+            return line;
+        }
+
+        private void ChangeValByKeyDict(Dictionary<string, string> dict, string key, string val)
+        {
+            dict[key] = val;
+        }
+
+        private void ChangeFormatPhoneNumbers(Dictionary<string, string> dict)
+        {
+            try
+            {
+                string newKey = String.Empty;
+                string newValue = String.Empty;
+
+                foreach (var article in dict)
+                {
+                    if (article.Value.StartsWith('8'))
+                    {
+                        newKey = article.Key;
+                        newValue = article.Value.Insert(0, "+3");
+                        ChangeValByKeyDict(dict, newKey, newValue);
+                    }
+                    else if (article.Value.StartsWith('0'))
+                    {
+                        newKey = article.Key;
+                        newValue = article.Value.Insert(0, "+38");
+                        ChangeValByKeyDict(dict, newKey, newValue);
+                    }
+                    else if (article.Value.StartsWith('9'))
+                    {
+                        newKey = article.Key;
+                        newValue = article.Value.Insert(0, "+380");
+                        ChangeValByKeyDict(dict, newKey, newValue);
+                    }
+                    else if (article.Value.StartsWith('7'))
+                    {
+                        newKey = article.Key;
+                        newValue = article.Value.Insert(0, "+38");
+                        ChangeValByKeyDict(dict, newKey, newValue);
+                    }
+                    else if (article.Value.StartsWith('6'))
+                    {
+                        newKey = article.Key;
+                        newValue = article.Value.Insert(0, "+38");
+                        ChangeValByKeyDict(dict, newKey, newValue);
+                    }
+                    else
+                    {
+                        newKey = article.Key;
+                        newValue = article.Value;
+                        ChangeValByKeyDict(dict, newKey, newValue);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+        }
+
+        private void WriteResultIntoFile(Dictionary<string, string> dict, string path)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+                {
+                    foreach (var article in dict)
+                    {
+                        sw.WriteLine(article.Value);
+                    }
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Program obj = new Program();
+            Console.WriteLine("Read and write all data from data.txt into rez.txt files, by using StreamReader and StreamWriter");
+            obj.CopyDataFirstWay();
+
+            Console.WriteLine("Read and write all data from data.txt into rez.txt files, by using File.WriteAllText");
+            obj.CopyDataSecondWay();
+
+            Console.WriteLine("Write into file ‘DirectoryC.txt’ information (name, type, size) about all directories and files from disc C on your computer");
+            obj.InfoAboutAllDirsAndFiles();
+
+            Console.WriteLine("Select from directory D only .txt files");
+            obj.OnlyTxtFile();
+
+            Console.WriteLine("Dictionary 'PhoneBook'");
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+            
+
+            string path = @"D:\PhonesBook.txt";
+            obj.DictionaryToFile(phoneBook, path);
+
+            Console.WriteLine("Your PhoneBook");
+            obj.PrintDictionaryInfo(phoneBook);
+
+            string phoneNumbers = @"D:\Phones.txt";
+            obj.PrintPhoneFile(phoneBook, phoneNumbers);
+
+
+            Console.WriteLine("Enter name for get a phone number: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Number: " + obj.FindPhoneByName(phoneBook, name));
+
+            Console.WriteLine("Change all phone numbers to '+380' format");
+            obj.ChangeFormatPhoneNumbers(phoneBook);
+            string newFormat = @"D:\New.txt";
+            obj.WriteResultIntoFile(phoneBook, newFormat);
+            obj.PrintDictionaryInfo(phoneBook);
+            
+
+        }
+
+    }
+}
