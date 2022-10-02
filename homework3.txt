@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Formats;
+
+// HWtask 3.1
+namespace homework3
+{
+
+    class Program
+    {
+
+        static void Main()
+        {
+            Console.WriteLine("Enter the letters");
+            string numbers = Console.ReadLine().ToLower();
+            int a = 0;
+            int o = 0;
+            int i = 0;
+            int e = 0;
+
+            foreach (char iCharacter in numbers)
+                if (iCharacter == 'a')
+                    a++;
+            foreach (char iCharacter in numbers)
+                if (iCharacter == 'o')
+                    o++;
+            foreach (char iCharacter in numbers)
+                if (iCharacter == 'i')
+                    i++;
+            foreach (char iCharacter in numbers)
+                if (iCharacter == 'e')
+                    e++;
+
+            Console.WriteLine("A = " + a);
+            Console.WriteLine("O = " + o);
+            Console.WriteLine("I = " + i);
+            Console.WriteLine("E = " + e);
+            Console.WriteLine("Total number of A,O,I,E is: " + Convert.ToInt32(a + o + i + e));
+            Console.ReadKey();
+        }
+
+    }
+}
+
+// HWtask 3.2
+namespace homework3
+{
+
+    class Program
+    {
+        
+        static void Main()
+        {
+            
+            Console.WriteLine("Enter the year: ");
+            int year = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter the month: ");
+            int month = Convert.ToInt32(Console.ReadLine());
+
+            int result = System.DateTime.DaysInMonth(year, month);
+            Console.WriteLine("The days of this month is: " + result);
+
+            Console.ReadKey();
+
+        }
+        
+    }
+}
