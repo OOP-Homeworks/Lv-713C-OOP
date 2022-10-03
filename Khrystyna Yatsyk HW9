@@ -1,0 +1,196 @@
+////////Task1
+using System;
+using System.Data.Common;
+using System.Xml.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Shape[] sequence = { new Circle("circle1", 0.5), new Square("square2", 4), new Square("square3", 1),
+                             new Square("square4", 11), new Circle("circle5", 3), new Circle("circle6", 6)};
+        List<Shape> shapes = sequence.ToList();
+        string path = "C:\\Users\\diese\\Downloads\\C# OOP\\shapes.txt";
+        IEnumerable<Shape> shapes2 = from shape in shapes
+                                     where (shape.Area() >= 10 && shape.Area() <= 100)
+                                     select shape;
+        try
+        {
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                foreach (Shape shape in shapes2)
+                {
+                    sw.WriteLine($"The shape: {shape.Name} with the area: {shape.Area():N2}");
+                }
+            }
+            Console.WriteLine("The file is recorded.");
+
+
+        
+        IEnumerable<Shape> shapes3 = from shape in shapes
+                                     where (shape.Name.Contains("a"))
+                                     select shape;
+        string path2 = "C:\\Users\\diese\\Downloads\\C# OOP\\shapesNames.txt";
+        using (StreamWriter sw = new StreamWriter(path2, false, System.Text.Encoding.Default))
+        {
+            foreach (Shape shape in shapes3)
+                sw.WriteLine($"The shape name {shape.Name} contains a.");
+            }
+           Console.WriteLine("The second file is recorded");
+        }
+        catch (FileNotFoundException fe)
+        {
+            Console.WriteLine(fe.Message);
+        }
+
+        Console.WriteLine("\nLet's remove the shapes with the perimetr (lenght) less than 5.");
+
+        shapes.RemoveAll(x => x.Perimetr() < 5);
+        Console.WriteLine("Removed!");
+        Console.WriteLine("\nUpdated list:");
+        foreach(Shape s in shapes)
+        {
+            Console.WriteLine($"Shape name: {s.Name} with the perimetr (length) {s.Perimetr():N2}");
+        }
+        }
+    }
+
+public abstract class Shape
+{
+    string name;
+    public string Name
+    {
+        get { return name; }
+    }
+
+    public Shape(string name)
+    {
+        this.name = name;
+    }
+
+    public abstract double Perimetr();
+    public abstract double Area();
+}
+
+public class Circle : Shape
+{
+    double radius;
+    public double Radius
+    {
+        get { return radius; }
+    }
+
+    public Circle(string name, double radius) : base(name)
+    {
+        this.radius = radius;
+    }
+
+    override public double Perimetr()
+    {
+    double circlelenght = 2 * Math.PI * radius;
+        return circlelenght;
+     }
+
+    override public double Area()
+
+    {
+        double circleArea = Math.PI * radius * radius;
+        return circleArea;
+    }
+
+}
+
+public class Square: Shape
+{
+    double side;
+    public double Side
+    {
+        get { return side; }
+    }
+
+    public Square(string name, double side) : base(name)    
+    {
+        this.side = side;
+    }
+
+    public override double Perimetr()
+    {
+        double squarePerimetr = side * 4;
+        return squarePerimetr;
+    }
+    public override double Area()
+    {
+        double squareArea = side * side;
+        return squareArea;
+    }
+}
+
+//////Task2
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+
+    {
+        string path = "C:\\Users\\diese\\Downloads\\C# OOP\\HW\\HomeWork8.txt";
+        string[] textArray = new string[] { " " };
+
+        using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+        {
+            string line;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+
+                textArray = textArray.Append(line).ToArray();
+
+            }
+        }
+
+        int[] lengths = new int[textArray.Length];
+        for (int i = 0; i < textArray.Length; i++)
+        {
+            int count = textArray[i].Length;
+            Console.WriteLine($"The line: {i + 1} contains {count} symbols. ");
+            lengths = lengths.Append(count).ToArray();
+        }
+
+        int maxLength = lengths.Max();
+        Console.WriteLine($"The longest line has {maxLength} symbols.");
+        int minLength = lengths.Min();
+        Console.WriteLine($"The shortest line has {minLength} symbols.");
+
+        Console.WriteLine("\nLet's find the line that consists of the word *try*.");
+        
+        foreach (string s in textArray)
+        {
+            Regex regex = new Regex(@"^\s*try\s*$");
+            MatchCollection matches = regex.Matches(s);
+            bool b = false;
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                    Console.WriteLine($"The line *{s}* consists of the word *try*.");
+                    b = true;
+                }
+            }
+            if (b = false)
+            {
+                Console.WriteLine("The lines consisting of *try* are not found.");
+            }
+
+        }
+    }
+}
