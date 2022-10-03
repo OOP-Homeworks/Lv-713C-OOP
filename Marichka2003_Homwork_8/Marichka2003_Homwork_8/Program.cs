@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,15 @@ namespace Marichka2003_Homwork_8
     {
         static void Main(string[] args)
         {
-            const int quantityShapes = 10;
+            using (StreamWriter w = new StreamWriter("Shapes.txt"))
+            {
+
+            }
+            
+            const int quantityShapes = 6;
             List<Shape> shapes = new List<Shape>(quantityShapes);
 
+            List<Shape> NewShape = new List<Shape>();
             bool ifTrue = true;
 
 
@@ -34,6 +41,7 @@ namespace Marichka2003_Homwork_8
                         }
 
                         shapes.Add(new Circle("circle", radiusCircle));
+                       
                         ifTrue = false;
                     }
                     catch
@@ -71,33 +79,65 @@ namespace Marichka2003_Homwork_8
                     goto start;
                 }
             }
-            
+
+            var areaOfShapes = from shape in shapes
+                                     where (shape.Area() >= 10) && (shape.Area() <= 100)
+                                     select shape;
+            using (StreamWriter w = new StreamWriter("Shapes.txt", true))
+            {
+                w.WriteLine($"Area in range [10:100] :");
+                foreach (Shape shape in areaOfShapes)
+                {
+                    w.WriteLine($"{shape.Name} with area {Math.Round(shape.Area(), 2)} and perimeter {Math.Round(shape.Perimeter(),2)}");
+                }
+                
+            }
             Console.Clear();
+
+            var nameWithA = from shape in shapes
+                               where (shape.Name.ToLower().Contains('a'))
+                               select shape;
+            using (StreamWriter w = new StreamWriter("Shapes.txt", true))
+            {
+                w.WriteLine("Shapes which name contains letter 'a':");
+                foreach (Shape shape in nameWithA)
+                {
+                    w.WriteLine($"{shape.Name}, with area {Math.Round(shape.Area()),2} and perimeter {Math.Round(shape.Perimeter()),2}");                   
+                }
+            }
+
             foreach (var i in shapes)
             {
                 i.Print();
             }
             Console.WriteLine();
 
-            Shape largestPerimeter = shapes[0];
-            foreach (Shape shape in shapes)
+            var perimeterOfShape = from shape in shapes
+                                   where shape.Perimeter() < 5
+                                   select shape;
+            
+            Console.WriteLine("Removed : ");
+            foreach (Shape shape in perimeterOfShape)
             {
-                if (shape.Perimeter() > largestPerimeter.Perimeter())
-                { 
-                    largestPerimeter = shape; 
-                }
+                NewShape.Add(shape);
+            }
+            
+            foreach (Shape shape in NewShape)
+            {
+                Console.WriteLine($"{shape.Name} with perimeter {Math.Round(shape.Perimeter()),2}\n");
+            }
+            Console.WriteLine("List without removed element: ");
+
+            foreach (var shape in NewShape)
+            {
+                shapes.Remove(shape);
             }
 
-            Console.WriteLine($"Finding shape with the largest perimeter: {largestPerimeter.Name} , his perimeter is: " +
-                $"{Math.Round(largestPerimeter.Perimeter(),2)}");
-            Console.WriteLine();
-
-            Console.WriteLine("Sort shapes: ");
-            shapes.Sort();
             foreach (Shape shape in shapes)
             {
-                Console.WriteLine($"{shape.Name} with area {Math.Round(shape.Area()),2}");
+                Console.WriteLine($"{shape.Name} with perimeter {Math.Round(shape.Perimeter()),2}");
             }
         }
+        
     }
 }
