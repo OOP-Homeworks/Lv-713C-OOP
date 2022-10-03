@@ -1,0 +1,100 @@
+/// homework_06_01
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork06
+{
+    public static class Home
+    {
+        static void Main(string[] args)
+        {
+            void Div()
+            {
+                Console.WriteLine("Enter some 1 numbers ...");
+                int a = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(a);
+                Console.WriteLine("Enter some 2 numbers ...");
+                int b = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(b);
+                int f = a / b; 
+                Console.WriteLine(f);
+                try
+                {
+                    f = a / b;
+                }
+                catch (DivideByZeroException) when (b == 0 && a > 0) 
+                {
+                    Console.WriteLine("you coudn't divide.Your second namber coudn't be 0");
+                }
+                if ( a>=10 && b>=10 )
+                {
+                    throw new Exception("You can't work whith long nambers");
+                }
+            }
+        }
+    }
+}
+/// homework_06_02
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork06
+{
+    public static class Home
+    {
+        static void Main(string[] args)
+        {
+            Class1 class1 = new Class1();
+            void ReadNamber()
+            {
+                if (class1.start > class1.end)
+                {
+                    throw new Exception("you coudn't work with this numbers. End Point is more then start");
+                }
+                if (class1.end == 0 | class1.end < 0)
+                {
+                    throw new Exception("You can't work whith long nambers");
+                }
+            }
+            void Print()
+            {
+                Console.WriteLine("YOU WIN THIS GAME");
+            }
+            }
+        }
+    }
+/// class1
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork06
+{
+    internal class Class1
+    {
+        public int start { get; set; }
+        public int end { get; set; }
+        void ReadNamber()
+        {
+            Console.WriteLine("Enter start number...");
+            start = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter end number...");
+            end = Convert.ToInt32(Console.ReadLine());
+        }
+        void Print()
+        {
+            Console.WriteLine("Please enter some number ....");
+            int P = Convert.ToInt32(Console.ReadLine());
+            if (start < end || end == 0 || P > start || P < end) ;
+            Console.WriteLine(" Your number is in selected for win");
+        }
+    }
+}
