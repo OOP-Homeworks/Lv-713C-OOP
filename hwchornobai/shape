@@ -1,0 +1,36 @@
+﻿using System;
+namespace hm8
+{
+    public abstract class Shape : IComparable<Shape>
+    {
+        private string name;
+        private string Name;
+        public Shape(string name, string Name)
+        {
+            this.name = name;
+            this.Name = Name;
+        }
+        public abstract double Area();
+        public abstract double Perimeter();
+        public void Print()
+        {
+            Console.WriteLine($"{name} +{Name}");
+        }
+
+        public int CompareTo(Shape shape)
+        {
+            if (this.Area() - shape.Area() < 0)  return -1;
+
+            if (this.Area() - shape.Area() > 0) return 1;
+
+            else return 0;
+
+        }
+
+
+
+
+
+    }
+}
+
