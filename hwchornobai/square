@@ -1,0 +1,22 @@
+﻿using System;
+namespace hm8
+{
+    public class Square : Shape
+    {
+        private double side;
+        public Square(string name,string Name, double radius) : base(name,Name)
+        {
+            this.side = radius;
+        }
+        public double Radius { get { return side; } }
+        public override double Area()
+        {
+            return  side * side;
+        }
+        public override double Perimeter()
+        {
+            return side*4;
+        }
+    }
+}
+
