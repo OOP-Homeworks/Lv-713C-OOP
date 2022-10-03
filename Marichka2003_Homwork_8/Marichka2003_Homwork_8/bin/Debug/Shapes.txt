@@ -1,0 +1,4 @@
+Area in range [10:100] :
+circle with area 15,21 and perimeter 13,82
+Shapes which name contains letter 'a':
+square, with area  1 and perimeter  4
