@@ -1,0 +1,106 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+       public static string read = @"C:\Users\38096\Desktop\c#\c#SoftServe\ConsoleApp1\ConsoleApp1\Phones.txt";
+       public static string write = @"C:\Users\38096\Desktop\c#\c#SoftServe\ConsoleApp1\ConsoleApp1\phonnes.txt";
+       public static string newFile = @"C:\Users\38096\Desktop\c#\c#SoftServe\ConsoleApp1\ConsoleApp1\new.txt";
+        static void Main(string[] args)
+        {
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>();  
+            //add new numbers
+                    AddNewNumber();
+
+                try
+                {
+                    using (StreamReader sr = new StreamReader(read))
+                    {
+                        using (StreamWriter sw = new StreamWriter(write))
+                        {
+                            for (int i = 0; i < phoneBook.Count; i++)
+                            {
+                                string[] readed = sr.ReadLine().Split(' ');
+                                string number = readed[0];
+                                string name = readed[1];
+                                sw.WriteLine(number);
+                                phoneBook.Add(number, name);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            FindInPhoneBook(phoneBook);
+            ChangeNumFormat(phoneBook);
+            }
+        public static void FindInPhoneBook(Dictionary<string, string> phoneBook)
+        {
+            Console.WriteLine("Enter person's name");
+            string name = Console.ReadLine();
+            foreach(var phone in phoneBook)
+            {
+                if(phone.Value == name)
+                {
+                    Console.WriteLine("{0}'s phone is: {1}", name, phone.Key);
+                }
+
+            }
+        }
+        public static void ChangeNumFormat(Dictionary<string, string> phoneBook)
+        {
+            using (StreamReader sr = new StreamReader(read))
+            {
+                using (StreamWriter sw = new StreamWriter(newFile))
+                {
+                    for (int i = 0; i < phoneBook.Count; i++)
+                    {
+                        string[] readed = sr.ReadLine().Split(' ');
+                        string number = readed[0];
+                        number = number.Insert(0, "+38");
+                        sw.WriteLine(number);
+                    }
+                }
+            }
+        }
+        public static void AddNewNumber()
+        {
+            Console.WriteLine("How many numbers you want to add?");
+            int inputCount = Convert.ToInt32(Console.ReadLine());
+            using (StreamWriter sw = new StreamWriter(read))
+            {
+                for (int i = 0; i < inputCount; i++)
+                {
+                checkpoint:
+                    try
+                    {
+                        Console.WriteLine("Please enter 10-digit number without +38 and start with 0");
+                        string inputedNumber = Console.ReadLine();
+                        if (inputedNumber.Length != 10 || inputedNumber[0] != '0')
+                        {
+                            throw new Exception("you entered wrong format number");
+                        }
+                        else
+                            sw.Write(inputedNumber + " ");
+                        Console.WriteLine("Please eneter your first name");
+                        sw.WriteLine(Console.ReadLine());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        goto checkpoint;
+                    }
+                }
+            }
+
+        }
+    }
+    }
