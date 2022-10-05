@@ -1,97 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SlobodeniukHW8
+namespace IDovhyiHomework10
 {
-    internal class Program
-    {
-        private static void InputShapes(List<Shape> shape)
+    public struct Point
+    { 
+        public double x, y;
+        public override string ToString()
+
         {
-            int count = 10;
-            int id;
-            double lenth;
-            for (int i = 0; i < count; i++)
-            {
-                a1:
-                try
-                {
-                    Console.WriteLine("Enret shape: '1' for circule or '2' for square");
-                    id = Convert.ToInt32(Console.ReadLine());
-
-                    switch (id)
-                    {
-                         case 1:
-                            {
-                                Console.WriteLine("Enter the radius of the circle: ");
-                                lenth = Convert.ToInt32(Console.ReadLine());
-                                shape.Add(new Circle(lenth, nameof(Circle)));
-                                break;
-                            }
-
-                         case 2:
-                            {
-                                Console.WriteLine("Enter the side of the square: ");
-                                lenth = Convert.ToInt32(Console.ReadLine());
-                                shape.Add(new Square(lenth, nameof(Square)));
-                                break;
-                            }
-                        default:
-                            {
-                                Console.WriteLine("You need to choose some shape!");
-                                goto a1;
-                            }
-                    }
-                 
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Wrong format");
-                    goto a1;
-                }
-            }
+            return $"({x},{y})";
+        }
+        public Point(double x, double y)
+        { 
+            this.x = x;
+            this.y = y;
         }
 
+    }
+    internal class Program
+    {
         static void Main(string[] args)
         {
-            List<Shape> shapes = new List<Shape>();
-            InputShapes(shapes);
-
-            foreach (var shape in shapes)
-            {
-                shape.GetArea();
-                shape.GetPerimeter();
-                shape.Print();
-
-             
-            }
-
-            double max = 0;
-            string name = String.Empty;
-
-            foreach (var shape in shapes)
-            {
-                if (shape.Perimeter > max)
-                {
-                    max = shape.Perimeter;
-                    name = shape.Name;
-                }
-            }
-            Console.WriteLine("************************************");
-            Console.WriteLine("Name is: {0} with max perimetr: {1}", name, max);
-
-
-            Console.WriteLine("************************************");
-            Console.WriteLine("Sort shapes");
-            shapes.Sort();
-
-            foreach (var shape in shapes)
-            {
-                shape.Print();
-            }
-
+            List<Triangle> triangles = new List<Triangle>()
+            { 
+            new Triangle(new Point(0,3), new Point(4,2), new Point(10,10)),
+            new Triangle(new Point(0,2), new Point(5,2), new Point(11,11)),
+            new Triangle(new Point(0,1), new Point(6,2), new Point(12,12))
+            };
+            foreach (Triangle triangle in triangles) triangle.Print();
+            
+            Console.WriteLine("Triangle with vertex which is the closest to origin (0,0):");
+            Triangle triangleWithMinDistance = triangles[0];
+            foreach (Triangle triangle in triangles)
+                if (triangleWithMinDistance.minDistance() > triangle.minDistance()) triangleWithMinDistance = triangle;
+            triangleWithMinDistance.Print();
         }
     }
 }
