@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HWTen
+{
+    public struct Point
+    {
+        public int X, Y;
+        public Point(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+        public override string ToString()
+        {
+            return $"Point X: {X} Point Y: {Y}";
+        }
+
+    }
+
+    public class Triangle
+    {
+        public Point Vertex1, Vertex2, Vertex3;
+        public Triangle(Point a, Point b, Point c)
+        {
+            Vertex1 = a;
+            Vertex2 = b; 
+            Vertex3 = c;
+        }
+        public static double Distance(Point firstPoint,Point secondPoint)
+        {
+            double result = Math.Sqrt(Math.Pow((secondPoint.X - firstPoint.X), 2) + Math.Pow((secondPoint.Y - firstPoint.Y), 2));
+            return Math.Round(result,3);
+        }
+       
+        public static double Perimeter(Triangle triangle)
+        {
+            double ab = Triangle.Distance(triangle.Vertex1, triangle.Vertex2);
+            double cb = Triangle.Distance(triangle.Vertex3, triangle.Vertex2);
+            double ac = Triangle.Distance(triangle.Vertex1, triangle.Vertex3);
+
+            return Math.Round(ab + cb + ac,3);
+        }
+        public static double Square(Triangle triangle) // Heron's formula
+        {
+            double ab = Triangle.Distance(triangle.Vertex1, triangle.Vertex2);
+            double cb = Triangle.Distance(triangle.Vertex3, triangle.Vertex2);
+            double ac = Triangle.Distance(triangle.Vertex1, triangle.Vertex3);
+            double halfPerimeter = Triangle.Perimeter(triangle) /2;
+            double result = Math.Sqrt((halfPerimeter) * (halfPerimeter - ab)*(halfPerimeter - cb)*(halfPerimeter - ac));
+            return Math.Round(result, 3);
+        }
+        public static void Print(Triangle triangle)
+        {
+            Console.WriteLine("---------------");
+            Console.WriteLine($"Traingle:\nPerimeter is: {Triangle.Perimeter(triangle)}\nSquare is: {Triangle.Square(triangle)} ");
+            Console.WriteLine("---------------");
+        }
+    }
+}
+
+using System;
+using HWTen;
+using System.Collections.Generic;
+
+namespace HWTen
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Triangle> triangles = new List<Triangle>();
+            for (int i = 0; i < 3; i++)
+            {
+                triangles.Add(new Triangle(new Point(2, 1), new Point(3, 3), new Point(4, 4)));
+                triangles.Add(new Triangle(new Point(2, 2), new Point(4, 5), new Point(1, 5)));
+                triangles.Add(new Triangle(new Point(2, 1), new Point(5, 5), new Point(1, 4)));
+            }
+            foreach (Triangle triangle in triangles)
+            {
+                Triangle.Print(triangle);
+            }
+        }
+    }
+}
