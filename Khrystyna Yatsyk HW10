@@ -1,0 +1,209 @@
+using System;
+using WithUnitTest;
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+
+        List<Triangle> triangles = new List<Triangle>();
+
+        Point p1 = new Point(11, -3);
+        Point p2 = new Point(12, 5);
+        Point p3 = new Point(10, 5);
+        Point p4 = new Point(7, 6);
+        Point p5 = new Point(8, 15);
+        Point p6 = new Point(1, 4);
+        Point p7 = new Point(2, 3);
+        Point p8 = new Point(8, 7);
+        Point p9 = new Point(0, 10);
+        Point pOrigin = new Point(0, 0);
+
+        Triangle triangle1 = new Triangle(p1, p2, p3);
+        Triangle triangle2 = new Triangle(p4, p5, p6);
+        Triangle triangle3 = new Triangle(p7, p8, p9);
+
+        triangles.Add(triangle1);
+        triangles.Add(triangle2);
+        triangles.Add(triangle3);
+
+        foreach (Triangle triangle in triangles)
+        {
+            triangle.Print();
+        }
+        List<double> disOrigins = new List<double>();
+        foreach (Triangle triangle in triangles)
+        {
+            double disOrigin1 = triangle.Distance(triangle.vertex1, pOrigin);
+            disOrigins.Add(disOrigin1);
+            double disOrigin2 = triangle.Distance(triangle.vertex2, pOrigin);
+            disOrigins.Add(disOrigin2);
+            double disOrigin3 = triangle.Distance(triangle.vertex3, pOrigin);
+            disOrigins.Add(disOrigin3);
+        }
+
+        double disOClosest = disOrigins.Min();
+        Console.WriteLine($"\nThe closest vertex is on the distance {disOClosest} to (0, 0).");
+        int pointName = 0; 
+        for (int i = 0; i < disOrigins.Count; i++)
+        {
+            if (disOrigins[i] == disOClosest)
+            {
+                Console.WriteLine($"This vertex is the point p{i + 1}");
+                pointName = i + 1;
+            }
+        }
+
+        switch (pointName)
+        {
+            case 1:
+            case 2:
+            case 3:
+            
+            Console.WriteLine("The triangle1 has the vertex which is the closest to the origin.");
+                triangle1.Print();
+                break;
+            case 4:
+            case 5:
+            case 6:
+            
+            Console.WriteLine("The triangle2 has the vertex which is the closest to the origin.");
+                triangle2.Print();
+                break;
+            case 7:
+            case 8:
+            case 9:
+            
+            Console.WriteLine("The triangle3 has the vertex which is the closest to the origin.");
+                triangle3.Print();
+                break;
+
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WithUnitTest
+{
+    public struct Point
+        {
+        public int X;
+        public int Y;
+
+        public Point(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+
+        public override string ToString()
+        {
+            return "(" +X+ "," +Y+ ")";
+        }
+
+    }
+
+    public class Triangle
+    {
+        public Point vertex1;
+        public Point vertex2;
+        public Point vertex3;
+
+        public Triangle(Point a, Point b, Point c)
+
+        {
+            this.vertex1 = a;
+            this.vertex2 = b;
+            this.vertex3 = c;
+        }
+            
+        public double Distance(Point p1, Point p2)
+        {
+            double result = Math.Round(Math.Sqrt(((p2.X - p1.X) * (p2.X - p1.X)) + ((p2.Y - p1.Y) * (p2.Y - p1.Y))), 2);
+            return result;
+                
+        }
+
+        public double Perimetr()
+        {
+            double resultP = Math.Round(Distance(vertex1,vertex2) + Distance(vertex3,vertex1) + Distance(vertex2, vertex3), 2);
+            return resultP;
+
+        }
+
+        public double Square()
+        {
+            double resultS = Math.Round(Math.Sqrt(Perimetr() * (Perimetr() - Distance(vertex1, vertex2)) *
+                                      (Perimetr() - Distance(vertex2, vertex3)) * 
+                                      (Perimetr() - Distance(vertex3, vertex1))), 2);
+            return resultS;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"The triange with sides {Distance(vertex1, vertex2)}, {Distance(vertex2, vertex3)} and" +
+                $" { Distance(vertex3, vertex1)} has perimetr {Perimetr()} and square {Square()}");
+        }
+    }
+}
+
+using System.Drawing;
+using WithUnitTest;
+using Point = WithUnitTest.Point;
+
+namespace WithUnitTestTest1
+{
+    [TestClass]
+    public class TriangleTest
+    {
+        [TestMethod]
+        public void Distance_p11p22_return141()
+        {
+            Point point1 = new Point(1, 1);
+            Point point2 = new Point(2, 2);
+            Point point3 = new Point(3, 3);
+            double expected = 1.41;
+
+            Triangle triangleTest = new Triangle(point1, point2, point3);
+            double actual = triangleTest.Distance(point1, point2);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Perimetr_p11p22p33_return565()
+        {
+            Point point1 = new Point(1, 1);
+            Point point2 = new Point(2, 2);
+            Point point3 = new Point(3, 3);
+            double expected = 5.65;
+
+            Triangle triangleTest = new Triangle(point1, point2, point3);
+            double actual = triangleTest.Perimetr();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Square_p11p22p33_return1692()
+        {
+            Point point1 = new Point(1, 1);
+            Point point2 = new Point(2, 2);
+            Point point3 = new Point(3, 3);
+            double expected = 16.92;
+
+            Triangle triangleTest = new Triangle(point1, point2, point3);
+            double actual = triangleTest.Square();
+
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}
