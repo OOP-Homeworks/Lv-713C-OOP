@@ -1,0 +1,123 @@
+Derhalo_HomeWork07
+namespace HomeWork007
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            string pathName = @"D:\home07name.txt";
+            string pathNumb = @"D:\home07namb.txt";
+            PhoneBook book1 = new PhoneBook();
+            book1.Write();
+            PhoneBook book2 = new PhoneBook();
+            book2.Write();
+            PhoneBook book3 = new PhoneBook();
+            book3.Write();
+            PhoneBook book4 = new PhoneBook();
+            book4.Write();
+            PhoneBook book5 = new PhoneBook();
+            book5.Write();
+            PhoneBook book6 = new PhoneBook();
+            book6.Write();
+            PhoneBook book7 = new PhoneBook();
+            book7.Write();
+            PhoneBook book8 = new PhoneBook();
+            book8.Write();
+            {
+                StreamWriter n = new StreamWriter(pathName, true, System.Text.Encoding.Default);
+                StreamWriter num = new StreamWriter(pathNumb, true, System.Text.Encoding.Default);
+                n.WriteLine($"{book1.NameOfAb}");
+                num.WriteLine($"{book1.PhoneNumber}");
+                n.WriteLine($"{book2.NameOfAb}");
+                num.WriteLine($"{book3.PhoneNumber}");
+                n.WriteLine($"{book3.NameOfAb}");
+                num.WriteLine($"{book4.PhoneNumber}");
+                n.WriteLine($"{book4.NameOfAb}");
+                num.WriteLine($"{book5.PhoneNumber}");
+                n.WriteLine($"{book5.NameOfAb}");
+                num.WriteLine($"{book6.PhoneNumber}");
+                n.WriteLine($"{book6.NameOfAb}");
+                num.WriteLine($"{book7.PhoneNumber}");
+                n.WriteLine($"{book7.NameOfAb}");
+                num.WriteLine($"{book8.PhoneNumber}");
+                n.WriteLine($"{book8.NameOfAb}");
+                num.Close();
+            }
+            {
+                Dictionary<string, int> PhoneBookSer = new Dictionary<string, int>()
+                { [book1.NameOfAb] = book1.PhoneNumber,
+                    [book2.NameOfAb] = book2.PhoneNumber,
+                    [book3.NameOfAb] = book3.PhoneNumber,
+                };
+                void Read()
+                {
+                    Console.WriteLine("Please enter Name of Ab...");
+                    string NameControl;
+                    NameControl = Convert.ToString(Console.ReadLine());
+                    if (NameControl == book1.NameOfAb)
+                    {
+                        Console.WriteLine($"{book1.PhoneNumber}");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine((NameControl != book1.NameOfAb) | (NameControl != book2.NameOfAb) |
+                        (NameControl != book3.NameOfAb));
+                        Console.WriteLine("No eny abonent in this PhoneBook");
+                    }
+
+                }
+            }
+            {
+                StreamReader nNum = new StreamReader(pathNumb);
+                string line;
+                Console.WriteLine(nNum.ReadLine());
+                while ((line = nNum.ReadLine()) != null)
+                { int NewNamb;
+                    int NewNumb = Convert.ToInt32(nNum.ReadLine());
+                    if ((NewNumb >= 80000000000) | (NewNumb < 90000000000))
+                    {
+                        string pathNew;
+                        pathNew = @"D\\NewNumbIntern.txt";
+
+                        StreamWriter nin = new StreamWriter(pathNew, true, System.Text.Encoding.Default);
+                        nin.WriteLine($"+3{NewNumb}");
+                    }
+                    else
+                    { }
+                }
+                Console.ReadKey();
+
+            }
+        }
+    }
+}
+________________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+    internal class PhoneBook
+    {
+    private string nameOfAb;
+    private int phoneNumber;
+
+        public string NameOfAb 
+        {
+            get { return nameOfAb; }
+            set { nameOfAb = value; }
+        }
+        public int PhoneNumber 
+        {
+            get { return phoneNumber; }
+            set { phoneNumber = value; }
+        }
+        public void Write()
+        {
+            Console.WriteLine("Enter name of Abonent...");
+            NameOfAb = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter number of Abonent...");
+            PhoneNumber = Convert.ToInt32(Console.ReadLine());
+        }
+    }
