@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSuberliakHw_3.1", "VSuberliakHw_3.1\VSuberliakHw_3.1.csproj", "{B814ACAC-8B23-4FBB-97DF-0B96BB2E082E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSuberliakHw_3.1", "VSuberliakHw_3.1\VSuberliakHw_3.1.csproj", "{B814ACAC-8B23-4FBB-97DF-0B96BB2E082E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSuberliakHw_3.2", "VSuberliakHw_3.2\VSuberliakHw_3.2.csproj", "{404C5CDC-6709-4352-BD91-D4814D2288E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSuberliakHw_3.2", "VSuberliakHw_3.2\VSuberliakHw_3.2.csproj", "{404C5CDC-6709-4352-BD91-D4814D2288E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSuberliakHw_3.3", "VSuberliakHw_3.3\VSuberliakHw_3.3.csproj", "{B484256C-4DF9-459C-89F0-00B767C38522}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{404C5CDC-6709-4352-BD91-D4814D2288E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{404C5CDC-6709-4352-BD91-D4814D2288E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{404C5CDC-6709-4352-BD91-D4814D2288E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B484256C-4DF9-459C-89F0-00B767C38522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B484256C-4DF9-459C-89F0-00B767C38522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B484256C-4DF9-459C-89F0-00B767C38522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B484256C-4DF9-459C-89F0-00B767C38522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

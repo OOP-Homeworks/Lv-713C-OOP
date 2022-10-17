@@ -13,29 +13,43 @@ namespace VSuberliakHw_3._2
         
 
         static void Main(string[] args)
-        {          
+        {
+
+            Console.WriteLine("Please enter the number of month");
+            int monthNumber = Int16.Parse(Console.ReadLine());
 
             try
             {
-                Console.WriteLine("Please enter the number of month");
-                int monthNumber = Int16.Parse(Console.ReadLine());
-                if (monthNumber == 1 || monthNumber == 3 || monthNumber == 5)
+
+                if (monthNumber == 2)
                 {
-                    Console.WriteLine("28");
+                    Console.WriteLine("there can be 28 or 29 days depending on year (leap or no).Add year you need");
+                    int year = Int32.Parse(Console.ReadLine());
+                    int days = DateTime.DaysInMonth(year, monthNumber);
+                    Console.WriteLine($"In your month there are " + days + "days");
                 }
-                else if (monthNumber == 2 )
+                else if (monthNumber <= 0 || monthNumber >= 13)
                 {
-                    Console.WriteLine("28");
+                    Console.WriteLine("Year has 12 months,please add value between 1-12");
                 }
-                else
+                else if (monthNumber == 0 || monthNumber == 13 || monthNumber == 13)
                 {
-                    Console.WriteLine("30");
+                    Console.WriteLine("Year has 12 months,please add value between 1-12");
+                }
+                else                
+                {
+                    Console.WriteLine("In your month there are 31 days");
                 }
             }
             catch (System.FormatException)
             {
-                Console.WriteLine("Year has 12 months,please add value between 1-12");
+                Console.WriteLine("Only digits are alloved,please add value between 1-12 for month and 1 and 9999 for year ");
             }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Year must be between 1 and 9999");
+            }
+
         }
     }
 }
