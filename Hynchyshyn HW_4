@@ -1,0 +1,148 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using HW4;
+
+namespace HW4
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var rnd = new Random();
+            var persons = new List<Person>();
+            for (int i = 0; i < 6; i++)
+            {
+                persons.Add(new Person(rnd.Next(2000, 2010), "person" + i));
+            }
+            Menu(persons);
+        }
+
+        public static void SameNameCheck(List<Person> persons)
+        {
+            for (int i = 0; i < persons.Count; i++)
+            {
+                for (int j = i + 1; j < persons.Count; j++)
+                {
+                    if (persons[i] == persons[j])
+                    {
+                        Console.WriteLine("{0} with {1} birth date and {2} with {3} birth date have same names", persons[i].Name, persons[i].BirthYear, persons[j].Name, persons[j].BirthYear);
+                    }
+                }
+            }
+            Menu(persons);
+        }
+        public static void AgeCheck(List<Person> persons)
+        {
+            foreach (Person person in persons)
+            {
+                if (Person.Age(person.BirthYear) < 16)
+                {
+                    person.ChangeName("Very young");
+                }
+                person.Output();
+            }
+            Menu(persons);
+        }
+        public static void Menu(List<Person> persons)
+        {
+            for(int i = 0; i < 20; i++)
+            {
+                Console.Write("=");
+            }
+            Console.WriteLine("\nMenu\n1:Age check\n2:same name check\n3:Create new person\n4:Exit");
+            int choiseMenu = Convert.ToInt32(Console.ReadLine());
+            switch (choiseMenu)
+            {
+                case 1:
+                    AgeCheck(persons);
+                    break;
+                case 2:
+                    SameNameCheck(persons);
+                    break;
+                case 3:
+                    Console.WriteLine("Enter name of the person");
+                    string personsName = Console.ReadLine();
+                    Console.WriteLine("Enter person birth year");
+                    int personsBirthYear = Convert.ToInt32(Console.ReadLine());
+                    persons.Add(new Person(personsBirthYear, personsName));
+                    Console.WriteLine("New person added successfully");
+                    break;
+                case 4:
+                    break;
+            }
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HW4
+{
+    internal class Person
+    {
+        private string name;
+        private DateTime birthYear;
+        public string Name
+        {
+            get { return name; }
+        }
+        public DateTime BirthYear
+        { 
+            get { return birthYear; }
+        }
+
+        public Person()
+        {
+            name = "Unnamed";
+            birthYear = DateTime.Now;
+        }
+        public Person(string name, DateTime year)
+        {
+            this.name = name;
+            this.birthYear = year;
+        }
+        public int Age()
+        {
+            return (DateTime.Now.Year - this.birthYear.Year);
+        }
+        public static Person Input(int i)
+        {
+            Console.Write($"Enter {i + 1} person name: ");
+            string name = Console.ReadLine();
+            Console.Write($"Enter {i + 1} person birth year: ");
+            int year = int.Parse(Console.ReadLine());
+            DateTime birthYear = new DateTime(year, 1, 1 );
+            Person person = new Person(name, birthYear);
+            return person;
+        }
+        public void ChangeName(string newName)
+        {
+            name = newName;
+        }
+        public override string ToString()
+        {
+            return "Persone name " + name + " birth year " + birthYear.Year;
+        }
+        public void Output(int i)
+        {
+            Console.WriteLine("Persone "+(i+1)+"- name : " + name + ",  birth year : " + birthYear.Year);
+        }
+        public static bool operator == (Person first, Person second)
+        {
+            return (first.name == second.name);
+        }
+        public static bool operator != (Person first, Person second)
+        {
+            return  !(first.name == second.name);
+        }
+    }
+}
