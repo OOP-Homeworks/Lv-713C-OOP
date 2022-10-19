@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        List <IDeveloper> developers = new List<IDeveloper>();
+        Builder alex = new Builder("hammer","Alex");
+        developers.Add(alex);
+        Builder oleg = new Builder("level", "Oleg");
+        developers.Add(oleg);
+        Builder ostap = new Builder("electric saw", "Ostap");
+        developers.Add(ostap);
+        Programmer ihor = new Programmer("JS", "Ihor");
+        developers.Add(ihor);
+        Programmer olga = new Programmer("C#", "Olga");
+        developers.Add(olga);
+        Programmer igor = new Programmer("C#", "Igor");
+        developers.Add(igor);
+
+        foreach (IDeveloper developer in developers)
+        {
+            developer.Create();
+        }
+        foreach (IDeveloper developer in developers)
+        {
+            developer.Destroy();
+        }
+        developers.Sort();
+        Console.WriteLine("\nThe list after sorting");
+        foreach (IDeveloper developer in developers)
+        {
+            Console.WriteLine($"{developer.GetType()} {developer.Name} using {developer.Tool}");
+        }
+    }
+}
+
+public interface IDeveloper : IComparable<IDeveloper>
+    {
+    string Tool { get; set; }
+    string Name { get; set; }
+    void Create();
+    void Destroy();
+    }
+
+public class Builder : IDeveloper, IComparable<IDeveloper>
+{
+    string tool;
+    public string Tool
+    {
+        get { return tool; }
+        set { tool = value; }
+    }
+
+    string name;
+    public string Name
+    { 
+        get { return name; }
+        set { name = value; }
+    }
+
+    public Builder(string tool, string name)
+    {
+        this.tool= tool;
+        this.name = name;
+    }
+
+    public void Create()
+    {
+        Console.WriteLine($"|\nThe Builder {name} can build a lot of things using his {tool}.");
+    }
+
+    public void Destroy()
+    {
+        Console.WriteLine($"\nWhen the Builder {name} is angry he can destroy a lot of things using his {tool}.");
+    }
+
+    int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+    {
+        return String.Compare(this.Tool, other.Tool);
+    }
+}
+
+public class Programmer : IDeveloper, IComparable<IDeveloper>
+{
+    string language;
+    public string Tool
+    {
+        get { return language; }
+        set { language = value; }
+    }
+
+    string name;
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public Programmer(string language, string name)
+    {
+        this.language = language;
+        this.name = name;
+    }
+
+    public void Create()
+    {
+        Console.WriteLine($"\nThe Programmer {name} can develop a lot of software using programming language {language}.");
+    }
+
+    public void Destroy()
+    {
+        Console.WriteLine($"\nWhen the Programmer {name} is sad he doesn't want to develop anything in {language}.");
+    }
+
+    int IComparable<IDeveloper>.CompareTo(IDeveloper other)
+    {
+        return String.Compare(this.Tool, other.Tool);
+    }
+}
+/////
+internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<uint, string> person = new Dictionary<uint, string>();
+            for (int i = 0; i < 7; i++)
+            {
+                Console.Write("Enter ID: ");
+                uint id = uint.Parse(Console.ReadLine());
+                Console.Write("Enter name: ");
+                string name = Console.ReadLine();
+                person.Add(id, name);
+            }
+            Console.Write("Enter ID to search: ");
+            uint serchId = uint.Parse(Console.ReadLine());
+            if (person.ContainsKey(serchId))
+                Console.WriteLine("Name: " + person[serchId]);
+            else Console.WriteLine("There is no value");
+
+        }
+    }
+
