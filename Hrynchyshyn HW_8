@@ -1,0 +1,147 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
+using System.Security.Cryptography;
+
+
+namespace Hrynchyshyn HW_8
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            
+             List<Shape> shapes = new List<Shape>();
+            Console.WriteLine("Enter data of 10 different shapes");
+            int typeOfShape = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Enter 1 if your shape is a square or 0 if a circle");
+                typeOfShape = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter name of your shape");
+                string name = Console.ReadLine();
+                if (typeOfShape == 1)
+                {
+                    Console.WriteLine($"Enter side of the {name}");
+                    double side = double.Parse(Console.ReadLine());
+                    shapes.Add(new Square(name, side));
+                }
+                if(typeOfShape == 0)
+                {
+                    Console.WriteLine($"Enter radius of the {name}");
+                    double radius = double.Parse(Console.ReadLine());
+                    shapes.Add(new Circle(name, radius));
+                }
+            }
+
+            foreach (Shape shape in shapes)
+            {
+                Console.WriteLine($"The name of shape is {shape.Name}\nArea: {Math.Round(shape.Area(), 1)}\nPerimeter: {Math.Round(shape.Perimeter(), 1)}\n");
+            }
+
+            string nameOfShapeWithLargestPerimeter = "";
+            double largestPerimeter = 0;
+            for(int i = 0; i < shapes.Count; i++)
+            {
+                if (shapes[i].Perimeter() > largestPerimeter)
+                {
+                    largestPerimeter = shapes[i].Perimeter();
+                    nameOfShapeWithLargestPerimeter = shapes[i].Name;
+                }
+            }
+
+            Console.WriteLine($"Name of shape with the largest perimeter is {nameOfShapeWithLargestPerimeter}");
+
+            shapes.Sort();
+            Console.WriteLine("Shapes sort by Area");
+            foreach(Shape shape in shapes)
+            {
+                Console.WriteLine($"The shape {shape.Name}, area: {Math.Round(shape.Area(), 1)}");
+            }
+
+            Console.ReadKey();
+
+        }
+    }
+}
+
+abstract class Shape : IComparable<Shape>
+    {
+        private string name;
+
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
+        public Shape(string name)
+        {
+            this.name = name;
+        }
+        public abstract double Area();
+
+        public abstract double Perimeter();
+
+        public int CompareTo(Shape other)
+        {
+            if (this.Area() < other.Area()) return 1;
+            else if (this.Area() > other.Area()) return -1;
+            else return 0;
+        }
+    }
+
+    public class Circle : Shape
+    {
+    private double radius;
+    public double Radius
+    {
+        get { return radius; }
+    }
+
+    public Circle(string name, double radius) : base(name)
+    {
+        this.radius = radius;
+    }
+
+    public override double Perimetr()
+    {
+        double circleLength;
+        circleLength = 2 * Math.PI * radius;
+        return circleLength;
+
+    }
+    public override double Area()
+    {
+        double circleArea;
+        circleArea = radius * radius * Math.PI;
+        return circleArea;
+    }
+}
+class Square : Shape
+    {
+        private double side;
+        public string Side { get; set; }
+        public Square(string name, double side) : base(name)
+        {
+            this.side = side;
+        }
+
+        override public void Print()
+        {
+            Console.WriteLine($"Shape: {Name}\t side: {side}\t area: {Math.Round(Area(),2)}\t perimeter: {Math.Round(Perimeter(),2)}");
+        }
+
+        public override double Area()
+        {
+            return side * side;
+        }
+
+        public override double Perimeter()
+        {
+            return 4*side;
+        }
+    }
+}
