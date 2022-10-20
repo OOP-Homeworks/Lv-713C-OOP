@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace Hrynchyshyn HW_7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+        
+            Dictionary<string, string> PhoneBook = new Dictionary<string, string>();
+             Dictionary<string, string> newtxt = new Dictionary<string, string>();
+             var phone_numbers = "/Users/marianchornobai/Desktop/Phones.txt";
+             var write_phone = "/Users/marianchornobai/Desktop/new.txt";
+             var blabla = "/Users/marianchornobai/Desktop/Phones2.txt";
+             string person_name;
+             string read = "";
+             int counter = 1;
+            
+            
+             StreamReader reader = new StreamReader(phone_numbers, System.Text.Encoding.Default);
+             string line;
+             while ((line = reader.ReadLine()) != null)
+             {
+                Console.WriteLine($"Enter name {counter++} ");
+                person_name = Console.ReadLine();
+                PhoneBook[person_name] = line;
+             }
+             reader.Close();
+           
+            Console.Write("Input name: ");
+             string name = Console.ReadLine();
+             foreach (string phone in phoneBook.Keys)
+             {
+                if (phoneBook[phone] == name) Console.WriteLine("Name: " + name + " Phone: " + phone);
+             }
+             var newPhoneBook = new Dictionary<string, string>();
+             foreach (string phone in phoneBook.Keys)
+             {
+                if (phone.IndexOf("80") == 0)
+                {
+                   string newPhone = "+380" + phone.Remove(0, 2);
+                   newPhoneBook.Add(newPhone, phoneBook[phone]);
+                } else newPhoneBook.Add(phone, phoneBook[phone]);
+             }
+             string writePath = @"C:\New.txt";
+             using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+             {
+                foreach (string phone in newPhoneBook.Keys)
+                {
+                    sw.WriteLine(phone);
+                    sw.WriteLine(newPhoneBook[phone]);
+                }
+             }
+         }
+     }
+ }
