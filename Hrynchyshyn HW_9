@@ -1,0 +1,165 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hrynchyshyn HW_9
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Shape> shape = new List<Shape>();
+            
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine("Enter type: Circle or Square!");
+                string typeString = Console.ReadLine();
+                if (typeString == "Circle")
+                {
+                    Console.WriteLine("Enter name of Circle: ");
+                    string circleName = Console.ReadLine();
+                    Console.WriteLine("Enter radius: ");
+                    int circleRadius = Convert.ToInt32(Console.ReadLine());
+
+                    shape.Add(new Circle(circleName, circleRadius));
+                }
+                else if (typeString == "Square")
+                {
+                    Console.WriteLine("Enter name: ");
+                    string squareName = Console.ReadLine();
+                    Console.WriteLine("Enter side of Squere: ");
+                    int sideSquere = Convert.ToInt32(Console.ReadLine());
+
+                    shape.Add(new Square(squareName, sideSquere));
+                }
+                else
+                {
+                    Console.WriteLine("Not found shape!");
+                }
+
+            }
+            
+            Console.WriteLine();
+
+            Console.WriteLine("Find and write into the file shapes which name contains letter 'a':");
+            var shapeA = shapes.Where(n => n.Name.ToLower().Contains("a"));
+
+            foreach (var a in shapeA)
+            {
+                Console.WriteLine("This name has been written to a new file: " + a.Name);
+                using (StreamWriter sw = new StreamWriter(@"D:\ShapesWithA.txt", true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine(a.Name);
+                }
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Find and remove from the list all shapes with perimeter less then 5.");
+            shapes.RemoveAll(n => n.Perimeter < 5);
+            Console.WriteLine("New shape's list: ");
+
+            foreach (var n in shapes)
+            {
+                Console.WriteLine("Name: {0} ; Perimeter: {1}", n.Name, n.Perimeter);
+            }
+
+            Console.ReadKey();
+
+        }
+    }
+}
+                public class Circle : Shape
+    {
+        private int radius;
+
+        public Circle(string name, int radius) : base(name)
+        {
+            this.radius = radius;
+        }
+
+        public override double Area()
+        {
+            double area = Math.PI * Math.Pow(radius, 2);
+            return area;
+        }
+
+        public override double Perimetr()
+        {
+            double perimetr = 2 * Math.PI * radius;
+            return perimetr;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine($"Name: {name}, Area: {Area()}, Perimetr: {Perimetr()}");
+        }
+    }
+}
+public abstract class Shape : IComparable<Shape>
+    {
+        private string name;
+        public string Name { get { return name; } set { name = value; } }
+
+
+        public abstract double Area { get; set; }
+        public abstract double Perimeter { get; set; }
+
+        public Shape(string name)
+        {
+            this.name = name;
+        }
+
+        public abstract void GetArea();
+        public abstract void GetPerimeter();
+        public abstract void Print();
+
+
+        public int CompareTo(Shape sh)
+        {
+            Shape cr = sh as Circle;
+            Shape sq = sh as Square;
+            if (cr != null)
+            {
+                return Area.CompareTo(cr.Area);
+            }
+            if (sq != null)
+            {
+                return Area.CompareTo(sq.Area);
+            }
+            else
+            {
+                throw new Exception("Unable to compare");
+            }
+
+        }
+
+    }
+}
+public class Square: Shape
+{
+    double side;
+    public double Side
+    {
+        get { return side; }
+    }
+
+    public Square(string name, double side) : base(name)    
+    {
+        this.side = side;
+    }
+
+    public override double Perimetr()
+    {
+        double squarePerimetr = side * 4;
+        return squarePerimetr;
+    }
+    public override double Area()
+    {
+        double squareArea = side * side;
+        return squareArea;
+    }
+}
