@@ -1,0 +1,154 @@
+Derhalo.HomeWork08
+using Derhalo_HomeWork08true;
+using System;
+using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DerhaloHomeWork08true
+{
+    public class Program
+    {
+        public void Main(string[] arg)
+        {
+            List<Shape> UserShape = new List<Shape>(10)
+            {
+            Circle circle1 = new Circle();
+            circle1.Name();
+            Circle circle2 = new Circle();
+            circle2.Name();
+            Circle circle3 = new Circle();
+            circle3.Name();
+            Circle circle4 = new Circle();
+            circle4.Name();
+            Circle circle5 = new Circle();
+            circle5.Name();
+            Square square1 = new Square();
+            square1.Name();
+            Square square2 = new Square();
+            square2.Name();
+            Square square3 = new Square();
+            square3.Name();
+            Square square4 = new Square();
+            square4.Name();
+            Square square5 = new Square();
+            square1.Name();
+        }
+            void Sort(IComparer<Shape>? Perimetr) {}
+        OrderBy(Func<Shape, Perimetr> keySelector, IComparer<Shape.Perimetr>? comparer);
+                void Display()
+                {
+                    Console.WriteLine("Lagest Shape of Perimetr is...");
+                }
+            }
+        }
+___________________________________________________________________________-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork08true
+{ 
+abstract class Shape
+{
+    void Name()
+    {
+        void Area()
+        {
+                int Area;
+        };
+        void Perimetr()
+        {
+                int Perimetr;
+        };
+    }
+}
+}
+_____________________________________________________________________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork08true
+{
+    internal class Square : Shape
+    {
+            public void Name()
+            {
+                string name;
+                Console.WriteLine("Please enter name of square ... ");
+                name = Convert.ToString(Console.ReadLine());
+
+                int longSq;
+                void Input()
+                {
+                    Console.WriteLine("Please enter the long of square ...");
+                    int longSq = Convert.ToInt32(Console.ReadLine());
+                }
+                void Area()
+                {
+                    int AreaS;
+                    AreaS = Convert.ToInt32(longSq * longSq);
+                    Console.WriteLine($"Area of yor circle is" + AreaS + "");
+                int Area = AreaS;
+                }
+
+                void Perimetr()
+            {
+                int PerimetrS;
+                PerimetrS = Convert.ToInt32(longSq * 4);
+                Console.WriteLine("Perimetr of yor circle is" + PerimetrS + "");
+                int Perimetr = PerimetrS;
+            }
+        }
+        }
+    }
+_____________________________________________________________________________________-
+using DerhaloHomeWork08true;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Derhalo_HomeWork08true
+{
+    internal class Circle : Shape
+    {
+        public void Name()
+        {
+            string name;
+            Console.WriteLine("Please enter name of square ... ");
+            name = Convert.ToString(Console.ReadLine());
+
+            int p = Convert.ToInt32("3,14");
+            int Radius;
+            void Input()
+            {
+                Console.WriteLine("Please enter the radius of your circle...");
+                Radius = Convert.ToInt32(Console.ReadLine());
+            }
+            void Area()
+            {
+                int AreaC;
+                AreaC = Convert.ToInt32(Radius * p);
+                Console.WriteLine($"Area of yor circle is" + AreaC + "");
+                int Area = AreaC;
+            }
+
+            void Perimetr()
+            {
+                int PerimetrC;
+                PerimetrC = Convert.ToInt32(p * Radius * Radius);
+                Console.WriteLine("Perimetr of yor circle is" + PerimetrC + "");
+                int Perimetr = PerimetrC;
+            }
+        }
+    }
+}
