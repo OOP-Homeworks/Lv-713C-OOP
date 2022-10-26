@@ -1,0 +1,424 @@
+My Last Progect
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Net.Mail;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
+using System.Data.SqlClient;
+using System.Reflection.PortableExecutable;
+using MaxMind.Db;
+using System.Xml.Linq;
+using Microsoft.VisualBasic;
+
+namespace TradeProg
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        Link3:
+            Console.WriteLine(" Меню ");
+            Console.WriteLine(" 1 - Створити Контракт ");
+            Console.WriteLine(" 2 - Вивести усі укладені контракти");
+            Console.WriteLine(" 3 - Сформувати та надіслати звіт на  e-mail про укладені контракти станом на сьогодні ");
+            Console.WriteLine(" 4 - Вивести усі контракти до оплати на сьогодні та надіслати інформування ");
+            string EnterA = Console.ReadLine();
+            if (EnterA == "1")
+            {
+                string manuvalvue;
+                manuvalvue = Convert.ToString(Console.ReadLine());
+                if (manuvalvue == "1")
+                {
+                    goto Link2;
+                }
+            Link2:
+                Console.WriteLine("Getting Connection ...");
+
+                var datasource = @"DESKTOP-GNO8Q9C";//your server
+                var database = "BaseOfContracts"; //your database name
+                var username = "sa"; //username of server to connect
+                var password = "1"; //password
+
+                DbaseWork work1 = new DbaseWork
+                { datasource = datasource, database = database, password = password, username = username };
+                try
+                {
+                    Console.WriteLine("Openning Connection ...");
+                    SqlConnection con = work1.OpenConection();
+
+                    Console.WriteLine("Connection successful!");
+                    Contract contract1 = new Contract();
+                    contract1.Input();
+                    contract1.Output();
+                    con.Open();
+                    contract1.SaveDataToDB(con);
+                    con.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
+                string answB;
+                Console.WriteLine("Відправити звіт про укладення контракту клієнту? ТАК -НI");
+                answB = Console.ReadLine();
+                if (answB == "ТАК")
+                {
+                    //goto Link4;
+                }
+                if (answB == "НІ")
+                {
+                    Console.WriteLine("Натисніть 0 для закриття програми");
+                }
+            }
+            { }
+            if (EnterA == "2")
+            {
+                Console.WriteLine("Getting Connection ...");
+
+                var datasource = @"DESKTOP-GNO8Q9C";//your server
+                var database = "BaseOfContracts"; //your database name
+                var username = "sa"; //username of server to connect
+                var password = "1"; //password
+
+                DbaseWork work1 = new DbaseWork
+                { datasource = datasource, database = database, password = password, username = username };
+                try
+                {
+                    Console.WriteLine("Openning Connection ...");
+                    SqlConnection con = work1.OpenConection();
+                    using (SqlConnection connection = new SqlConnection(@"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password))
+                    using (SqlCommand command = new SqlCommand("select * from Contracts", connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine(reader["Name"].ToString());
+                                Console.WriteLine(reader["SumOF"].ToString());
+                                Console.WriteLine(reader["RegOfContr"].ToString());
+                                Console.WriteLine(reader["Dateofpay"].ToString());
+                                Console.ReadKey();
+                                goto Link3;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
+            }
+
+            if (EnterA == "4")
+            {
+                Console.WriteLine("Getting Connection ...");
+
+                var datasource = @"DESKTOP-GNO8Q9C";//your server
+                var database = "BaseOfContracts"; //your database name
+                var username = "sa"; //username of server to connect
+                var password = "1"; //password
+
+                DbaseWork work1 = new DbaseWork
+                { datasource = datasource, database = database, password = password, username = username };
+                try
+                {
+                    Console.WriteLine("Openning Connection ...");
+                    SqlConnection con = work1.OpenConection();
+                    using (SqlConnection connection = new SqlConnection(@"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password))
+                    using (SqlCommand command = new SqlCommand("select * from Contracts", connection))
+                    {
+                        connection.Open();
+                        DateTime workDate;
+                        DateTime workDate2;
+                        string workName;
+                        int workSum;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine(reader["Name"].ToString());
+                                workName = Convert.ToString(reader["Name"]);
+                                Console.WriteLine(reader["SumOF"].ToString());
+                                workSum = Convert.ToInt32(reader["SumOF"]);
+                                Console.WriteLine(reader["Dateofpay"].ToString());
+                                workDate = Convert.ToDateTime(reader["Dateofpay"]);
+                                workDate2 = DateTime.Now;
+                                //if (workDate = workDate2)
+                              
+                                {
+                                    SendEmailAsync(workName, workSum).GetAwaiter();
+                                    Console.ReadKey();
+
+                                    static async Task SendEmailAsync(string workName, int workSum)
+                                    { 
+                                        MailAddress from = new MailAddress("zvitprogramtest@gmail.com", "Zvit");
+                                        MailAddress to = new MailAddress("derhalo.nick@gmail.com");
+                                        MailMessage m = new MailMessage(from, to);
+                                        m.Subject = "Інформування про дату платежу";
+                                        m.Body = Convert.ToString("Прохання проконтролювати оплати за контрактом із" + workName + "на суму" + workSum + "");
+                                        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                                        smtp.Credentials = new NetworkCredential("zvitprogramtest@gmail.com", "ZvitProgram1");
+                                        smtp.EnableSsl = true;
+                                        smtp.Send(m);
+                                        await smtp.SendMailAsync(m);
+                                    }
+                                }
+                            }
+                            Console.ReadKey();
+                            goto Link3;
+                        }
+                    }
+                }
+
+                catch (Exception e)
+                {
+                        Console.WriteLine("Error: " + e.Message);
+                }
+                }
+            if (EnterA == "3")
+            {
+
+                Console.WriteLine("Getting Connection ...");
+                var datasource = @"DESKTOP-GNO8Q9C";//your server
+                var database = "BaseOfContracts"; //your database name
+                var username = "sa"; //username of server to connect
+                var password = "1"; //password
+
+                DbaseWork work1 = new DbaseWork
+                { datasource = datasource, database = database, password = password, username = username };
+                try
+                {
+                    Console.WriteLine("Openning Connection ...");
+                    SqlConnection con = work1.OpenConection();
+                    using (SqlConnection connection = new SqlConnection(@"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password))
+                    using (SqlCommand command = new SqlCommand("select * from Contracts", connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int workSum;
+                                Console.WriteLine(reader["Name"].ToString());
+                                Console.WriteLine(reader["SumOF"].ToString());
+                                Console.WriteLine(reader["Dateofpay"].ToString());
+                                workSum = Convert.ToInt32(reader["SumOF"]);
+                                List<string> mailContr = new List<string>() { "Name", "SumOF", "Dateofpay" };
+                                Console.WriteLine(mailContr);
+                                string Answer3;
+                                Console.WriteLine("Відправити звіт про укладені контракти?");
+                                Answer3 =Convert.ToString(Console.ReadLine());
+                                if ( Answer3=="ТАК")
+                                {
+                                    SendEmailAsync(mailContr).GetAwaiter();
+                                    Console.ReadKey();
+
+                                    static async Task SendEmailAsync(List<string> mailContr)
+                                    {
+                                        MailAddress from = new MailAddress("zvitprogramtest@gmail.com", "ZvitProgram1");
+                                        MailAddress to = new MailAddress("derhalo.nick@gmail.com");
+                                        MailMessage m = new MailMessage(from, to);
+                                        m.Subject = "Укладені контракти станом на" +DateTime.Now+"";
+                                        m.Body = Convert.ToString("Укладені контракти " + mailContr + "" );
+                                        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                                        smtp.Credentials = new NetworkCredential("zvitprogramtest@gmail.com", "ZvitProgram1");
+                                        smtp.EnableSsl = true;
+                                        await smtp.SendMailAsync(m);
+                                    }
+                                }
+                            }
+                            Console.ReadKey();
+                            goto Link3;
+                        }
+                    }
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
+            }
+            }
+
+    }
+}
+____________________________________________________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TradeProg
+{
+    internal interface IObjects
+    {
+        string Name { get; }
+        int EDRPOY { get; }
+        int SumOf { get; }
+        DateTime RegOfContr { get; }
+        int SumOfOrd { get; }
+        DateTime dateofpay { get; }
+        void Input();
+        void Output();
+    }
+}
+______________________________________________________________
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+
+namespace TradeProg
+{
+    public class DbaseWork
+    {
+        public string datasource { get; set; }
+        public string database { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public SqlConnection OpenConection()
+        {
+            string conectionString= @"Data Source=" + datasource + ";Initial Catalog="+ database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password;
+            SqlConnection con = new SqlConnection(conectionString);
+            return con;
+        }
+        
+    }
+}
+____________________________________________________________________
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TradeProg
+{
+    public class Contract : IObjects
+    {
+        private string Name;
+        private int EDRPOY;
+        private int SumOF;
+        private DateTime RegOfContr;
+        private DateTime Dateofpay;
+        string nameof
+        {
+            set { Name = value; }
+            get { return Name; }
+        }
+        int edrpoy
+        {
+            set { EDRPOY = value; }
+            get { return EDRPOY; }
+        }
+        int sumof
+        {
+            set { SumOF = value; }
+            get { return SumOF; }
+        }
+        DateTime regOfContr
+        {
+            set { RegOfContr = value; }
+            get { return RegOfContr; }
+        }
+        DateTime dayofpay
+        {
+            set { Dateofpay = value; }
+            get { return Dateofpay; }
+        }
+
+        string IObjects.Name => throw new NotImplementedException();
+
+        int IObjects.EDRPOY => throw new NotImplementedException();
+
+        public int SumOf => throw new NotImplementedException();
+
+        DateTime IObjects.RegOfContr => throw new NotImplementedException();
+
+        public int SumOfOrd => throw new NotImplementedException();
+
+        DateTime IObjects.dateofpay => throw new NotImplementedException();
+
+        public Contract()
+        {
+            this.Name = nameof;
+            this.EDRPOY = edrpoy;
+            this.SumOF = sumof;
+            this.RegOfContr = regOfContr;
+            this.Dateofpay = dayofpay;
+        }
+        public void Input()
+        {
+            Console.WriteLine($"Введіть найменування Замовника ");
+            string nameof = Console.ReadLine();
+        Link1:
+            try
+            {
+                Console.WriteLine($"Введіть ЄДРПОУ Замовника ");
+                int edrpoy = Convert.ToInt32(Console.ReadLine());
+                int a;
+                a = 99999999;
+                int b;
+                b = 00000001;
+                if (edrpoy > a)
+                {
+                    throw new Exception("Неможливо укласти контракт із фізичною особою. Введіть ЄДРПОУ");
+                    goto Link1;
+                }
+                if (edrpoy < b)
+                {
+                    throw new Exception("Некоретний ЄДРПОУ");
+                }
+                this.EDRPOY = edrpoy;
+
+            }
+            catch (Exception Ex) { goto Link1; }
+
+            Console.Write($"Введіть суму контракту із  Замовником {Name} ");
+            int sumof = Convert.ToInt32(Console.ReadLine());
+            DateTime regOfContr = DateTime.Now;
+            Console.Write($"Контракт зареєстровано {regOfContr} із  Замовником {nameof}");
+            DateTime dayofpay = regOfContr.AddDays(20);
+            Console.WriteLine($"Очікуйте оплату по контракт із Замовником {nameof} {dayofpay}");
+
+            this.Name = nameof;
+            this.SumOF = sumof;
+            this.RegOfContr = regOfContr;
+            this.Dateofpay = dayofpay;
+        }
+
+        public void Output()
+        {
+            Console.WriteLine("ВІТАЄМО . Ви створили договір із" + Name + " ЄДРПОУ " + EDRPOY + " на суму  " + SumOF +
+                "який зареєстровно " + RegOfContr + "та повинно бути оплачено" + Dateofpay);
+        }
+        public void SaveDataToDB(SqlConnection conn)
+        {
+            SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[Contracts]\r\n " +
+                "          ([Name]\r\n   " +
+                "        ,[EDRPOY]\r\n " +
+                "          ,[SumOF]\r\n   " +
+                "        ,[RegOfContr]\r\n  " +
+                "         ,[dateofpay])\r\n " +
+                "    VALUES\r\n    " +
+                "       (" +"'" + Name + "'" + ", " +EDRPOY + ", "+SumOF +", " + "'" + RegOfContr.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'" +", " 
+                + "'" + Dateofpay.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'" + ")", conn) ;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch { }
+        }
+    }
+}
