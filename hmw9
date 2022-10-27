@@ -1,0 +1,192 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+
+namespace hm9a
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Shape> shapes = new List<Shape>();
+            int q;
+            int counter = 1;
+            for (int i = 0; i < 3; i++)
+            {
+             
+                Console.WriteLine($"Enter number in list {counter++}");
+                q = int.Parse(Console.ReadLine());
+                shapes.Add(new Circle(q, nameof(Circle)));
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Enter number in list {counter++}");
+                q = int.Parse(Console.ReadLine());
+                shapes.Add(new Square(q, nameof(Circle)));
+            }
+            foreach (Shape shape in shapes)
+            {
+                shape.FindArea();
+                shape.FindPerimeter();
+
+            }
+
+
+            Console.WriteLine(" ***** Find range into [10,100] ***** ");
+            var ranges = shapes.Where(w => w.Area > 10 && w.Area < 100);
+            foreach (var area in ranges)
+            {
+                Console.WriteLine(area.Area);
+                using (StreamWriter sw = new StreamWriter("/Users/marianchornobai/Desktop/range.txt", true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine(area.Area);
+                }
+
+            }
+            Console.WriteLine(" ***** Shape with letter (a) ***** ");
+            var lettera = shapes.Where(n => n.Name.ToLower().Contains("a"));
+            foreach (var a in lettera)
+            {
+                Console.WriteLine(a.Name);
+                using (StreamWriter sw = new StreamWriter("/Users/marianchornobai/Desktop/lettera.txt", true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine(a.Name);
+                }
+            }
+            Console.WriteLine(" ***** Find and remove from the list all shapes with perimeter less then 5 ***** ");
+            shapes.RemoveAll(c => c.Perimeter < 5);
+            foreach (var n in shapes)
+            {
+  
+                Console.WriteLine($"Name:{n.Name} ; Perimeter: {n.Perimeter}");
+            }
+
+            Console.ReadKey();
+
+        }
+    }
+}
+
+
+using System;
+using System.Security.Cryptography;
+using System.Xml.Linq;
+
+namespace hm9a
+{
+    public class Circle : Shape
+    {
+
+        private double radius;
+        public override double Perimeter { get; set; }
+        public override double Area { get; set; }
+
+        public Circle(double radius, string name) : base(name)
+        {
+            this.radius = radius;
+        }
+
+        public override void FindPerimeter()
+        {
+            Perimeter = Math.Round((radius * 2 * Math.PI), 2);
+        }
+
+        public override void FindArea()
+        {
+            Area = Math.Round((Math.PI * Math.Pow(radius, 2)), 2);
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine("Name is: " + Name + "; Area is: " + Area + "; Perimeter is: " + Perimeter);
+        }
+
+    }
+}
+
+
+using System;
+using System.Security.Cryptography;
+using System.Xml.Linq;
+
+namespace hm9a
+{
+    public abstract class Shape : IComparable<Shape>
+    {
+        private string name;
+        public string Name { get { return name; } set { name = value; } }
+        public abstract double Area { get; set; }
+        public abstract double Perimeter { get; set; }
+
+        public Shape(string name)
+        {
+            this.name = name;
+        }
+        public abstract void FindArea();
+        public abstract void FindPerimeter();
+        public abstract void Print();
+
+
+        public int CompareTo(Shape sh)
+        {
+            Shape cr = sh as Circle;
+            Shape sq = sh as Square;
+            if (cr != null)
+            {
+                return Area.CompareTo(cr.Area);
+            }
+            if (sq != null)
+            {
+                return Area.CompareTo(sq.Area);
+            }
+            else
+            {
+                throw new Exception("Unable to compare");
+            }
+
+        }
+
+    }
+}
+
+
+using System;
+using System.Security.Cryptography;
+using System.Xml.Linq;
+
+namespace hm9a
+{
+    public class Square : Shape
+    {
+        private double side;
+
+        public override double Perimeter { get; set; }
+        public override double Area { get; set; }
+
+        public Square(double side, string name) : base(name)
+        {
+            this.side = side;
+        }
+
+        public override void FindPerimeter()
+        {
+            Perimeter = side * 4;
+        }
+
+        public override void FindArea()
+        {
+            Area = side * side;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine("Name = " + Name + " Area =  " + Area + " Perimeter = " + Perimeter);
+          
+        }
+
+
+
+    }
+}
